@@ -23,6 +23,18 @@ export default class BudgetForm extends PureComponent {
       };
     }
 
+    handleSubmit = event => {
+      event.preventDefault();
+      const { _id, timestamp, name, category } = this.state;
+      this.props.onComplete({ _id, timestamp, name, category });
+    }
+
+    handleChange = ({ target: input }) => {
+      this.setState({
+        [input.name]: input.value
+      });
+    }
+
     render() {
       const{ name, category } = this.state;
       return (

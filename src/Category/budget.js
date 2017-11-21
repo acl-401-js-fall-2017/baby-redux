@@ -10,6 +10,11 @@ class Budget extends Component {
     this.props.addBudget({ name: 'dinner', category: 'entertainment' });
   }
   
+  handleAdd = (budget) => {
+    this.props.addBudget(budget);
+  }
+
+
   render () {
     const { budgets } = this.props;
     
