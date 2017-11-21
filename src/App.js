@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
 import Categories from './category/Categories';
 import logo from './logo.svg';
 import './App.css';
@@ -13,8 +13,9 @@ class App extends Component {
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Welcome to React</h1>
-            <Link to ="/categories"> Categories</Link>
-            <Link to ="/categories/newcategory"> addNewCategory</Link>
+            <NavLink to ="/categories">Categories</NavLink>
+            <span> </span>
+            <NavLink to ="/categories/newcategory">Add Category</NavLink>
           </header>
           <Switch>
             <Route path="/categories/newcategory" component={NewCategory}/>
