@@ -1,3 +1,3 @@
-export const CATEGORY_ADD = 'CATEGORY_ADD';
-export const CATEGORY_UPDATE = 'CATEGORY_UPDATE';
-export const CATEGORY_REMOVE = 'CATEGORY_REMOVE';
+export const BUDGET_ADD = 'BUDGET_ADD';
+export const BUDGET_UPDATE = 'BUDGET_UPDATE';
+export const BUDGET_REMOVE = 'BUDGET_REMOVE';

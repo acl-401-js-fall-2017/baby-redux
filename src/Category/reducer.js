@@ -1,16 +1,16 @@
 import * as actions from './constants';
 
-export default function category(state = [], { type, payload }) {
+export default function budgets(state = [], { type, payload }) {
   switch (type) {
-    case actions.CATEGORY_ADD:
+    case actions.BUDGET_ADD:
       return [
         ...state,
         payload
       ];
-    case actions.CATEGORY_REMOVE:
-      return state.filter(c => c._id !== payload);
-    case actions.CATEGORY_UPDATE:
-      return state.map(c => c._id === payload ? { ...c, ...payload } : c);
+    case actions.BUDGET_REMOVE:
+      return state.filter(b => b._id !== payload);
+    case actions.BUDGET_UPDATE:
+      return state.map(b => b._id === payload ? { ...b, ...payload } : b);
     default:
       return state;
   }
