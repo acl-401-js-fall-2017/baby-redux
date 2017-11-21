@@ -5,8 +5,6 @@ export function addCategory(category) {
 
   category._id = shortid.generate();
   category.timestamp = new Date();
-  category.name = '';
-  category.budget = 0;
   
   return {
     type: actions.CATEGORY_ADD,
