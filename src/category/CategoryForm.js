@@ -18,7 +18,7 @@ export default class CategoryForm extends PureComponent {
     this.state = {
       id: category._id || null,
       timestamp: category.timestamp,
-      name: category.name || null,
+      name: category.name,
       budget: category.budget
     };
   }

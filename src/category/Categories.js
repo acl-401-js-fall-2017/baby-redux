@@ -33,7 +33,6 @@ class Categories extends PureComponent {
               <CategoryForm category={category} text="Update"
                 onComplete={this.handleUpdate}/>
             </li>)) }
-          ))}
         </ul>
       </div>
     );
