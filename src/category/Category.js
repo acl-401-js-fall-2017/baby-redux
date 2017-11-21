@@ -13,14 +13,16 @@ class Category extends PureComponent {
 
   render() {
     const { category } = this.props;
-
+    console.log(category);
     return (
       <div>
         <table>
-          {category.map(c => <tr>
-            <td>{c.name}</td>
-            <td>{c.budget}</td>
-          </tr>)}
+          <tbody>
+            {category.map(c => <tr key={c._id}>
+              <td>{c.name}</td>
+              <td>{c.budget}</td>
+            </tr>)}
+          </tbody>
         </table>
       </div>
     );
@@ -36,6 +38,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  // mapDispatchToProps
   { addCategory }
 )(Category);
