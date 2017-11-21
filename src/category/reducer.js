@@ -1,6 +1,6 @@
 import * as actions from './constants';
 
-export default function category(state, { type, payload }) {
+export default function category(state = [], { type, payload }) {
   switch (type) {
 
   case actions.CATEGORY_ADD:
