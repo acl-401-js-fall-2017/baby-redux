@@ -27,7 +27,7 @@ class Categories extends PureComponent {
           {categories.map(category => (
             <li key={category._id}>
               <h4>
-                {category.name}
+                The budget for {category.name} is ${category.budget}
                 <button onClick={() => this.handleRemove(category._id)}>Remove</button>
               </h4>
               <CategoryForm category={category} text="Update"

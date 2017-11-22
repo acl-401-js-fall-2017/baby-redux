@@ -12,7 +12,7 @@ export default function categoryReducer(state = [], { type, payload }) {  //dest
       return state.map(category => category._id === payload._id ? { ...category, ...payload } : category);
 
     case actions.CATEGORY_REMOVE:
-      return state.filter(category => category._id !== payload._id);
+      return state.filter(category => category._id !== payload);
 
     default: 
       return state;
