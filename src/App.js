@@ -13,7 +13,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
-          <NavLink to="/categories">Categories</NavLink>
+          <NavLink exact to="/categories">Categories</NavLink>
           <span></span>
           <NavLink to ="/categories/addcategory">Add Category</NavLink>
         </header>
