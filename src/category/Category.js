@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { addCategory } from './actions';
+import 'bulma/css/bulma.css';
 class Category extends PureComponent {
 
   componentDidMount() {
@@ -13,9 +14,8 @@ class Category extends PureComponent {
 
   render() {
     const { category } = this.props;
-    console.log(category);
     return (
-      <div>
+      <div className='content is-medium'>
         <table>
           <tbody>
             {category.map(c => <tr key={c._id}>

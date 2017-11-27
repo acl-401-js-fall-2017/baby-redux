@@ -2,7 +2,6 @@ import * as actions from './constants';
 import shortid from 'shortid';
 
 export function addCategory(category)  {
-  console.log('in addCategory');
   category._id = shortid.generate();
   category.timestamp = new Date();
 
