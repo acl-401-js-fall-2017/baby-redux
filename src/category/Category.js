@@ -14,8 +14,11 @@ class Category extends PureComponent {
   }
 
   handleUpdate = category => {
-    console.log('in handlegjdg', category);
     this.props.updateCategory(category);
+  }
+
+  handleAdd = category => {
+    this.props.addCategory(category);
   }
 
   render() {
@@ -24,6 +27,8 @@ class Category extends PureComponent {
       <div className='content is-medium'>
         <table>
           <tbody>
+            <tr><td><CategoryForm text="Add"
+              onComplete={this.handleAdd}/></td></tr>
             {category.map(c => <tr key={c._id}>
               <td>{c.name}</td>
               <td>{c.budget}</td>

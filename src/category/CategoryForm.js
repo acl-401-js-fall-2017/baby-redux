@@ -10,10 +10,10 @@ export default class CategoryForm extends PureComponent {
     super(props);
     const { category = {} } = props;
     this.state = {
-      name: category.name || null,
-      budget: category.budget || null,
-      _id: category._id || null,
-      timestamp: category.timestamp
+      name: category.name || '',
+      budget: category.budget || '',
+      _id: category._id || '',
+      timestamp: category.timestamp 
     };
   }
 
