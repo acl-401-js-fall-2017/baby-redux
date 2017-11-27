@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addCategory } from './actions';
+import { addCategory, updateCategory } from './actions';
+import CategoryForm from './CategoryForm';
 import 'bulma/css/bulma.css';
 class Category extends PureComponent {
 
@@ -12,6 +13,11 @@ class Category extends PureComponent {
     this.props.addCategory({ name: 'Utility', budget: 150 });
   }
 
+  handleUpdate = category => {
+    console.log('in handlegjdg', category);
+    this.props.updateCategory(category);
+  }
+
   render() {
     const { category } = this.props;
     return (
@@ -21,6 +27,8 @@ class Category extends PureComponent {
             {category.map(c => <tr key={c._id}>
               <td>{c.name}</td>
               <td>{c.budget}</td>
+              <td><CategoryForm category={c} text="Update"
+                onComplete={this.handleUpdate}/></td>
             </tr>)}
           </tbody>
         </table>
@@ -38,5 +46,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { addCategory }
+  { addCategory, updateCategory }
 )(Category);
