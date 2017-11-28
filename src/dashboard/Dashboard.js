@@ -31,9 +31,7 @@ class Dashboard extends PureComponent {
       <div>
         <h1>Budget Dashboard</h1>
         {this.props.categories.map(categoryItem => (
-					<CategoryItem key={categoryItem.id} category={categoryItem}/>
-				))}
-				<br/>
+					<CategoryItem key={categoryItem.id} category={categoryItem}/>))}<br/>
 				<h4>create new budget</h4>
 				<CategoryForm onComplete={this.handleAdd} buttonText={'create'}/>
       </div>

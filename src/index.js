@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 import React from 'react';
 import { createStore } from 'redux';
-import categories from './categories/reducers';
+import categories from './categories/reducer';
 import './index.css';
 import App from './App';
 import ReactDOM from 'react-dom';
