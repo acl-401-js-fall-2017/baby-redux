@@ -1,6 +1,6 @@
 import * as actions from './constants';
 
-export function categories(state = [], { type, payload }) {
+export default function categories(state = [], { type, payload }) {
 
   switch(type) {
 
