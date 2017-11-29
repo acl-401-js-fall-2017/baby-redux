@@ -1,6 +1,7 @@
 import * as actions from './constants';
 
 export default function categories(state = [], { type, payload }) {
+  console.log('ss')
   
   switch (type) {
   case actions.CATEGORY_ADD:
