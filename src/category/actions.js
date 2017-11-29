@@ -1,5 +1,4 @@
 import { CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_REMOVE } from './constants';
-import shortid from 'shortid';
 import categoryApi from '../services/categories-api';
 
 
@@ -31,8 +30,12 @@ export function updateCategory(category) {
 }
 
 export function removeCategory(id) {
-  return {
-    type: CATEGORY_REMOVE,
-    payload: id
+  return async dispatch => {
+    await categoryApi.remove(id);
+    dispatch({
+      type: CATEGORY_REMOVE,
+      payload: { _id: id }
+    });
   };
+
 }
