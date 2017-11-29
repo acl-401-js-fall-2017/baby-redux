@@ -14,6 +14,7 @@ export default {
   },
 
   update(id, content) {
+    console.log('IN UPDATE');
     return api.put(`/categories/${id}`, content);
   }
 

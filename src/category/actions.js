@@ -1,16 +1,7 @@
 import { CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_REMOVE } from './constants';
 import categoryApi from '../services/categories-api';
+import category from './reducer';
 
-
-// export function addCategory(category)  {
-//   category._id = shortid.generate();
-//   category.timestamp = new Date();
-
-//   return {
-//     type: CATEGORY_ADD,
-//     payload: category
-//   };
-// }
 
 export function addCategory(category) {
   return async dispatch => {
@@ -22,10 +13,20 @@ export function addCategory(category) {
   };
 }
 
-export function updateCategory(category) {
-  return {
-    type: CATEGORY_UPDATE,
-    payload: category
+// export function updateCategory(category) {
+//   return {
+//     type: CATEGORY_UPDATE,
+//     payload: category
+//   };
+// }
+
+export function updateCategory(id, content) {
+  return async dispatch => {
+    const updated = await categoryApi.update(id, content);
+    dispatch({
+      type: CATEGORY_UPDATE,
+      payload: updated
+    });
   };
 }
 
