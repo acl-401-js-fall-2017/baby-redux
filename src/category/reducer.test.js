@@ -16,5 +16,15 @@ describe('Category reducer', ()=> {
     expect(state).toEqual([{ _id: 123, name: 'hello' }]);
   });
 
+  it('should update a category', () => {
+    const test = { _id: 123, name: 'hello' };
+
+    let state = reducer([], { type: CATEGORY_ADD, payload: test });
+    const update = { name: 'goodbye' };
+    state = reducer(state, { type: CATEGORY_UPDATE, payload: update });
+
+    expect(state).toEqual([{ _id: 123, name: 'hello' }]);
+  });
+
 
 });
