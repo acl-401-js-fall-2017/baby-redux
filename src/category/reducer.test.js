@@ -14,4 +14,21 @@ describe('category reducers', () => {
     console.log();
     expect(state).toEqual([category]);
   });
+
+  it('removes a category', () => {
+    const category = { _id: 123, name: 'Zach' };
+    const state = reducer([category], { type: actions.CATEGORY_REMOVE, payload: category._id });
+    expect(state).toEqual([]);
+  });
+
+  it('updates a category', () => {
+    const category = { _id: 123, name: 'Zach' };
+    const state = reducer([category], {
+      type: actions.CATEGORY_UPDATE,
+      payload: { _id: 123, name: 'Hello' }
+    });
+    expect(state).toEqual([
+      { ...category, name: 'Hello' }
+    ]);
+  });
 });
