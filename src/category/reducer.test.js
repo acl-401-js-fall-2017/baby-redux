@@ -4,8 +4,8 @@ import { CATEGORY_ADD, CATEGORY_REMOVE, CATEGORY_UPDATE } from './constants';
 describe('Category reducer', ()=> {
 
   it('should initialize', ()=> {
-    const state = (undefined, {});
-    expect(state).toEqual({});
+    const state = reducer(undefined, {});
+    expect(state).toEqual([]);
   });
 
   it('should add a category', () => {
@@ -24,6 +24,15 @@ describe('Category reducer', ()=> {
     state = reducer(state, { type: CATEGORY_UPDATE, payload: update });
 
     expect(state).toEqual([{ _id: 123, name: 'hello' }]);
+  });
+
+  it('should remove a category', () => {
+    const test = { _id: 123, name: 'hello' };
+    let state = reducer([], { type: CATEGORY_ADD, payload: test });
+
+    state = reducer(state, { type: CATEGORY_REMOVE, payload: 123 });
+
+    expect(state).toEqual([]);
   });
 
 
