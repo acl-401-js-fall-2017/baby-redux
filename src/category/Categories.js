@@ -1,23 +1,23 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addCategory, updateCategory, removeCategory } from './actions';
+import { addCategory, updateCategory, removeCategory, loadCategories } from './actions';
 
 
 class Categories extends PureComponent {
   
   componentDidMount() {
-    if(!this.props.categories.length) {
-      this.props.addCategory({ name: 'Food', budget: 300 });
-      this.props.addCategory({ name: 'Dog Treats', budget: 500 });
+    if(!this.props.state.categories.length) {
+      this.props.loadCategories();
     }
   } 
 
   render() {
+    console.log('state is:', this.props.state);
     return (
       <div>
         <ul>
-          {this.props.categories.map(category =>(
+          {this.props.state.categories.map(category =>(
             <li type="none" key={category._id}>
               <h4>budget for {category.name} is {category.budget} </h4>
             </li>
@@ -29,6 +29,6 @@ class Categories extends PureComponent {
 }
 
 export default connect( 
-  state => ({ categories: state }),
-  { addCategory, updateCategory, removeCategory }
+  state => ({ state: state }),
+  { addCategory, updateCategory, removeCategory, loadCategories }
 )(Categories);
