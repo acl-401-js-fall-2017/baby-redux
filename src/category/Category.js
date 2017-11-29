@@ -1,21 +1,31 @@
-import React, { Component } from 'react';
-import shortid from 'shortid';
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { addCategory, updateCategory, removeCategory } from './actions';
+import CategoryForm from './CategoryForm';
 
-class Category extends Component {
-  constructor() {
-    super();
-    this.state = {
-      _id: shortid.generate(),
-      timestamp: new Date(),
-      name: '',
-      budget: null
-    };
+class Category extends PureComponent {
+
+  handleAdd = category => {
+    this.props.addCategory(category);
   }
   render() {
+    // const { categories } = this.props;
     return(
-      <p>filler</p>
+      <div>
+        <CategoryForm onComplete={this.handleAdd}/>
+      </div>
     );
   }
 }
 
-export default Category;
+function mapStateToProps(state) {
+  return{ 
+    pirates: state
+  };
+}
+
+
+export default connect(
+  mapStateToProps,
+  { addCategory, updateCategory, removeCategory }
+)(Category);
