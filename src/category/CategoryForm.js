@@ -16,7 +16,7 @@ export default class CategoryForm extends PureComponent {
       timestamp: category.timestamp 
     };
   }
-
+  
   handleSubmit = event => {
     event.preventDefault();
     const { _id, timestamp, name, budget } = this.state;
