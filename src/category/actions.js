@@ -2,7 +2,7 @@ import * as actions from './constants';
 import categoriesApi from '../services/categories.api';
 import shortid from 'shortid';
 
-export function loadCategories() {
+export function loadCategory() {
   return async dispatch => {
     try {
       const categories = await categoriesApi.get();

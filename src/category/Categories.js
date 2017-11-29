@@ -1,27 +1,33 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addCategory, updateCategory, removeCategory } from './actions';
+import { loadCategory, addCategory, updateCategory, removeCategory } from './actions';
 import CategoryForm from './CategoryForm';
 
-class Categories extends PureComponent {
 
+class Categories extends PureComponent {
+  
+  componentDidMount() {
+    this.props.loadCategory();
+  }
+  
   handleAdd = category => {
     this.props.addCategory(category);
   }
-
+  
   handleUpdate = category => {
     this.props.updateCategory(category);
   }
-
+  
   handleRemove = id => {
     this.props.removeCategory(id);
   }
-
+  
   render() {
-    const { categories } = this.props;   // destructured
-
+    const { categories, error } = this.props;   // destructured
+    
     return (
       <div>
+        { error && <div className="error">{error}</div> }
         <CategoryForm onComplete={this.handleAdd}/>
         <ul>
           {categories.map(category => (
@@ -39,13 +45,12 @@ class Categories extends PureComponent {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    categories: state
-  };
-}
+const mapStateToProps = (state) => ({
+  categories: state.categories,
+  error: state.categoriesError
+});
 
 export default connect(
-  mapStateToProps,
-  { addCategory, updateCategory, removeCategory }     // = mapDispatchToProps, calling bindActionCreator under the hood
+  mapStateToProps, 
+  { loadCategory, addCategory, updateCategory, removeCategory }     // = mapDispatchToProps, calling bindActionCreator under the hood
 )(Categories);
