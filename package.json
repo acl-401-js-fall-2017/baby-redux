@@ -24,5 +24,6 @@
     "enzyme-to-json": "^3.2.2",
     "jest-enzyme": "^4.0.1",
     "react-test-renderer": "^16.1.1"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }
