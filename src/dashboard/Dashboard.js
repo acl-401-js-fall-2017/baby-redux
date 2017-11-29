@@ -42,23 +42,23 @@ class Dashboard extends PureComponent {
 }
 
 
-const dispatchToProps = dispatch => {
-	return {
-		onAddCategory: newCategory => {
-			dispatch(addCategory(newCategory));
-		}
-	};
-}
-const stateToProps = state => {
+function mapStateToProps(state) {
   return {
     categories: state
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    onAddCategory: newCategory => {
+      dispatch(addCategory(newCategory));
+    }
+  };
+}
 
 const ConnectedDash = connect(
-  stateToProps,
-  dispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Dashboard);
 
 export default ConnectedDash;
