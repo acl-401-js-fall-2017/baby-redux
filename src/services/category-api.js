@@ -1,9 +1,9 @@
-import api from './api';
+import { get as apiGet, post, patch, remove as apiRemove } from './api';
 
-export const get = () => api.get('/categories');
+export const get = () => apiGet('/categories');
 
-export const add = category => api.post('/categories', category);
+export const add = category => post('/categories', category);
 
-export const update = (id, update) => api.patch(`/categories/${id}`, update);
+export const update = (update) => patch(`/categories/${update.id}`, update);
 
-export const remove = id => api.remove(`/categories/${id}`);
+export const remove = id => apiRemove(`/categories/${id}`);
