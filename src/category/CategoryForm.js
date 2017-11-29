@@ -34,4 +34,19 @@ export default class CategoryForm extends PureComponent {
       [input.name]: input.value
     });
   }
+
+  render() {
+    const { name, budget } = this.state;
+    return(
+      <form onSubmit={this.handleSubmit}>
+        <div>
+          Name: <input name={name} value={name} onChange={this.handleChange}/>>
+        </div>
+        <div>
+          Budget: <input budget={budget} value={budget} onChange={this.handleChange}/>>
+        </div>
+        <button type="submit">{this.props.text}</button>
+      </form>
+    );
+  }
 }
