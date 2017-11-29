@@ -23,13 +23,6 @@ export function addCategory(category) {
       type: actions.CATEGORY_ADD,
       payload: categories
     });
-
-  // category.timestamp = new Date();
-  
-  // return {
-  //   type: actions.CATEGORY_ADD,
-  //   payload: category
-  // };
   };
 }
 
@@ -41,8 +34,12 @@ export function updateCategory(category) {
 }
 
 export function removeCategory(id) {
-  return {
-    type: actions.CATEGORY_REMOVE,
-    payload: id
+
+  return async dispatch => {
+    const categories = await categoryApi.remove(id);
+    dispatch({
+      type: actions.CATEGORY_REMOVE,
+      payload: categories
+    });
   };
 }
