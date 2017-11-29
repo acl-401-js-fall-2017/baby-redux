@@ -16,17 +16,17 @@ export default class CategoryForm extends PureComponent {
     super(props);
     const { category = {} } = props;
     this.state = {
-      id: category._id || null,
+      id: category._id ||'',
       timestamp: category.timestamp,
-      name: category.name || null,
-      budget: category.budget || null
+      name: category.name || '',
+      budget: category.budget || ''
     };
   }
 
   handleSubmit = event => {
     event.preventDefault();
-    const { _id, timestamp, name, budget } = this.state;
-    this.props.onComplete({ _id, timestamp, name, budget });
+    const { id, timestamp, name, budget } = this.state;
+    this.props.onComplete({ id, timestamp, name, budget });
     event.target.reset();
   }   
 
