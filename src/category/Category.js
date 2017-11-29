@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addCategory, updateCategory } from './actions';
+import { addCategory, updateCategory, removeCategory } from './actions';
 import CategoryForm from './CategoryForm';
 import 'bulma/css/bulma.css';
 class Category extends PureComponent {
@@ -21,6 +21,10 @@ class Category extends PureComponent {
     this.props.addCategory(category);
   }
 
+  handleRemove = category => {
+    this.props.removeCategory(category._id);
+  }
+
   render() {
     const { category } = this.props;
     return (
@@ -34,6 +38,7 @@ class Category extends PureComponent {
               <td>{c.budget}</td>
               <td><CategoryForm category={c} text="Update"
                 onComplete={this.handleUpdate}/></td>
+              <td><button onClick={() => this.handleRemove(c)}>X</button></td>
             </tr>)}
           </tbody>
         </table>
@@ -51,5 +56,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { addCategory, updateCategory }
+  { addCategory, updateCategory, removeCategory }
 )(Category);
