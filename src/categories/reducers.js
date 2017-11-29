@@ -7,7 +7,6 @@ export default function categories(state = [], { type, payload }) {
     return [ ...state, payload ];
 
   case actions.CATEGORY_REMOVE:
-  console.log(payload);
     return state.filter(category => category.id !== payload.id);
 
   case actions.CATEGORY_UPDATE:

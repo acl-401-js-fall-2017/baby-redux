@@ -1,0 +1,4 @@
+# before_install: cd ./app
+language: node_js
+node_js:
+  - "8"
