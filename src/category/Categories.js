@@ -48,7 +48,7 @@ class Categories extends PureComponent {
 
 function mapStateToProps(state) {
   return {
-    categories: state
+    categories: state.categories
   };
 }
 
