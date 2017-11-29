@@ -6,7 +6,6 @@ export default {
   },
 
   add(category) {
-    console.log('in categories api, about to post', category);
     return api.post('/categories', category);
   },
 

@@ -13,7 +13,6 @@ export default {
   },
 
   post(path, data) {
-    console.log(`in api, posting ${JSON.stringify(data)} to ${url}${path}`);
     return wrap(
       fetch(`${url}${path}`, {
         method: 'post',

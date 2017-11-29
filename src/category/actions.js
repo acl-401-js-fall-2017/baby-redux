@@ -34,7 +34,7 @@ export function removeCategory(id) {
     await categoryApi.remove(id);
     dispatch({
       type: CATEGORY_REMOVE,
-      payload: { _id: id }
+      payload: id
     });
   };
 
