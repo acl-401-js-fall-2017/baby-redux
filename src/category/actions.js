@@ -11,5 +11,15 @@ export function addCategory(category) {
 }
 
 export function updateCategory(category) {
-  
+  return {
+    type: actions.CATEGORY_UPDATE,
+    payload: category
+  };
+}
+
+export function removeCategory(id) {
+  return {
+    type: actions.CATEGORY_REMOVE,
+    payload: id
+  };
 }
