@@ -11,12 +11,14 @@ export default function category(state = [], { type, payload }) {
   }
 
   case actions.CATEGORY_REMOVE:{
-    return state.filter(c => c._id !== payload);
+    console.log('in remove reducer, payload is,', payload);
+    return state.filter(c => c._id !== payload._id);
   }
 
-  case actions.CATEGORY_UPDATE:
+  case actions.CATEGORY_UPDATE:{
     return state.map(c => c._id === payload._id ? payload : c);
 
+  }
   default:
     return state;
   }
