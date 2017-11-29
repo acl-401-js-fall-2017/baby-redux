@@ -8,8 +8,5 @@ const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(thunk))
 );
-// import category from '../category/reducer';
-
-// const store = createStore(category);
 
 export default store;
