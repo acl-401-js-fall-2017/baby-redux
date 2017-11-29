@@ -50,8 +50,7 @@ export function updateCategory(category) {
 
   return async dispatch => {
     const updated = await update(category);
-    console.log(updated);
-    if(Object.keys(updated).length === 0)
+    if(Object.keys(updated).length !== 0)
       dispatch({
         type: actions.CATEGORY_UPDATE,
         payload: renameId(category)
