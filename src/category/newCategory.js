@@ -16,8 +16,8 @@ export class NewCategory extends PureComponent {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { elements } =event.target;
-    const category ={
+    const { elements } = event.target;
+    const category = {
       name: elements.name.value,
       budget: elements.budget.value
     };

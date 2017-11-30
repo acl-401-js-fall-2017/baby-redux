@@ -1,7 +1,6 @@
 import * as actions from './constants';
 
 export function categories(state = null, { type, payload }) {
-  console.log(type, payload);
   switch (type) {
     case actions.CATEGORY_LOAD:
       return payload;
@@ -29,6 +28,20 @@ export function categoryError(state= null, { type, payload }) {
       return null;
     case actions.CATEGORY_ERROR:
       return payload;
+    default:
+      return state;
+  }
+}
+
+export function loading (state = false, { type }) {
+  switch(type) {
+    case actions.CATEGORY_ADD:
+    case actions.CATEGORY_REMOVE:
+    case actions.CATEGORY_UPDATE:
+    case actions.CATEGORY_LOAD:
+      return false;
+    case actions.LOADING:
+      return true;
     default:
       return state;
   }

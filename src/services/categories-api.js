@@ -5,7 +5,6 @@ export default {
     return api.get('/categories');
   },
   post(category) {
-    console.log('got to add in category');
     return api.post('/categories', category);
   },
   remove(id) {

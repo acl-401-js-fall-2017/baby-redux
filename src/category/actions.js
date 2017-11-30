@@ -1,10 +1,10 @@
 import * as actions from './constants';
-import shortid from 'shortid';
 import categoriesApi from '../services/categories-api';
 
 
 export function loadCategories () {
   return async (dispatch, getState) => {
+    dispatch({ type: actions.LOADING });
     const { categories } = getState();
     if (categories) return;
     try {
@@ -25,6 +25,7 @@ export function loadCategories () {
 
 export function addCategory(category) {
   return async dispatch => {
+    dispatch({ type: actions.LOADING });
     try {
       const saved = await categoriesApi.post(category);
       dispatch({
@@ -50,7 +51,8 @@ export function updateCategory(update) {
 
 export function removeCategory(id) {
   return async dispatch => {
-    const removed = await categoriesApi.remove(id);
+    dispatch({ type: actions.LOADING });
+    await categoriesApi.remove(id);
     dispatch({
       type: actions.CATEGORY_REMOVE,
       payload: id

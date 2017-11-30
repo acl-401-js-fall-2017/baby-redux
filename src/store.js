@@ -1,10 +1,11 @@
 import { createStore, applyMiddleware, compose, combineReducers, } from 'redux';
-import { categories , categoryError }  from './category/reducer';
+import { categories , categoryError, loading }  from './category/reducer';
 import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
   categories,
-  categoryError
+  categoryError,
+  loading
 });
 
 const composeEnchancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -11,15 +11,16 @@ class Categories extends PureComponent {
   } 
 
   render() {
-    console.log(this.props);
-    if(!this.props.categories) return <div>Loading...</div>;
+    console.log(this.props.error);
+    if(!this.props.categories) return <div>...</div>;
+    
     return (
       <div>
         <ul>
           {this.props.categories.map(category =>(
-            <li type="none" key={category._id}>
+            <li style={{ display:'flex', justifyContent: 'center' }} type="none" key={category._id}>
               <h4>budget for {category.name} is {category.budget} </h4>
-              <button onClick={()=> this.props.removeCategory(category._id)}>X</button>
+              <button style={{ height:'50%' }} onClick={()=> this.props.removeCategory(category._id)}>X</button>
             </li>
           ))}
         </ul>
@@ -29,6 +30,6 @@ class Categories extends PureComponent {
 }
 
 export default connect( 
-  state => ({ categories: state.categories }),
+  state => ({ categories: state.categories, error: state.categoryError }),
   { addCategory, updateCategory, removeCategory, loadCategories }
 )(Categories);

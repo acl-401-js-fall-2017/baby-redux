@@ -9,7 +9,7 @@ const wrap = async promise => {
   const error = contentType && contentType.startsWith('application/json')
     ? await response.json()
     : await response.text();
-  
+  console.log(error);
   throw error;
 };
 
