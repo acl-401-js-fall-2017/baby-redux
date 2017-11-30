@@ -33,13 +33,16 @@ export function updateCategory(category) {
   };
 }
 
-export function removeCategory(id) {
+export function removeCategory(_id) {
 
   return async dispatch => {
-    const categories = await categoryApi.remove(id);
-    dispatch({
-      type: actions.CATEGORY_REMOVE,
-      payload: categories
-    });
+    const category = await categoryApi.remove(_id);
+    console.log(category.removed);
+    if(category.removed) {
+      dispatch({
+        type: actions.CATEGORY_REMOVE,
+        payload: { _id }
+      });
+    }
   };
 }
