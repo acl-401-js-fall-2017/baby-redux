@@ -18,15 +18,20 @@ export function loadCategories() {
 }
 
 export const addCategory = ({ name, budget }) => {
-  return {
-    type: actions.CATEGORY_ADD,
-    payload: {
-      id: shortid.generate(),
-      timestamp: new Date(),
-      name,
-      budget
+  return async (dispatch) => {
+    try {
+      const savedCategory = await categoriesApi.add({ name, budget })
+      console.log(` add a new category with ....${ savedCategory }`);
+      dispatch({
+        type: actions.CATEGORY_ADD,
+        payload: savedCategory
+      });
     }
-  };
+    catch(error){
+      dispatch({ type: actions.CATEGORY_ERROR, payload: error });
+    }
+  }
+
 }
 
 export const removeCategory = ({ id }) => {

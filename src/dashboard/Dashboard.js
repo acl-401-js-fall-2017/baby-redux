@@ -20,7 +20,7 @@ class Dashboard extends PureComponent {
       name: event.name.value,
       budget: event.budget.value
     }
-    this.props.onAddCategory(newBudget);
+    this.props.addCategory(newBudget);
     event.reset();
   }
   
