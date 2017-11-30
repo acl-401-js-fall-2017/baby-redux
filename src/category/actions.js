@@ -1,12 +1,30 @@
 import * as actions from './constants';
+import categoriesApi from '../services/categories.api';
 import shortid from 'shortid';
+
+export function loadCategories() {
+  return async dispatch => {
+    try {
+      const categories = await categoriesApi.get();
+      dispatch({ type: actions.CATEGORY_LOAD, payload: categories });
+    }
+    catch(err) {
+      dispatch({ type: actions.CATEGORY_ERROR, payload: err });
+    }
+  };
+}
 
 export function addCategory(category) {
   category._id = shortid.generate();
   category.timestamp = new Date();
-  return {
-    type: actions.CATEGORY_ADD,
-    payload: category
+  return async dispatch => {
+    try { 
+      const savedCat = await categoriesApi.add();
+      dispatch({ type: actions.CATEGORY_ADD, payload: savedCat });
+    }
+    catch(err) {
+      dispatch({ type: actions.CATEGORY_ERROR, payload: err });
+    }
   };
 }
 
