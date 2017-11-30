@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addBudget, updateBudget, removeBudget } from './actions';
+import { loadBudgets, addBudget, removeBudget } from './actions';
 import BudgetForm from './budgetForm';
 
 class Budget extends Component {
 
   componentDidMount() {
-    this.props.addBudget({ name: 'hiking trip', category: 'travel' });
-    this.props.addBudget({ name: 'dinner', category: 'entertainment' });
+    this.props.loadBudgets();
+    
   }
   
   handleAdd = (budget) => {
@@ -17,15 +17,16 @@ class Budget extends Component {
 
   render () {
     const { budgets } = this.props;
+    console.log(budgets);
     
     return (
       <div>
         <BudgetForm onComplete={this.handleAdd}/>
         <ul>
-          {budgets.map(budget => (
+          {budgets !== undefined  && budgets.map(budget => (
             <li key={budget._id}>
-             budget category: {budget.category} 
-             budget name: {budget.name}
+              <li>budget category: {budget.category}</li>
+              <li>budget name: {budget.name}</li>
             </li>
           ))}
         </ul>
@@ -34,13 +35,14 @@ class Budget extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    budgets: state
-  };
-}
+
 
 export default connect(
-  mapStateToProps,
-  { addBudget, updateBudget, removeBudget }
+  state => (
+    console.log(state),
+    { 
+      budgets: state.budgetsActions,
+      error: state.budgetsError
+    }),
+  { loadBudgets, addBudget, removeBudget }
 )(Budget);
