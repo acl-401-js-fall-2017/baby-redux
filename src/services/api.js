@@ -33,10 +33,23 @@ export default {
       })
     );
   },
+
   delete(path) {
     return wrap(
       fetch(`${url}${path}`, {
         method: 'delete'
+      })
+    );
+  },
+  patch(path, data) {
+    return wrap(
+      fetch(`${url}${path}`, {
+        method: 'PATCH',
+        body: JSON.stringify(data),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
       })
     );
   }
