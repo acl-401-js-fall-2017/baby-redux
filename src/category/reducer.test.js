@@ -11,11 +11,35 @@ describe('category reducer', () => {
   it('adds a new category', () => {
     const category = {
       name: 'vacation',
-      budget: '500'
+      budget: 500
     };
     const state = reducer([],{ type: actions.CATEGORY_ADD, payload: category });
     expect(state).toEqual([category]);
   });
 
-  it()
+  it('updates a category', () => {
+    const category = { 
+      _id:'5a1dde786f71da3feb306481',
+      name: 'vacation',
+      budget: 500
+    };
+    const state = reducer([category],
+      { type: actions.CATEGORY_UPDATE, 
+        payload: {
+          _id: '5a1dde786f71da3feb306481', 
+          name: 'groceries', 
+          budget: 200 }
+      });  
+    expect(state).toEqual([{ ...category, name: 'groceries', budget: 200 }]) ; 
+  });
+
+  it('removes a category by id', () => {
+    const category = {
+      _id:'5a1dde786f71da3feb306481',
+      name: 'vacation',
+      budget: 500
+    };
+    const state = reducer([category], { type: actions.CATEGORY_REMOVE, payload: category._id });
+    expect(state).toEqual([]);
+  });
 });
