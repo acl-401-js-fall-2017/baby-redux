@@ -1,12 +1,10 @@
 import * as actions from './constants';
 
-export function categories(state = [], { type, payload }) {
+export function categories(state = null, { type, payload }) {
+  console.log(type, payload);
   switch (type) {
     case actions.CATEGORY_LOAD:
-      return [
-        ...state,
-        ...payload
-      ];
+      return payload;
     case actions.CATEGORY_ADD:
       return [
         ...state,

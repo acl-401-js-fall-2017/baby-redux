@@ -4,10 +4,11 @@ import categoriesApi from '../services/categories-api';
 
 
 export function loadCategories () {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const { categories } = getState();
+    if (categories) return;
     try {
       const loaded = await categoriesApi.get();
-      console.log('response from api is:', loaded);
       dispatch({
         type: actions.CATEGORY_LOAD,
         payload: loaded
@@ -21,12 +22,11 @@ export function loadCategories () {
     }
   };
 } 
+
 export function addCategory(category) {
-  console.log('got to add with ', category);
   return async dispatch => {
     try {
       const saved = await categoriesApi.post(category);
-      console.log('added is',saved);
       dispatch({
         type: actions.CATEGORY_ADD,
         payload: saved
@@ -49,8 +49,11 @@ export function updateCategory(update) {
 }
 
 export function removeCategory(id) {
-  return {
-    type: actions.CATEGORY_REMOVE,
-    payload: id
+  return async dispatch => {
+    const removed = await categoriesApi.remove(id);
+    dispatch({
+      type: actions.CATEGORY_REMOVE,
+      payload: id
+    });
   };
 }

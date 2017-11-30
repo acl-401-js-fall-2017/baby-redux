@@ -15,13 +15,11 @@ const wrap = async promise => {
 
 export default {
   get(path) {
-    console.log(path);
     return wrap(
       fetch(`${url}${path}`)
     );
   },
   post(path, data) {
-    console.log('got to post with', path, data);
     return wrap(
       fetch(`${url}${path}`, {
         method: 'post',

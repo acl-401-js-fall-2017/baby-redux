@@ -7,19 +7,19 @@ import { addCategory, updateCategory, removeCategory, loadCategories } from './a
 class Categories extends PureComponent {
   
   componentDidMount() {
-    if(!this.props.state.categories.length) {
-      this.props.loadCategories();
-    }
+    this.props.loadCategories();
   } 
 
   render() {
-    console.log('state is:', this.props.state);
+    console.log(this.props);
+    if(!this.props.categories) return <div>Loading...</div>;
     return (
       <div>
         <ul>
-          {this.props.state.categories.map(category =>(
+          {this.props.categories.map(category =>(
             <li type="none" key={category._id}>
               <h4>budget for {category.name} is {category.budget} </h4>
+              <button onClick={()=> this.props.removeCategory(category._id)}>X</button>
             </li>
           ))}
         </ul>
@@ -29,6 +29,6 @@ class Categories extends PureComponent {
 }
 
 export default connect( 
-  state => ({ state: state }),
+  state => ({ categories: state.categories }),
   { addCategory, updateCategory, removeCategory, loadCategories }
 )(Categories);
