@@ -42,7 +42,7 @@ class Budget extends PureComponent {
 
 function mapStateToProps(state) {
   return {
-    budget: state
+    budgets: state
   };
 }
 
