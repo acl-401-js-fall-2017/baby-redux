@@ -1,6 +1,6 @@
 import reducer from './reducers';
 import * as actions from './constants';
-import { addCategory, updateCategory, removeCategory } from './actions';
+
 
 
 describe( 'Categories reducer', ()=> {
@@ -30,24 +30,4 @@ describe( 'Categories reducer', ()=> {
         const state = reducer([testBudget1, testBudget2], { type: actions.CATEGORY_UPDATE, payload: { id: 2 } });
         expect(state).toEqual([testBudget1, updatedTestBudget2]);
     });
-
-    it('Should create an add action', () => {
-        const testBudget = { name: 'test budget', budget: 100 };
-        const action = addCategory(testBudget);
-        expect( typeof action.payload.id).toEqual('string');
-        expect( typeof action.payload.timestamp).toEqual('object');
-        delete action.payload.id; 
-        delete action.payload.timestamp;
-        expect(action).toEqual( {
-            type: actions.CATEGORY_ADD,
-            payload: testBudget
-        });
-    });
-
-    it('Should create an update action', () => {
-        const testBudget = { id: 1, name: 'test budget', budget: 100 };
-        const action = updateCategory(testBudget);
-        expect(action).toEqual({type: actions.CATEGORY_UPDATE, payload: testBudget});
-    })
-
 })
