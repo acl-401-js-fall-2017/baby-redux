@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { addCategory, updateCategory, removeCategory } from './actions';
-// import BudgetForm from './BudgetForm';
+import BudgetForm from './budgetForm';
 
 class Budget extends PureComponent {
 
@@ -23,7 +23,7 @@ class Budget extends PureComponent {
     const { budgets } = this.props;
     return (
       <div>
-        {/* <BudgetForm onComplete={this.handleAdd}/> */}
+        <BudgetForm onComplete={this.handleAdd}/>
         <ul>
           {budgets.map(budget => (
             <li key={budget._id}>
@@ -31,8 +31,8 @@ class Budget extends PureComponent {
                 For:{budget.name} Amount: ${budget.amount}
                 <button onClick={() => this.handleRemove(budget._id)}>X</button>
               </h3>  
-              {/* <BudgetForm budget={budget} text="Update"
-                onComplete={this.handleUpdate}/> */}
+              <BudgetForm budget={budget} text="Update"
+                onComplete={this.handleUpdate}/>
             </li>))}
         </ul>  
       </div>  
