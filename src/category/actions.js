@@ -2,6 +2,10 @@ import { CATEGORY_LOAD, CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_REMOVE } from '.
 import categoryApi from '../services/categories-api';
 
 export function loadCategories() {
+  // dispath({
+
+  // })
+
   return async dispatch => {
     const categories = await categoryApi.get();
     dispatch({ type: CATEGORY_LOAD, payload: categories });
