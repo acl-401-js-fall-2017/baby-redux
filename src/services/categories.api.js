@@ -8,6 +8,6 @@ export default {
     return api.post('/categories', category);
   },
   remove(id) {
-    return api.fetch(`/categories/${id}`);
+    return api.delete(`/categories/${id}`);
   }
 };
