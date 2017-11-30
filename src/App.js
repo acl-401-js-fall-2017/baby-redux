@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+// import { connect } from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 
@@ -21,5 +22,13 @@ class App extends Component {
     );
   }
 }
+
+// export default connect(
+//   state => ({
+//     loading: state.loading,
+//     error: state.error
+//   }),
+//   null
+// )(App);
 
 export default App;
