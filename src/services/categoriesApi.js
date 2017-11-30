@@ -2,7 +2,6 @@ import api from './api';
 
 export default {
   get() {
-    console.log(`categoreiesAPi.js ===> api.js`)
     return api.get(`/budgets`);
   },
   add(budget) {
