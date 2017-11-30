@@ -17,8 +17,8 @@ export function loadCategories() {
 export function addCategory(category) {
 
   return async dispatch => {
-
-    const categories = await categoryApi.add(category);
+    const { name, budget } = category;
+    const categories = await categoryApi.add({ name, budget });
     dispatch({
       type: actions.CATEGORY_ADD,
       payload: categories
@@ -27,9 +27,14 @@ export function addCategory(category) {
 }
 
 export function updateCategory(category) {
-  return {
-    type: actions.CATEGORY_UPDATE,
-    payload: category
+
+
+  return async dispatch => {
+    const updatedCategory = await categoryApi.update(category);
+    dispatch({
+      type: actions.CATEGORY_UPDATE,
+      payload: updatedCategory
+    });
   };
 }
 
@@ -37,7 +42,6 @@ export function removeCategory(_id) {
 
   return async dispatch => {
     const category = await categoryApi.remove(_id);
-    console.log(category.removed);
     if(category.removed) {
       dispatch({
         type: actions.CATEGORY_REMOVE,
