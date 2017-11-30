@@ -6,11 +6,7 @@ import 'bulma/css/bulma.css';
 class Category extends PureComponent {
 
   componentDidMount() {
-    this.props.addCategory({ name: 'Food', budget: 200 });
-    this.props.addCategory({ name: 'Data', budget: 150 });
-    this.props.addCategory({ name: 'Rent', budget: 800 });
-    this.props.addCategory({ name: 'Candles', budget: 3600 });
-    this.props.addCategory({ name: 'Utility', budget: 150 });
+    console.log('hi');
   }
 
   handleUpdate = category => {
