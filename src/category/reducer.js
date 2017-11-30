@@ -24,14 +24,14 @@ export function categoryReducer(state = [], { type, payload }) {  //destructured
   }
 }
 
-export function categoryLoad(state = false, { type, payload }) {
+export function pageLoad(state = false, { type, payload }) {
   switch(type) {
     default:
       return state;
   }
 }
 
-export function categoryError(state = null, { type, payload }) {
+export function pageError(state = null, { type, payload }) {
   switch(type) {
     case actions.CATEGORY_LOAD:
     case actions.CATEGORY_ADD:
