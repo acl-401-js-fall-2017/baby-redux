@@ -9,7 +9,11 @@ export default {
     return api.get('/categories');
   },
 
+  update(id) {
+    return api.put(`/categories/${id}`);
+  },
+
   remove(id) {
-    return api.fetch(`/categories/${id}`);
+    return api.delete(`/categories/${id}`);
   }
 };

@@ -15,11 +15,11 @@ export function loadCategory() {
 }
 
 export function addCategory(category) {
-  category._id = shortid.generate();
-  category.timestamp = new Date();
+  // category._id = shortid.generate();
+  // category.timestamp = new Date();
   return async dispatch => {
     try { 
-      const savedCat = await categoriesApi.add();
+      const savedCat = await categoriesApi.add(category);
       dispatch({ type: actions.CATEGORY_ADD, payload: savedCat });
     }
     catch(err) {
@@ -28,16 +28,26 @@ export function addCategory(category) {
   };
 }
 
-export function updateCategory(category) {
-  return {
-    type: actions.CATEGORY_UPDATE,
-    payload: category
+export function updateCategory(id) {
+  return async dispatch => {
+    try {
+      const updateCat = await categoriesApi.update(id);
+      dispatch({ type: actions.CATEGORY_UPDATE, payload: updateCat });
+    }
+    catch(err) {
+      dispatch({ type: actions.CATEGORY_ERROR, payload: err });
+    }
   };
 }
 
 export function removeCategory(id) {
-  return {
-    type: actions.CATEGORY_REMOVE,
-    payload: id
+  return async dispatch => {
+    try {
+      await categoriesApi.remove(id);
+      dispatch({ type: actions.CATEGORY_REMOVE, payload: id });
+    }
+    catch(err) {
+      dispatch({ type: actions.CATEGORY_ERROR, payload: err });
+    }
   };
 }
