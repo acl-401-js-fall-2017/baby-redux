@@ -10,7 +10,7 @@ export function budgetsActions(state = [], { type, payload }) {
         payload
       ];
     case actions.BUDGET_REMOVE:
-      return state.filter(b => b._id !== payload);
+      return state.filter(b => b._id !== payload._id);
     case actions.BUDGET_UPDATE:
       return state.map(b => b._id === payload ? { ...b, ...payload } : b);
     default:

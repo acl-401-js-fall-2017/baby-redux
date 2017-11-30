@@ -14,10 +14,6 @@ class Budget extends Component {
     this.props.addBudget(budget);
   }
 
-  // handleRemove = (id) => {
-  //   this.props.removeBudget(id);
-  // }
-
   render () {
     const { budgets, removeBudget } = this.props;
     return (
@@ -26,8 +22,8 @@ class Budget extends Component {
         <ul>
           {budgets !== undefined  && budgets.map(budget => (
             <li key={budget._id}>
-              <li>budget category: {budget.category}</li>
-              <li>budget name: {budget.name}</li>
+              <h4>budget category: {budget.category}</h4>
+              <h4>budget name: {budget.name}</h4>
               <button onClick={() => removeBudget(budget._id)}>X</button>
             </li>
           ))}
@@ -38,11 +34,9 @@ class Budget extends Component {
 }
 
 export default connect(
-  state => (
-    console.log(state),
-    { 
-      budgets: state.budgetsActions,
-      error: state.budgetsError
-    }),
+  state => ({ 
+    budgets: state.budgetsActions,
+    error: state.budgetsError
+  }),
   { loadBudgets, addBudget, removeBudget }
 )(Budget);

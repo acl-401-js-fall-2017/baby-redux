@@ -17,16 +17,14 @@ export default class BudgetForm extends PureComponent {
       const { budget = {} } = props;
       this.state = {
         name: budget.name || null,
-        category: budget.category || null,
-        _id: budget._id || null,
-        timestamp: budget.timestamp
+        category: budget.category || null
       };
     }
 
     handleSubmit = event => {
       event.preventDefault();
-      const { _id, timestamp, name, category } = this.state;
-      this.props.onComplete({ _id, timestamp, name, category });
+      const {  name, category } = this.state;
+      this.props.onComplete({ name, category });
     }
 
     handleChange = ({ target: input }) => {

@@ -35,8 +35,19 @@ export function addBudget(budget) {
 }
 
 export function removeBudget(id) {
-  return {
-    type: actions.BUDGET_REMOVE,
-    payload: id
+  return async dispatch =>{
+    try {
+      const removed = await budgetsApi.remove(id);
+      dispatch({
+        type: actions.BUDGET_REMOVE,
+        payload: removed
+      });
+    }
+    catch(err) {
+      dispatch({
+        type: actions.BUDGET_ERROR,
+        payload: err
+      });
+    }
   };
 }

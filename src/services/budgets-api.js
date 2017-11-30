@@ -8,6 +8,6 @@ export default {
     return api.post('/budgets', budget);
   },
   remove(id) {
-    return api.fetch(`/budgets/${id}`);
+    return api.delete(`/budgets/${id}`);
   }
 };
