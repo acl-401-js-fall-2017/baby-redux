@@ -11,8 +11,7 @@ class Categories extends PureComponent {
   } 
 
   render() {
-    console.log(this.props.error);
-    if(!this.props.categories) return <div>...</div>;
+    if(!this.props.categories) return <div></div>;
     
     return (
       <div>

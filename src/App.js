@@ -10,7 +10,6 @@ import styled from 'styled-components';
 class App extends Component {
   render() {
     const { error, loading } = this.props;
-    console.log(loading);
     return (
       <Router>
         <div className="App">
