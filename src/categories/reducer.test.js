@@ -44,4 +44,10 @@ describe( 'Categories reducer', ()=> {
         });
     });
 
+    it('Should create an update action', () => {
+        const testBudget = { id: 1, name: 'test budget', budget: 100 };
+        const action = updateCategory(testBudget);
+        expect(action).toEqual({type: actions.CATEGORY_UPDATE, payload: testBudget});
+    })
+
 })
