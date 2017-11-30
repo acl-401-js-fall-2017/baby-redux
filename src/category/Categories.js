@@ -14,8 +14,8 @@ class Categories extends PureComponent {
     this.props.addCategory(category);
   }
   
-  handleUpdate = category => {
-    this.props.updateCategory(category);
+  handleUpdate = (id, data) => {
+    this.props.updateCategory(id, data);
   }
   
   handleRemove = id => {

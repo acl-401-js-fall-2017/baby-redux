@@ -13,7 +13,7 @@ export function categoryReducer(state = [], { type, payload }) {  //destructured
 
     case actions.CATEGORY_UPDATE:
       return state.map(category => {
-        return  { ...category, ...payload };
+        return  category._id === payload._id ? { ...category, ...payload } : category;
       });
 
     case actions.CATEGORY_REMOVE:

@@ -28,10 +28,10 @@ export function addCategory(category) {
   };
 }
 
-export function updateCategory(id) {
+export function updateCategory(id, data) {
   return async dispatch => {
     try {
-      const updateCat = await categoriesApi.update(id);
+      const updateCat = await categoriesApi.update(id, data);
       dispatch({ type: actions.CATEGORY_UPDATE, payload: updateCat });
     }
     catch(err) {

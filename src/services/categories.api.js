@@ -2,15 +2,16 @@ import api from './api';
 
 export default {
   add(categories) {
-    return api.post('/categories', categories);
+    return api.post('/categories', 
+      { name: categories.name, budget: categories.budget });
   },
 
   get() {
     return api.get('/categories');
   },
 
-  update(id) {
-    return api.put(`/categories/${id}`);
+  update(data) {
+    return api.put(`/categories/${data._id}`, data);
   },
 
   remove(id) {
