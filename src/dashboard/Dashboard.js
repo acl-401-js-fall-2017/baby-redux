@@ -3,16 +3,24 @@ import { connect } from 'react-redux';
 import { addCategory } from '../categories/actions';
 import CategoryForm from '../categories/CategoryForm';
 import CategoryItem from '../categories/CategoryItem';
+import categoriesApi from '../services/categoriesApi';
 
 class Dashboard extends PureComponent {
 
-  componentDidMount() {
-		const intialBudget = {
-      name: 'Groceries',
-      budget: 150
-    }
-    this.props.onAddCategory(intialBudget);
+  async componentDidMount() {
+    const budgets = await categoriesApi.get();
+    console.log('got budgets', budgets);
+    //this.props.onAddCategory(budgets);
   }
+
+
+  // componentDidMount() {
+	// 	const intialBudget = {
+  //     name: 'Groceries',
+  //     budget: 150
+  //   }
+  //   this.props.onAddCategory(intialBudget);
+  // }
 
   handleAdd = event => {
 		event.preventDefault();
