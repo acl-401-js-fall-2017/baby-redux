@@ -13,4 +13,12 @@ describe( 'Categories reducer', ()=> {
         const state = reducer([], { type: actions.CATEGORY_ADD, payload: testBudget });
         expect(state).toEqual([testBudget]);
     });
+
+    it('Should remove a category', () => {
+        const testBudget1 = { id: 1, name: 'test budget 1', budget: 100 };
+        const testBudget2 = { id: 2, name: 'test budget 2', budget: 200 };
+        const state = reducer([testBudget1, testBudget2], { type: actions.CATEGORY_REMOVE, payload: { id: 2 } });
+        expect(state).toEqual([testBudget1]);
+
+    })
 })
