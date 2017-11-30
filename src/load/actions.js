@@ -1,5 +1,5 @@
-import * as actions from './constants';
-import categoryApi from '../services/categories.api';
+import * as actions from '../category/constants';
+import loadApi from '../services/load.api';
 
 
 
@@ -9,7 +9,7 @@ export function loadingResponse(options) {
       type: actions.LOADING
     });
     try {
-      const response = await categoryApi.get(options);
+      const response = await loadApi.get(options);
       dispatch({
         type: actions.RESPONSE_LOAD,
         payload: response
