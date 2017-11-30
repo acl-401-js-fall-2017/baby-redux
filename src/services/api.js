@@ -1,7 +1,10 @@
 const url = '/api';
 
 const wrap = promise => {
-  return promise.then(response => response.json());
+  return promise.then(response => {
+    if(!response.ok) return { error: response.statusText };
+    return response.json();
+  });
 };
 
 export const get = path => wrap(fetch(`${url}${path}`));

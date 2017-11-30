@@ -16,7 +16,3 @@ export default class Loader extends PureComponent {
     );
   }
 }
-
-function getDimensions(el) {
-  return el.height < el.width ? el.height / 2 : el.width / 2
-}
