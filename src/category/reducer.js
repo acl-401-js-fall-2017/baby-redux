@@ -11,7 +11,7 @@ export default function categories(state = [], { type, payload }) {
         payload
       ];
     case actions.CATEGORY_REMOVE:
-      return state.filter(c => c._id !== payload);
+      return state.filter(c => c._id !== payload._id);
     case actions.CATEGORY_UPDATE:
       return state.map(c => c._id === payload._id ? { ...c, ...payload } : c);
 
