@@ -9,5 +9,8 @@ export default {
   },
   remove(id) {
     return api.delete(`/categories/${id}`);
+  },
+  update(data) {
+    return api.patch(`/categories/${data._id}`, data);
   }
 };
