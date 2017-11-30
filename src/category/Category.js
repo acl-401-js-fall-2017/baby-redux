@@ -26,10 +26,13 @@ class Category extends PureComponent {
   }
 
   render() {
-    const { category, loading } = this.props;
+    const { category, loading, error } = this.props;
+
     return (
       <div className='content is-medium'>
         {loading && <ClipLoader color="#42f4b6"/> }
+        {error && <h5>{error}</h5>}
+
         <table>
           <tbody>
             <tr><td><CategoryForm text="Add"
@@ -52,7 +55,8 @@ class Category extends PureComponent {
 function mapStateToProps(state) {
   return {
     category: state.category,
-    loading: state.loading
+    loading: state.loading,
+    error: state.error
   };
 }
 

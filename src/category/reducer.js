@@ -25,21 +25,31 @@ export function category(state = [], { type, payload }) {
     default:
       return state;
   }
-
 }
 
 
 export function loading(state = false, { type }) {
-
   switch (type) {
 
     case actions.LOADING: {
       return true;
     }
+
     case actions.DONE_LOADING:
     default:
       return false;
-
   }
+}
 
+
+export function error(state = 'i am error', { type, payload }) {
+  switch (type) {
+
+    case actions.ERROR: {
+      return state;
+    }
+    default:
+      return state;
+  }
+  
 }
