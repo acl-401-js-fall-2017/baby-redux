@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
-import moneys from './category/reducer';
+import budgets from './category/reducer';
 
-const store = createStore(moneys);
+const store = createStore(budgets);
 
 export default store;
