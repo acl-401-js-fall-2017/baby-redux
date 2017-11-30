@@ -29,7 +29,7 @@ class Category extends PureComponent {
     const { category, loading } = this.props;
     return (
       <div className='content is-medium'>
-        {loading && <ClipLoader/> }
+        {loading && <ClipLoader color="#42f4b6"/> }
         <table>
           <tbody>
             <tr><td><CategoryForm text="Add"

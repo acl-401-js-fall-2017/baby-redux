@@ -2,10 +2,6 @@ import { CATEGORY_LOAD, CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_REMOVE, LOADING,
 import categoryApi from '../services/categories-api';
 
 export function loadCategories() {
-  // dispath({
-
-  // })
-
   return async dispatch => {
     dispatch({ type: LOADING });
 
@@ -18,7 +14,9 @@ export function loadCategories() {
 
 export function addCategory(category) {
   return async dispatch => {
+    dispatch({ type: LOADING });
     const saved = await categoryApi.add(category);
+    dispatch({ type: DONE_LOADING });
     dispatch({ 
       type: CATEGORY_ADD, 
       payload: saved 
@@ -28,7 +26,9 @@ export function addCategory(category) {
 
 export function updateCategory(category) {
   return async dispatch => {
+    dispatch({ type: LOADING });    
     const updated = await categoryApi.update(category);
+    dispatch({ type: DONE_LOADING });
     dispatch({
       type: CATEGORY_UPDATE,
       payload: updated
@@ -38,7 +38,9 @@ export function updateCategory(category) {
 
 export function removeCategory(id) {
   return async dispatch => {
+    dispatch({ type: LOADING });
     await categoryApi.remove(id);
+    dispatch({ type: DONE_LOADING });
     dispatch({
       type: CATEGORY_REMOVE,
       payload: id
