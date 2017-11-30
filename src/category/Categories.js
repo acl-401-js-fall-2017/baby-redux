@@ -10,33 +10,21 @@ class Categories extends PureComponent {
     this.props.loadCategories();
   }
 
-  handleAdd = category => {
-    this.props.addCategory(category);
-  }
-
-  handleUpdate = category => {
-    this.props.updateCategory(category);
-  }
-
-  handleRemove = id => {
-    this.props.removeCategory(id);
-  }
-
   render() {
-    const { categories } = this.props;
+    const { categories, updateCategory, addCategory, removeCategory } = this.props;
     
     return (
       <div>
-        <CategoryForm onComplete={this.handleAdd}/>
+        <CategoryForm onComplete={addCategory}/>
         <ul>
           {categories.map(category => (
             <li key={category._id}>
               <h4>
                 {category.name} with budget of: {category.budget}
-                <button onClick={() => this.handleRemove(category._id)}>Remove</button>
+                <button onClick={() => removeCategory(category._id)}>Remove</button>
               </h4>
               <CategoryForm category={category} text="Update" 
-                onComplete={this.handleUpdate}/>
+                onComplete={updateCategory}/>
             </li>
           ))}
         </ul>
