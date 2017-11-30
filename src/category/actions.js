@@ -1,7 +1,12 @@
-import { CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_REMOVE } from './constants';
+import { CATEGORY_LOAD, CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_REMOVE } from './constants';
 import categoryApi from '../services/categories-api';
-import category from './reducer';
 
+export function loadCategories() {
+  return async dispatch => {
+    const categories = await categoryApi.get();
+    dispatch({ type: CATEGORY_LOAD, payload: categories });
+  };
+}
 
 export function addCategory(category) {
   return async dispatch => {

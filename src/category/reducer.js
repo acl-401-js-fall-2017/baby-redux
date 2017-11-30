@@ -3,6 +3,10 @@ import * as actions from './constants';
 export default function category(state = [], { type, payload }) {
   switch (type) {
 
+  case actions.CATEGORY_LOAD:{
+    return payload;
+  }
+  
   case actions.CATEGORY_ADD:{
     return [
       ...state,

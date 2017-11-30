@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addCategory, updateCategory, removeCategory } from './actions';
+import { loadCategories, addCategory, updateCategory, removeCategory } from './actions';
 import CategoryForm from './CategoryForm';
 import 'bulma/css/bulma.css';
 class Category extends PureComponent {
 
   componentDidMount() {
-    console.log('hi');
+    this.props.loadCategories();
   }
 
   handleUpdate = category => {
@@ -54,5 +54,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { addCategory, updateCategory, removeCategory }
+  { loadCategories, addCategory, updateCategory, removeCategory }
 )(Category);
