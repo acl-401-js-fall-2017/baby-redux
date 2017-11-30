@@ -14,11 +14,12 @@ class Budget extends Component {
     this.props.addBudget(budget);
   }
 
+  // handleRemove = (id) => {
+  //   this.props.removeBudget(id);
+  // }
 
   render () {
-    const { budgets } = this.props;
-    console.log(budgets);
-    
+    const { budgets, removeBudget } = this.props;
     return (
       <div>
         <BudgetForm onComplete={this.handleAdd}/>
@@ -27,6 +28,7 @@ class Budget extends Component {
             <li key={budget._id}>
               <li>budget category: {budget.category}</li>
               <li>budget name: {budget.name}</li>
+              <button onClick={() => removeBudget(budget._id)}>X</button>
             </li>
           ))}
         </ul>
@@ -34,8 +36,6 @@ class Budget extends Component {
     );
   }
 }
-
-
 
 export default connect(
   state => (
