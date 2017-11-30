@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
-import logo from './logo.svg';
 import './App.css';
 
 import Categories from './category/Categories';
@@ -16,19 +15,18 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
+            <h1 className="App-title">Budget Tracker</h1>
           </header>
           <Categories/>
           <footer>
             <LoadResponse/>
             {loading && 
-            <div>
+            <div className="loader">
               Loading...
             </div>
             }
             {error &&
-            <div>
+            <div className="error">
               {Array.isArray(error)
                 ? <ul>error.map(err => <li>err</li>)</ul>
                 : error.error ? error.error : error
