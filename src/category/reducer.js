@@ -29,17 +29,16 @@ export function category(state = [], { type, payload }) {
 }
 
 
-export function loading(state = true, { type }) {
+export function loading(state = false, { type }) {
 
   switch (type) {
 
     case actions.LOADING: {
-      return state;
-
+      return true;
     }
-
+    case actions.DONE_LOADING:
     default:
-      return state;
+      return false;
 
   }
 

@@ -1,4 +1,4 @@
-import { CATEGORY_LOAD, CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_REMOVE } from './constants';
+import { CATEGORY_LOAD, CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_REMOVE, LOADING, DONE_LOADING } from './constants';
 import categoryApi from '../services/categories-api';
 
 export function loadCategories() {
@@ -7,7 +7,11 @@ export function loadCategories() {
   // })
 
   return async dispatch => {
+    dispatch({ type: LOADING });
+
     const categories = await categoryApi.get();
+
+    dispatch({ type: DONE_LOADING });
     dispatch({ type: CATEGORY_LOAD, payload: categories });
   };
 }

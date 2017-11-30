@@ -4,3 +4,4 @@ export const CATEGORY_REMOVE = 'CATEGORY_REMOVE';
 export const CATEGORY_LOAD = 'CATEGORY_LOAD';
 
 export const LOADING = 'LOADING';
+export const DONE_LOADING = 'DONE_LOADING';
