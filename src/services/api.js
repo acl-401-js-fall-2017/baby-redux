@@ -2,14 +2,13 @@ const url = '/api';
 
 const wrap = promise => {
   return promise.then(response => {
-     console.log(`response......${JSON.stringify(response)}`);
-     return  response.json()
+     return response.json()
     });
 };
 
 export default {
   get(path) {
-    console.log(`path.....${url}${path}` )
+    console.log(`api: getting on path ${url}${path}` )
     return wrap(
       fetch(`${url}${path}`, {
         method: 'get',

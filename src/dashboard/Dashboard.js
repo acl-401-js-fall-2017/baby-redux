@@ -9,7 +9,8 @@ class Dashboard extends PureComponent {
 
   async componentDidMount() {
     const budgets = await categoriesApi.get();
-    console.log('got budgets', budgets);
+    console.log(' async componentDM: got budgets', budgets);
+    return budgets;
     //this.props.onAddCategory(budgets);
   }
 
