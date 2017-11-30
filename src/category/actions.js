@@ -15,8 +15,6 @@ export function loadCategory() {
 }
 
 export function addCategory(category) {
-  // category._id = shortid.generate();
-  // category.timestamp = new Date();
   return async dispatch => {
     try { 
       const savedCat = await categoriesApi.add(category);
