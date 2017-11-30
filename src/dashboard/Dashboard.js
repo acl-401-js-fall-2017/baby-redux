@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import CategoryForm from '../categories/CategoryForm';
 import CategoryItem from '../categories/CategoryItem';
+import Loader from '../loader/Loader';
 
 import { connect } from 'react-redux';
 import { getCategories, addCategory } from '../categories/actions';
@@ -22,6 +23,7 @@ class Dashboard extends PureComponent {
   }
   
   render() {
+    const { categories, loading } = this.props;
     return (
       <div>
         <h1>Dash</h1>
@@ -29,6 +31,9 @@ class Dashboard extends PureComponent {
           onComplete={this.handleAdd}
           buttonText={'Add'}
         />
+        {loading &&
+          <Loader/>
+        }
         {
           this.props.categories.map(cat => (
             <CategoryItem
@@ -48,7 +53,8 @@ class Dashboard extends PureComponent {
 
 function mapStateToProps(state) {
   return {
-    categories: state
+    categories: state.categories,
+    loading: state.loading
   };
 }
 

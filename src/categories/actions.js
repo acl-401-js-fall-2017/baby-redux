@@ -1,4 +1,5 @@
 import * as actions from './constants';
+import { LOADING, LOADED } from '../loader/reducer';
 import { get, add, update, remove } from '../services/category-api';
 
 const renameIds = categories => categories.map(category => {
@@ -14,18 +15,26 @@ const renameId = category =>  {
 
 export function getCategories() {
   return async dispatch => {
-    const categories = await get();
     
+    dispatch({ type: LOADING });
+    const categories = await get();
+    dispatch({ type: LOADED });
+
     dispatch({
       type: actions.CATEGORY_GET,
       payload: renameIds(categories)
     });
+
   };
 }
 
 export function addCategory(input) {
   return async dispatch => {
+
+    dispatch({ type: LOADING });
     const newCategory = await add(input);
+    dispatch({ type: LOADED });
+
     console.log('pre dispatch');
     dispatch({
       type: actions.CATEGORY_ADD,
@@ -36,7 +45,11 @@ export function addCategory(input) {
 
 export function removeCategory({ id }) {
   return async dispatch => {
+
+    dispatch({ type: LOADING });
     const isRemoved = await remove(id);
+    dispatch({ type: LOADED });
+
     if(isRemoved) dispatch({
       type: actions.CATEGORY_REMOVE,
       payload: { id: id }
@@ -49,7 +62,11 @@ export function updateCategory(category) {
   if(!category.budget) delete category.budget;
 
   return async dispatch => {
+
+    dispatch({ type: LOADING });
     const updated = await update(category);
+    dispatch({ type: LOADED });
+
     if(Object.keys(updated).length !== 0)
       dispatch({
         type: actions.CATEGORY_UPDATE,
