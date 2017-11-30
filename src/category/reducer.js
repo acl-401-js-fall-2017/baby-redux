@@ -36,20 +36,20 @@ export function loading(state = false, { type }) {
     }
 
     case actions.DONE_LOADING:
-    default:
       return false;
+    default:
+      return state;
   }
 }
 
 
-export function error(state = 'i am error', { type, payload }) {
+export function error(state = null, { type, payload }) {
   switch (type) {
-
     case actions.ERROR: {
-      return state;
+      return payload;
     }
+    case actions.LOADING:
     default:
-      return state;
+      return null;
   }
-  
 }

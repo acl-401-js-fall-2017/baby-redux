@@ -1,14 +1,20 @@
-import { CATEGORY_LOAD, CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_REMOVE, LOADING, DONE_LOADING } from './constants';
+import { CATEGORY_LOAD, CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_REMOVE, LOADING, DONE_LOADING, ERROR } from './constants';
 import categoryApi from '../services/categories-api';
 
 export function loadCategories() {
   return async dispatch => {
     dispatch({ type: LOADING });
 
-    const categories = await categoryApi.get();
+    try {
+      const categories = await categoryApi.get();
+      dispatch({ type: DONE_LOADING });
+      dispatch({ type: CATEGORY_LOAD, payload: categories });
+    }
 
-    dispatch({ type: DONE_LOADING });
-    dispatch({ type: CATEGORY_LOAD, payload: categories });
+    catch(err) {
+      dispatch({ type: ERROR, payload: err });
+    }
+
   };
 }
 

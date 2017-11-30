@@ -5,7 +5,7 @@ const wrap = async promise => {
   if(response.ok) return response.json();
 
   const contentType = response.headers.get('content-type');
-
+  
   const error = contentType && contentType.startsWith('application/json') 
     ? await response.json()
     : await response.text();
