@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addCategory, updateCategory, removeCategory, loadCategories } from './actions';
 
