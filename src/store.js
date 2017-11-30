@@ -5,7 +5,8 @@ import { category, loading } from './category/reducer';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-  category
+  category,
+  loading
 });
 
 const store = createStore(

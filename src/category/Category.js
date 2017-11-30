@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { loadCategories, addCategory, updateCategory, removeCategory } from './actions';
 import CategoryForm from './CategoryForm';
 import 'bulma/css/bulma.css';
+import { ClipLoader } from 'react-spinners';
+
 class Category extends PureComponent {
 
   componentDidMount() {
@@ -24,9 +26,10 @@ class Category extends PureComponent {
   }
 
   render() {
-    const { category } = this.props;
+    const { category, loading } = this.props;
     return (
       <div className='content is-medium'>
+        {loading && <ClipLoader loading={loading}/> }
         <table>
           <tbody>
             <tr><td><CategoryForm text="Add"
@@ -48,7 +51,8 @@ class Category extends PureComponent {
 
 function mapStateToProps(state) {
   return {
-    category: state.category
+    category: state.category,
+    loading: state.loading
   };
 }
 

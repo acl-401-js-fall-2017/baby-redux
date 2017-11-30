@@ -29,7 +29,7 @@ export function category(state = [], { type, payload }) {
 }
 
 
-export function loading(state = [], { type }) {
+export function loading(state = true, { type }) {
 
   switch (type) {
 
