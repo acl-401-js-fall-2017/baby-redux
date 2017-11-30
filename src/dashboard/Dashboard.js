@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addCategory } from '../categories/actions';
+import { addCategory, loadCategories } from '../categories/actions';
 import CategoryForm from '../categories/CategoryForm';
 import CategoryItem from '../categories/CategoryItem';
 import categoriesApi from '../services/categoriesApi';
@@ -8,9 +8,9 @@ import categoriesApi from '../services/categoriesApi';
 class Dashboard extends PureComponent {
 
   async componentDidMount() {
-    const budgets = await categoriesApi.get();
-    console.log(' async componentDM: got budgets', budgets);
-    this.props.onAddCategory(budgets);
+    // const budgets = await categoriesApi.get();
+    // console.log(' async componentDM: got budgets', budgets);
+    this.props.loadCategories();
   }
 
   handleAdd = event => {
@@ -51,13 +51,18 @@ function mapDispatchToProps(dispatch) {
   return {
     onAddCategory: newCategory => {
       dispatch(addCategory(newCategory));
+    },
+    onLoadCategory: () => {
+      dispatch(loadCategories());
     }
   };
 }
 
 const ConnectedDash = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  state => ({
+    categories: state
+  }),
+  { addCategory, loadCategories }
 )(Dashboard);
 
 export default ConnectedDash;

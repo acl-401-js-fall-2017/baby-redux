@@ -1,5 +1,21 @@
 import shortid from 'shortid';
 import * as actions from './constants';
+import categoriesApi from '../services/categoriesApi';
+import categories from './reducers';
+
+
+export function loadCategories() {
+  return async dispatch => {
+    try {
+      const loadedCategories = await categoriesApi.get();
+      console.log(`getting ......${JSON.stringify(loadedCategories)}`);
+      dispatch({ type: actions.CATEGORY_LOAD, payload: loadedCategories });
+    }
+    catch(error){
+      dispatch({ type: actions.CATEGORY_ERROR, payload: error });
+    }
+  }
+}
 
 export const addCategory = ({ name, budget }) => {
   return {
