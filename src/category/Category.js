@@ -14,11 +14,13 @@ class Category extends PureComponent {
   }
 
   handleUpdate = category => {
-    this.props.updateCategory(category);
+    const { _id, name, budget } = category;
+    this.props.updateCategory({ _id, name, budget });
   }
 
   handleAdd = category => {
-    this.props.addCategory(category);
+    const { name, budget } = category;
+    this.props.addCategory({ name, budget });
   }
 
   handleRemove = category => {

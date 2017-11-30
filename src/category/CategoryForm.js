@@ -19,8 +19,8 @@ export default class CategoryForm extends PureComponent {
   
   handleSubmit = event => {
     event.preventDefault();
-    const { name, budget } = this.state;
-    this.props.onComplete({ name, budget });
+    const { name, budget, _id } = this.state;
+    this.props.onComplete({ name, budget, _id });
   }
 
   handleChange = ({ target: input }) => {

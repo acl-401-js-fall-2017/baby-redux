@@ -38,6 +38,10 @@ export default {
       fetch(`${url}${path}`, {
         method: 'put',
         body: JSON.stringify(data),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
       })
     );
   }

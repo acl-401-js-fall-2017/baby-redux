@@ -13,9 +13,8 @@ export default {
     return api.delete(`/categories/${id}`);
   },
 
-  update(id, content) {
-    console.log('IN UPDATE');
-    return api.put(`/categories/${id}`, content);
+  update(category) {
+    return api.put(`/categories/${category._id}`, category);
   }
 
 };

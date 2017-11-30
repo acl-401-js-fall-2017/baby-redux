@@ -20,9 +20,9 @@ export function addCategory(category) {
 //   };
 // }
 
-export function updateCategory(id, content) {
+export function updateCategory(category) {
   return async dispatch => {
-    const updated = await categoryApi.update(id, content);
+    const updated = await categoryApi.update(category);
     dispatch({
       type: CATEGORY_UPDATE,
       payload: updated
