@@ -1,12 +1,5 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-
 export default class CategoryForm extends PureComponent {
-
-  static propTypes = {
-    category: PropTypes.object,
-    onComplete: PropTypes.func.isRequired
-  }
 
   static defaultProps = {
     text: 'Add'
@@ -16,17 +9,17 @@ export default class CategoryForm extends PureComponent {
     super(props);
     const { category = {} } = props;
     this.state = {
+      name: category.name || '',
+      budget: category.budget || 0,
       _id: category._id || null,
-      timestamp: category.timestamp,
-      name: category.name || null,
-      budget: category.budget || null
+      timestamp: category.timestamp
     };
   }
 
   handleSubmit = e => {
     e.preventDefault();
     const { _id, timestamp, name, budget } = this.state;
-    this.props.onComplete({_id, timestamp, name, budget });
+    this.props.onComplete({ _id, timestamp, name, budget });
   }
 
   handleChange = ({ target: input }) => {
@@ -40,12 +33,10 @@ export default class CategoryForm extends PureComponent {
     return(
       <form onSubmit={this.handleSubmit}>
         <div>
-          Name: <input name={name} value={name} onChange={this.handleChange}/>>
+          Name: <input name="name" value={name} onChange={this.handleChange}/>
+          Budget: <input budget="budget" type="number" defaultValue={budget} onChange={this.handleChange}/>
+          <button type="submit">{this.props.text}</button>
         </div>
-        <div>
-          Budget: <input budget={budget} value={budget} onChange={this.handleChange}/>>
-        </div>
-        <button type="submit">{this.props.text}</button>
       </form>
     );
   }
