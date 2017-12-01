@@ -6,14 +6,13 @@ import BudgetForm from './budgetForm';
 class Budget extends Component {
 
   componentDidMount() {
-    this.props.addBudget({ name: 'hiking trip', category: 'travel' });
-    this.props.addBudget({ name: 'dinner', category: 'entertainment' });
+    this.props.addBudget({ name: 'hiking trip', amount: 20 });
+    this.props.addBudget({ name: 'dinner', amount: 24 });
   }
   
   handleAdd = (budget) => {
     this.props.addBudget(budget);
   }
-
 
   render () {
     const { budgets } = this.props;
@@ -24,8 +23,8 @@ class Budget extends Component {
         <ul>
           {budgets.map(budget => (
             <li key={budget._id}>
-             budget category: {budget.category} 
-             budget name: {budget.name}
+              <h4>budget name: {budget.name}</h4>
+              <h4>budget amount: ${budget.amount}</h4> 
             </li>
           ))}
         </ul>
