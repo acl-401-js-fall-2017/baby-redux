@@ -22,6 +22,16 @@ class Budget extends Component {
     return (
       <div>
         <BudgetForm onComplete={this.handleAdd}/>
+        {this.props.loading && 
+            <div className="loader">
+              Loading Super Fast...
+            </div>
+        }
+        {this.props.error && 
+            <div className="error">
+              This is an ErRoR mEsSaGE!!!!
+            </div>
+        }
         <ul>
           {budgets !== undefined  && budgets.map(budget => (
             <li key={budget._id}>
@@ -40,7 +50,8 @@ class Budget extends Component {
 export default connect(
   state => ({ 
     budgets: state.budgetsActions,
-    error: state.budgetsError
+    error: state.budgetsError,
+    loading: state.budgetsLoading
   }),
   { loadBudgets, addBudget, removeBudget, updateBudget }
 )(Budget);

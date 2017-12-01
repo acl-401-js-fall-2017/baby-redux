@@ -4,7 +4,12 @@ import budgetsApi from '../services/budgets-api';
 export function loadBudgets() {
   return async dispatch => {
     try {
+      // action is starting, 
+      // tell the store we are loading...
+      dispatch({ type : actions.LOADING });
+      // talk to server via api...
       const budgets = await budgetsApi.get();
+      // dispatch load action when done...
       dispatch({ type: actions.BUDGET_LOAD, payload: budgets });
     }
     catch(err) {
