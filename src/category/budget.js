@@ -20,9 +20,10 @@ class Budget extends PureComponent {
   }
 
   render() {
-    const { budgets } = this.props;
+    const { budgets, addCategory, error } = this.props;
     return (
       <div>
+        { error && <div className="error">{error}</div> }
         <BudgetForm onComplete={this.handleAdd}/>
         <ul>
           {budgets.map(budget => (
