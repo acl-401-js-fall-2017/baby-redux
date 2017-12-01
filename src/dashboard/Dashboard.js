@@ -5,7 +5,7 @@ import CategoryPage from '../categories/CategoryPage';
 import CategoryForm from '../categories/CategoryForm';
 import CategoryItem from '../categories/CategoryItem';
 import Loader from '../loader/Loader';
-import Error from '../error/Error';
+import ErrorBar from '../error/ErrorBar';
 
 import { connect } from 'react-redux';
 import { getCategories, addCategory } from '../categories/actions';
@@ -41,7 +41,7 @@ class Dashboard extends PureComponent {
           <Loader />
         }
         {error &&
-          <Error error="error" />
+          <ErrorBar error="error" />
         }
         <Switch>         
           <Route exact path={url} render={match => (

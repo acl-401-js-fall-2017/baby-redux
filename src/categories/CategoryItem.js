@@ -30,9 +30,9 @@ class CategoryItem extends PureComponent {
           </h3>
         </Link>
         <p>Last Update: {JSON.stringify(category.timestamp)}</p>
-        <input type="button" value="delete" onClick={this.handleDelete(category.id)}/>
         <CategoryForm
           onComplete={this.handleUpdate(category)}
+          onDelete={this.handleDelete(category.id)}
           buttonText={'Update'}
         />
       </article>
