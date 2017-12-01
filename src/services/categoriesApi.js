@@ -8,7 +8,9 @@ export default {
     return api.post('/budgets', budget);
   },
   remove(id) {
-    console.log('ID FIX!!!!', JSON.stringify(id));
     return api.delete(`/budgets/${id}`);
-  }
+  },
+  update(data) {
+    return api.put(`/budgets/${data._id}`, data);
+}
 };

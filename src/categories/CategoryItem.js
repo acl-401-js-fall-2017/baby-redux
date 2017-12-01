@@ -12,10 +12,11 @@ class CategoryItem extends PureComponent {
       name: event.target.name.value,
       budget: event.target.budget.value
     }
-    this.props.onUpdateCategory(update);
+    this.props.updateCategory(update);
   }
   
   handleRemove = id => this.props.removeCategory(id);
+
   render() {
     const { category } = this.props;
     return (
@@ -29,19 +30,6 @@ class CategoryItem extends PureComponent {
   }
 }
 
-
-
-
-// const match = dispatch => {
-//   return {
-//     onRemoveCategory: id => {
-//       dispatch(removeCategory(id));
-//     },
-//     onUpdateCategory: category => {
-//       dispatch(updateCategory(category));
-//     }
-//   };
-// }
 
 const connectedCategoryItem = connect(
   null, 

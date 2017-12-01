@@ -49,6 +49,17 @@ export const removeCategory = (id) => {
 }
 
 export const updateCategory = (category) => {
+  return async (dispatch) => {
+    try {
+      const updatedBudget = await categoriesApi.update(category);
+      console.log(`update successful?: ${ updatedBudget }`);
+      dispatch({ type: actions.CATEGORY_UPDATE, payload: category });
+    }
+    catch(error){
+      console.log('here is error if I got one!', error);
+      dispatch({ type: actions.CATEGORY_ERROR, payload: error });
+    }
+  }
   return { type: actions.CATEGORY_UPDATE, payload: category
   };
 }
