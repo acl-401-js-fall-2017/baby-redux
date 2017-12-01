@@ -14,7 +14,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-            <h1 className="App-title">Welcome to React</h1>
+            <h1 className="App-title">Welcome to Redux! (note that the title is different)</h1>
             <NavLink to ="/categories">Categories</NavLink>
             <span> </span>
             <NavLink to ="/categories/newcategory">Add Category</NavLink>

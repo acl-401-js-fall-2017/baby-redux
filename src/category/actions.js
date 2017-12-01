@@ -42,10 +42,23 @@ export function addCategory(category) {
   };
 }
 
-export function updateCategory(update) {
-  return {
-    type: actions.CATEGORY_UPDATE,
-    payload: update
+export function updateCategory(id, update) {
+  return async dispatch => {
+    dispatch({ type: actions.LOADING });
+    try {
+      const updated = await categoriesApi.update(id, update);
+      dispatch({
+        type: actions.CATEGORY_UPDATE,
+        payload: updated
+      });
+    }
+
+    catch(err) {
+      dispatch({
+        type: actions.CATEGORY_ERROR,
+        payload: err
+      });
+    }
   };
 }
 

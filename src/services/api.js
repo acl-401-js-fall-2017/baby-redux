@@ -36,5 +36,18 @@ export default {
         method: 'delete'
       })
     );
+  },
+
+  put(path, data) {
+    return wrap(
+      fetch(`${url}${path}`,{
+        method: 'put',
+        body: JSON.stringify(data),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+    )
   }
 };
