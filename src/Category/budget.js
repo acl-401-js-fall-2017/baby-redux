@@ -7,7 +7,6 @@ class Budget extends Component {
 
   componentDidMount() {
     this.props.loadBudgets();
-    
   }
   
   handleAdd = (budget) => {

@@ -12,11 +12,13 @@ export function budgetsActions(state = [], { type, payload }) {
     case actions.BUDGET_REMOVE:
       return state.filter(b => b._id !== payload._id);
     case actions.BUDGET_UPDATE:
-      return state.map(b => b._id === payload ? { ...b, ...payload } : b);
+      return state.map(b => b._id === payload._id ? { ...b, ...payload } : b);
     default:
       return state;
   }
 }
+
+
 
 export function budgetsLoading(state = false, { type, payload }) {
   switch(type) {
