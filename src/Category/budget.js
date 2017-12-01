@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadBudgets, addBudget, removeBudget, updateBudget } from './actions';
 import BudgetForm from './budgetForm';
+import '../App.css';
 
 class Budget extends Component {
 
