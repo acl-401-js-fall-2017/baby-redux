@@ -31,23 +31,23 @@ What looks and feels most succinct and easy to think about to you?
 You can choose:
 
 1. How to model categories and expenses:
-  1. Expenses as child array in Categories
-  1. Separate Expense models with category prop that references parent category id
+    1. Expenses as child array in Categories
+    1. Separate Expense models with category prop that references parent category id
 
 1. Expense route style:
-  1. `/api/categories/:id/expenses` (child resource)
-  1. `/api/expenses` (independent resource)
+    1. `/api/categories/:id/expenses` (child resource)
+    1. `/api/expenses` (independent resource)
 
 ## Rubric **20pts**
 * App
-  * Components **5pts**
-  * State Management
-    * Action creators **3pts**
-    * Middleware **2pts**
-    * Reducers **3pts**
-  * Project Organization
-    * Feature folders **2pts**
-    * No dead code **2pts**
+    * Components **5pts**
+    * State Management
+        * Action creators **3pts**
+        * Middleware **2pts**
+        * Reducers **3pts**
+    * Project Organization
+        * Feature folders **2pts**
+        * No dead code **2pts**
 * Server
-  * Idiomatic Express **2pts**
-  * Model/Route choices make sense **1pt**
+    * Idiomatic Express **2pts**
+    * Model/Route choices make sense **1pt**
