@@ -4,7 +4,13 @@ const wrap = async promise => {
   const response = await promise;
   if(response.ok) return response.json();
 
-  return Promise.reject(response.statusText);
+  const contentType = response.headers.get('content-type');
+  
+  const error = contentType && contentType.startsWith('application/json')
+    ? await response.json()
+    : await response.text();
+
+  throw error;
 };
 
 export default {
