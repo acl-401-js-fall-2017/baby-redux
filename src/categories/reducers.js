@@ -1,7 +1,7 @@
 import * as actions from './constants';
 
 
-export default function categories(state = [], { type, payload }) {
+export function categories(state = [], { type, payload }) {
   
   switch (type) {
   case actions.CATEGORY_ADD:
@@ -17,5 +17,29 @@ export default function categories(state = [], { type, payload }) {
     return payload
   default:
     return state;
+  }
+}
+
+export function loading(state = false, { type }){
+  switch(type){
+  case actions.LOADING:
+    return true;
+  case actions.CATEGORY_ERROR:
+    return false;
+  default:
+    return state;
+
+  }
+}
+
+export function error(state = null, { type, payload }) {
+  switch(type) {
+    case actions.CATEGORY_ERROR:
+      return payload;
+    case actions.CATEGORY_LOAD:
+    case actions.LOADING:
+      return null;
+    default:
+      return state;
   }
 }
