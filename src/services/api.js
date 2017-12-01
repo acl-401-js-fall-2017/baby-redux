@@ -2,7 +2,7 @@ const url = '/api';
 
 const wrap = promise => {
   return promise.then(response => {
-    if(!response.ok) return { error: response.statusText };
+    if(!response.ok) return Promise.reject(new Error(response.statusText));
     return response.json();
   });
 };

@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 import CategoryForm from './CategoryForm';
 import { connect } from 'react-redux';
 import {
@@ -20,11 +21,14 @@ class CategoryItem extends PureComponent {
   }
 
   render() {
-    const { category } = this.props;
+    const { category, match: { match: { url } } } = this.props;
     return (
       <article>
-        <h3>{category.name}</h3>
-        <p>Budget: ${category.budget}</p>
+        <Link to={url + category.name}>
+          <h3 onClick={() => console.log(url + category.name)}>{category.name}
+            <small>&nbsp;&nbsp;&nbsp;&nbsp;budget: ${category.budget}</small>
+          </h3>
+        </Link>
         <p>Last Update: {JSON.stringify(category.timestamp)}</p>
         <input type="button" value="delete" onClick={this.handleDelete(category.id)}/>
         <CategoryForm

@@ -1,4 +1,7 @@
 import React, { PureComponent } from 'react';
+import { Link, Route, Switch } from 'react-router-dom';
+import CategoryRouter from '../categories/CategoryRouter';
+import CategoryPage from '../categories/CategoryPage';
 import CategoryForm from '../categories/CategoryForm';
 import CategoryItem from '../categories/CategoryItem';
 import Loader from '../loader/Loader';
@@ -22,30 +25,36 @@ class Dashboard extends PureComponent {
     });
     e.target.reset();
   }
-  
+
   render() {
-    const { categories, loading, error } = this.props;
+    const { categories, loading, error, match: { url } } = this.props;
     return (
       <div>
-        <h1>Dash</h1>
+        <Link to={url}>
+          <h1>Dash</h1>
+        </Link>
         <CategoryForm
           onComplete={this.handleAdd}
           buttonText={'Add'}
         />
         {loading &&
-          <Loader/>
+          <Loader />
         }
         {error &&
-          <Error error="error"/>
+          <Error error="error" />
         }
-        {
-          this.props.categories.map(cat => (
-            <CategoryItem
-              key={cat.id}
-              category={cat}
-            />
-          ))
-        }
+        <Switch>         
+          <Route exact path={url} render={match => (
+            categories.map(cat => (
+              <CategoryItem
+                key={cat.id}
+                category={cat}
+                match={match}
+              />
+            ))
+          )}/>
+          <CategoryRouter categories={categories} url={url}/>
+        </Switch>
       </div>
     );
   }
