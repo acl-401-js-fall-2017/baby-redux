@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import { categoryReducer, categoryLoad, categoryError } from '../category/reducer';
+import { categoryReducer } from '../category/reducer';
+import { loadResponse, loadPage, loadError } from '../load/reducer';
 
 const rootReducer = combineReducers({
   categoryReducer,
-  categoryLoad,
-  categoryError,
+  loadResponse,
+  loadPage,
+  loadError,
 });
 
 export default rootReducer;

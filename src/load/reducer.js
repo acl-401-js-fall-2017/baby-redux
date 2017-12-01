@@ -1,8 +1,11 @@
-import * as actions from '../category/actions';
+// import * as actions from '../category/actions';
+export const RESPONSE_LOAD = 'RESPONSE_LOAD';
+export const PAGE_LOAD = 'PAGE_LOAD';
+export const ERROR_LOAD = 'ERROR_LOAD';
 
 export function loadResponse(state = null, { type, payload }) {
   switch(type) {
-    case actions.RESPONSE_LOAD:
+    case RESPONSE_LOAD:
       return payload;
     default:
       return state;
@@ -11,22 +14,22 @@ export function loadResponse(state = null, { type, payload }) {
 
 export function loadPage(state = false, { type, payload }) {
   switch(type) {
-    case actions.PAGE_LOAD:
+    case PAGE_LOAD:
       return true;
-    case actions.RESPONSE_LOAD:
-    case actions.ERROR_LOAD:
+    case RESPONSE_LOAD:
+    case ERROR_LOAD:
       return false;
     default:
       return state;
   }
 }
 
-export function pageError(state = null, { type, payload }) {
+export function loadError(state = null, { type, payload }) {
   switch(type) {
-    case actions.ERROR_LOAD:
+    case ERROR_LOAD:
       return payload;
-    case actions.RESPONSE_LOAD:
-    case actions.PAGE_LOAD:
+    case RESPONSE_LOAD:
+    case PAGE_LOAD:
       return null;
     default:
       return state;

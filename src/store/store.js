@@ -1,11 +1,9 @@
-import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { categoryReducer, categoryLoad, categoryError } from '../category/reducer';
+import rootReducer  from '../store/rootReducer';
 
 const composeEnhancers =  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__  || compose;
 // const composeEnhancers =  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
-
-const rootReducer = combineReducers({ categoryReducer, categoryLoad, categoryError });
 
 const store = createStore(rootReducer, composeEnhancers(
   applyMiddleware(thunk)
