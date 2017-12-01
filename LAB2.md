@@ -10,4 +10,6 @@ Enhance existing lab to use a server to store and retrieve data:
   * Use `redux-thunk` as middleware
   * Change actions to be async and talk to server before they dispatch to store
   * Need to add load action on `componentDidMount`
+
   * Make any other adjustments necessary
+
