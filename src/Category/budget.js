@@ -22,8 +22,8 @@ class Budget extends Component {
         <ul>
           {budgets !== undefined  && budgets.map(budget => (
             <li key={budget._id}>
-              <h4>budget category: {budget.category}</h4>
-              <h4>budget amount: ${budget.amount}</h4>
+              <h4>budget name: {budget.name}</h4>
+              <h4>amount: ${budget.amount}</h4>
               <button onClick={() => removeBudget(budget._id)}>X</button>
             </li>
           ))}
