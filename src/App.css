@@ -22,6 +22,12 @@
   font-size: large;
 }
 
+.error {
+  font-family: monospace;
+  margin: 50px;
+  color: red;
+}
+
 .css-dpt9ar {
   position: fixed;
   top: 50%;

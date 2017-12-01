@@ -12,7 +12,9 @@ export function loadCategories() {
     }
 
     catch(err) {
+      dispatch({ type: DONE_LOADING });      
       dispatch({ type: ERROR, payload: err });
+      throw err;
     }
 
   };

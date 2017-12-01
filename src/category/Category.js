@@ -28,24 +28,26 @@ class Category extends PureComponent {
   render() {
     const { category, loading, error } = this.props;
 
+    const categories = (error) ? <h5 className="error">{error}</h5> : (
+      <table>
+        <tbody>
+          <tr><td><CategoryForm text="Add"
+            onComplete={this.handleAdd}/></td></tr>
+          {category.map(c => <tr key={c._id}>
+            <td>{c.name}</td>
+            <td>{c.budget}</td>
+            <td><CategoryForm category={c} text="Update"
+              onComplete={this.handleUpdate}/></td>
+            <td><button onClick={() => this.handleRemove(c)}>X</button></td>
+          </tr>)}
+        </tbody>
+      </table>
+    );
+
     return (
       <div className='content is-medium'>
         {loading && <ClipLoader color="#42f4b6"/> }
-        {error && <h5>{error}</h5>}
-
-        <table>
-          <tbody>
-            <tr><td><CategoryForm text="Add"
-              onComplete={this.handleAdd}/></td></tr>
-            {category.map(c => <tr key={c._id}>
-              <td>{c.name}</td>
-              <td>{c.budget}</td>
-              <td><CategoryForm category={c} text="Update"
-                onComplete={this.handleUpdate}/></td>
-              <td><button onClick={() => this.handleRemove(c)}>X</button></td>
-            </tr>)}
-          </tbody>
-        </table>
+        {categories}
       </div>
     );
   }

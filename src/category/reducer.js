@@ -36,6 +36,7 @@ export function loading(state = false, { type }) {
     }
 
     case actions.DONE_LOADING:
+    case actions.ERROR:
       return false;
     default:
       return state;
@@ -48,8 +49,9 @@ export function error(state = null, { type, payload }) {
     case actions.ERROR: {
       return payload;
     }
+    case actions.DONE_LOADING:
     case actions.LOADING:
     default:
-      return null;
+      return state;
   }
 }
