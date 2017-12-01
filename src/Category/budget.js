@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadBudgets, addBudget, removeBudget } from './actions';
+import { loadBudgets, addBudget, removeBudget, updateBudget } from './actions';
 import BudgetForm from './budgetForm';
 
 class Budget extends Component {
@@ -14,6 +14,10 @@ class Budget extends Component {
     this.props.addBudget(budget);
   }
 
+  handleUpdate= (budget) => {
+    this.props.updateBudget(budget);
+  }
+
   render () {
     const { budgets, removeBudget } = this.props;
     return (
@@ -24,6 +28,7 @@ class Budget extends Component {
             <li key={budget._id}>
               <h4>budget name: {budget.name}</h4>
               <h4>amount: ${budget.amount}</h4>
+              <BudgetForm  budget ={budget} text="update" onComplete={this.handleUpdate}/>
               <button onClick={() => removeBudget(budget._id)}>X</button>
             </li>
           ))}
@@ -38,5 +43,5 @@ export default connect(
     budgets: state.budgetsActions,
     error: state.budgetsError
   }),
-  { loadBudgets, addBudget, removeBudget }
+  { loadBudgets, addBudget, removeBudget, updateBudget }
 )(Budget);

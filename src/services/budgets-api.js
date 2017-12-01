@@ -9,5 +9,8 @@ export default {
   },
   remove(id) {
     return api.delete(`/budgets/${id}`);
+  },
+  update(budget) {
+    return api.put(`/budgets/${budget._id}`, budget);
   }
 };

@@ -17,14 +17,16 @@ export default class BudgetForm extends PureComponent {
       const { budget = {} } = props;
       this.state = {
         name: budget.name,
-        amount: budget.amount 
+        amount: budget.amount, 
+        _id:budget._id
       };
     }
 
     handleSubmit = event => {
       event.preventDefault();
-      const { name, amount } = this.state;
-      this.props.onComplete({ name, amount });
+      const { name, amount, _id } = this.state;
+      this.props.onComplete({ name, amount, _id });
+      event.target.reset();
     }
 
     handleChange = ({ target: input }) => {
@@ -41,7 +43,7 @@ export default class BudgetForm extends PureComponent {
               Name: <input name="name" value={name} onChange={this.handleChange} required/>
           </div>
           <div>
-              Amount: <input name="amount" value={amount} onChange={this.handleChange} required/>
+              Amount: <input type="number" name="amount" value={amount} onChange={this.handleChange} required/>
           </div>
           <button type="submit">{this.props.text}</button>
         </form>

@@ -51,3 +51,21 @@ export function removeBudget(id) {
     }
   };
 }
+
+export function updateBudget(budget) {
+  return async dispatch => {
+    try {
+      const updated= await budgetsApi.update(budget);
+      dispatch({
+        type: actions.BUDGET_UPDATE,
+        payload: updated
+      });
+    }
+    catch(err) {
+      dispatch({
+        type: actions.BUDGET_ERROR,
+        payload: err
+      });
+    }
+  };
+}
