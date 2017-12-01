@@ -15,7 +15,7 @@ class CategoryItem extends PureComponent {
     this.props.onUpdateCategory(update);
   }
   
-  handleRemove = id => () => this.props.onRemoveCategory({ id });
+  handleRemove = id => this.props.removeCategory(id);
   render() {
     const { category } = this.props;
     return (
@@ -23,7 +23,7 @@ class CategoryItem extends PureComponent {
         <h1>{category.name}</h1>
         <p>Budget - {category.budget}</p>
         <CategoryForm onComplete={this.handleUpdate(category)} buttonText={'edit'}/>
-        <input type="button" value="remove" onClick={this.handleRemove(category.id)}/>
+        <input type="button" value="remove" onClick={() => this.handleRemove(category._id)}/>
       </div>
     );
   }
@@ -32,17 +32,20 @@ class CategoryItem extends PureComponent {
 
 
 
-const match = dispatch => {
-  return {
-    onRemoveCategory: id => {
-      dispatch(removeCategory(id));
-    },
-    onUpdateCategory: category => {
-      dispatch(updateCategory(category));
-    }
-  };
-}
+// const match = dispatch => {
+//   return {
+//     onRemoveCategory: id => {
+//       dispatch(removeCategory(id));
+//     },
+//     onUpdateCategory: category => {
+//       dispatch(updateCategory(category));
+//     }
+//   };
+// }
 
-const connectedCategoryItem = connect(null, match)(CategoryItem);
+const connectedCategoryItem = connect(
+  null, 
+  { removeCategory, updateCategory }
+)(CategoryItem);
 
 export default connectedCategoryItem;

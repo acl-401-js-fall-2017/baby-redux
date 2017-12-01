@@ -8,8 +8,6 @@ import categoriesApi from '../services/categoriesApi';
 class Dashboard extends PureComponent {
 
   async componentDidMount() {
-    // const budgets = await categoriesApi.get();
-    // console.log(' async componentDM: got budgets', budgets);
     this.props.loadCategories();
   }
 
@@ -29,8 +27,8 @@ class Dashboard extends PureComponent {
     return (
       <div>
         <h1>Budget Dashboard</h1>
-        {this.props.categories.map(categoryItem => (
-			<CategoryItem key={categoryItem.id} category={categoryItem}/>
+        {this.props.categories.map((categoryItem, index) => (
+			<CategoryItem key={index} category={categoryItem}/>
 		))}
 		<br/>
 		<h4>create new budget</h4>
