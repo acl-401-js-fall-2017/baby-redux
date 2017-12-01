@@ -42,7 +42,6 @@ export const removeCategory = (id) => {
       dispatch({ type: actions.CATEGORY_REMOVE, payload: id });
     }
     catch(error){
-      console.log('here is error if I got one!', error);
       dispatch({ type: actions.CATEGORY_ERROR, payload: error });
     }
   }
@@ -56,7 +55,6 @@ export const updateCategory = (category) => {
       dispatch({ type: actions.CATEGORY_UPDATE, payload: category });
     }
     catch(error){
-      console.log('here is error if I got one!', error);
       dispatch({ type: actions.CATEGORY_ERROR, payload: error });
     }
   }

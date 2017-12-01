@@ -1,12 +1,14 @@
 import * as actions from './constants';
 import { addCategory, updateCategory, removeCategory } from './actions';
 
+const dispatch = action => action;
 
 describe('Actions test', () => {
 
-    it('Should create an add action', () => {
+    it('Should create an add action', async () => {
         const testBudget = { name: 'test budget', budget: 100 };
         const action = addCategory(testBudget);
+        action = await action(dispatch);
         expect( typeof action.payload.id).toEqual('string');
         expect( typeof action.payload.timestamp).toEqual('object');
         delete action.payload.id; 
