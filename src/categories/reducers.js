@@ -2,6 +2,7 @@ import * as actions from './constants';
 
 
 export function categories(state = [], { type, payload }) {
+  console.log('in category reducr', type);
   
   switch (type) {
   case actions.CATEGORY_ADD:

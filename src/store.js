@@ -5,6 +5,7 @@ import reducer from './categories/rootReducer';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   
   const logger = store => next => action => {
+    console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&');
     console.log('before action', action);
     return next(action);
   };
