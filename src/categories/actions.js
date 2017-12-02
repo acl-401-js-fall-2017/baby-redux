@@ -19,15 +19,18 @@ export function getCategories() {
     
     dispatch({ type: LOADING });
     try{
-      const categories = await get();
-  
+      const { categories, totalBudget } = await get();
+      
       dispatch({
         type: actions.CATEGORY_GET,
         payload: renameIds(categories)
       });
+      dispatch({
+        type: actions.GET_TOTAL_BUDGET,
+        payload: totalBudget
+      });
     }
     catch(err) {
-      console.dir(err);
       dispatch({
         type: ERROR,
         payload: err.stack

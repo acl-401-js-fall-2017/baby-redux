@@ -1,7 +1,7 @@
 import * as actions from './constants';
 import { UPDATE_CATEGORY_EXPENSES, UPDATE_SINGLE_EXPENSE } from '../expenses/constants';
 
-export default function categories(state = [], { type, payload }) {
+export function categories(state = [], { type, payload }) {
   switch (type) {
 
     case actions.CATEGORY_GET:
@@ -34,6 +34,15 @@ export default function categories(state = [], { type, payload }) {
         return category;
       });
 
+    default:
+      return state;
+  }
+}
+
+export function totalBudget(state = 0, { type, payload }) {
+  switch(type) {
+    case actions.GET_TOTAL_BUDGET:
+      return payload;
     default:
       return state;
   }

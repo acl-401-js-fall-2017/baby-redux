@@ -16,11 +16,6 @@ class Dashboard extends PureComponent {
     this.props.getCategories();
   }
 
-  getTotalBudget = () => {
-    const { categories } = this.props;
-    return categories ? categories.reduce((total, category) => total + category.budget, 0) : 0;
-  }
-
   handleAdd = e => {
     e.preventDefault();
     this.props.addCategory({
@@ -31,7 +26,7 @@ class Dashboard extends PureComponent {
   }
 
   render() {
-    const { categories, loading, error, match: { url } } = this.props;
+    const { categories, totalBudget, loading, error, match: { url } } = this.props;
     return (
       <div>
         <Link to={url}>
@@ -40,7 +35,7 @@ class Dashboard extends PureComponent {
         <Route exact path={url} render={() => (
           <header>
             <h1>Categories<br/>
-              <small>Total Budget: ${this.getTotalBudget()}</small>
+              <small>Total Budget: ${totalBudget}</small>
             </h1>
             <CategoryForm
               onComplete={this.handleAdd}
@@ -78,6 +73,7 @@ class Dashboard extends PureComponent {
 function mapStateToProps(state) {
   return {
     categories: state.categories,
+    totalBudget: state.totalBudget,
     loading: state.loading,
     error: state.error
   };
