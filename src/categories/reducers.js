@@ -1,5 +1,5 @@
 import * as actions from './constants';
-import { EXPENSE_GET, EXPENSE_ADD, EXPENSE_DELETE, EXPENSE_UPDATE} from '../expenses/constants';
+import { UPDATE_EXPENSES } from '../expenses/constants';
 
 export default function categories(state = [], { type, payload }) {
   switch (type) {
@@ -17,7 +17,7 @@ export default function categories(state = [], { type, payload }) {
       return state.map(category => category.id === payload.id ? { ...category, ...payload } : category);
 
 
-    case EXPENSE_ADD:
+    case UPDATE_EXPENSES:
       return state.map(category => category.id === payload.id ? payload : category);
 
     default:

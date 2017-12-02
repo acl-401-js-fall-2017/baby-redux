@@ -2,19 +2,24 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Expense from '../expenses/Expense';
 import ExpenseForm from '../expenses/ExpenseForm';
-import { addExpense } from '../expenses/actions';
+import { addExpense, removeExpense } from '../expenses/actions';
 
 class CategoryPage extends PureComponent {
 
   handleNewExpense = e => {
     e.preventDefault();
-    console.log(e.target.name.value);
-    console.log(e.target.budget.value);
     this.props.addExpense(
       {
         name: e.target.name.value,
         value: e.target.budget.value
       },
+      this.props.categoryId
+    );
+  }
+
+  handleDeleteExpense = expenseId => {
+    this.props.removeExpense(
+      expenseId,
       this.props.categoryId
     );
   }
@@ -31,7 +36,14 @@ class CategoryPage extends PureComponent {
         <ul>
           {expenses && expenses.length > 0 &&
             expenses.map(expense => (
-              <Expense key={expense._id} name={expense.name} value={expense.value}/>
+              <Expense 
+                key={expense._id} 
+                id={expense._id}
+                name={expense.name} 
+                value={expense.value}
+                onUpdate={this.handleUpdateExpense}
+                onDelete={this.handleDeleteExpense}
+              />
             ))
           }
         </ul>
@@ -45,5 +57,5 @@ export default connect(
     loading: state.loading,
     error: state.error
   }),
-  { addExpense }
+  { addExpense, removeExpense }
 )(CategoryPage);

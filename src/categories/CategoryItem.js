@@ -33,7 +33,7 @@ class CategoryItem extends PureComponent {
         <CategoryForm
           onComplete={this.handleUpdate(category)}
           onDelete={this.handleDelete(category.id)}
-          buttonText={'Update'}
+          buttonText="update"
         />
       </article>
     );

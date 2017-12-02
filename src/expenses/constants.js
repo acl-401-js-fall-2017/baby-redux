@@ -1,4 +1,2 @@
-export const EXPENSE_GET = 'EXPENSE_GET';
-export const EXPENSE_ADD = 'EXPENSE_ADD';
-export const EXPENSE_DELETE = 'EXPENSE_DELETE';
-export const EXPENSE_UPDATE = 'EXPENSE_UPDATE';
+export const UPDATE_EXPENSES = 'UPDATE_EXPENSES';
+
