@@ -13,4 +13,4 @@ export const addExpense = (newExpense, categoryId) => patch(`/categories/${categ
 
 export const removeExpense = (expenseId, categoryId) => patch(`/categories/${categoryId}/expenses/remove`, { expenseId });
 
-export const updateExpense = (expenseId, categoryId, expenseUpdates) => patch(`/categories/${categoryId}/expenses/remove/${expenseId}`, { expenseUpdates });
+export const updateExpense = (expenseId, categoryId, expenseUpdates) => patch(`/categories/${categoryId}/expenses/update/${expenseId}`, expenseUpdates);

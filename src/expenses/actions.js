@@ -1,4 +1,4 @@
-import { UPDATE_EXPENSES } from '../expenses/constants';
+import { UPDATE_CATEGORY_EXPENSES, UPDATE_SINGLE_EXPENSE } from '../expenses/constants';
 import { LOADING, LOADED } from '../loader/reducer';
 import { ERROR } from '../error/reducers';
 import { 
@@ -9,7 +9,7 @@ import {
 import { renameId } from '../categories/actions';
 
 const update = category => ({ 
-  type: UPDATE_EXPENSES,
+  type: UPDATE_CATEGORY_EXPENSES,
   payload: renameId(category)
 });
 
@@ -55,13 +55,20 @@ export function updateExpense(categoryId, expenseId, expenseUpdates) {
   return async dispatch => {
     dispatch({ type: LOADING });
     try {
-      const updatedCategory = await apiUpdateExpense(expenseId, categoryId, expenseUpdates);
-      dispatch(update(updatedCategory));
+      await apiUpdateExpense(expenseId, categoryId, expenseUpdates);
+      dispatch({
+        type: UPDATE_SINGLE_EXPENSE,
+        payload: {
+          categoryId,
+          expenseId,
+          expenseUpdates
+        }
+      });
     }
     catch(err) {
       dispatch({
         type: ERROR,
-        payload: err.state
+        payload: err.stack
       });
     }
     finally {
