@@ -9,7 +9,6 @@ export default class CategoryRouter extends PureComponent {
       <section className="Category-router">
         {categories.length > 0 &&
           categories.map(category => {
-            console.log(url + category.name);
             return (
               <Route key={category.id} path={url + category.name} render={() => (
                 <CategoryPage 

@@ -25,7 +25,7 @@ class CategoryItem extends PureComponent {
     return (
       <article>
         <Link to={url + category.name}>
-          <h3 onClick={() => console.log(url + category.name)}>{category.name}
+          <h3>{category.name}
             <small>&nbsp;&nbsp;&nbsp;&nbsp;budget: ${category.budget}</small>
           </h3>
         </Link>
