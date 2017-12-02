@@ -11,4 +11,4 @@ export const remove = id => apiRemove(`/categories/${id}`);
 
 export const addExpense = (newExpense, categoryId) => patch(`/categories/${categoryId}/expenses/add`, newExpense);
 
-export const removeExpense = (newExpense, categoryId) => patch(`/categories/${categoryId}/expenses/remove`, newExpense);
+export const removeExpense = (expenseId, categoryId) => patch(`/categories/${categoryId}/expenses/remove`, { expenseId });
