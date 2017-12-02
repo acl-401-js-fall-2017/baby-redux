@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import CategoryRouter from '../categories/CategoryRouter';
-import CategoryPage from '../categories/CategoryPage';
 import CategoryForm from '../categories/CategoryForm';
 import CategoryItem from '../categories/CategoryItem';
 import Loader from '../loader/Loader';
@@ -15,6 +14,11 @@ class Dashboard extends PureComponent {
 
   componentDidMount() {
     this.props.getCategories();
+  }
+
+  getTotalBudget = () => {
+    const { categories } = this.props;
+    return categories ? categories.reduce((total, category) => total + category.budget, 0) : 0;
   }
 
   handleAdd = e => {
@@ -31,13 +35,18 @@ class Dashboard extends PureComponent {
     return (
       <div>
         <Link to={url}>
-          <h1>Dash</h1>
+          <p>home</p>
         </Link>
         <Route exact path={url} render={() => (
-          <CategoryForm
-            onComplete={this.handleAdd}
-            buttonText="Add"
-          />
+          <header>
+            <h1>Categories<br/>
+              <small>Total Budget: ${this.getTotalBudget()}</small>
+            </h1>
+            <CategoryForm
+              onComplete={this.handleAdd}
+              buttonText="Add"
+            />
+          </header>
         )}/>
         {loading &&
           <Loader />

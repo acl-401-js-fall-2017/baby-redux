@@ -9,11 +9,11 @@ export default class Expense extends PureComponent {
     const { id, name, value, onUpdate, onDelete } = this.props;
     return (
       <li>
-        <span>{name}:</span>
+        <span>{name}:&nbsp;</span>
         <span>${value}</span>
         <ExpenseForm
-          onComplete={onUpdate}
-          onDelete={() => onDelete(id)}
+          onComplete={onUpdate(id)}
+          onDelete={onDelete(id)}
           buttonText="update"
         />
       </li>

@@ -45,6 +45,7 @@ export function addCategory(input) {
     dispatch({ type: LOADING });
     try {
       const newCategory = await add(input);
+      console.log(newCategory);
 
       dispatch({
         type: actions.CATEGORY_ADD,

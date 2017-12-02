@@ -17,7 +17,13 @@ class CategoryPage extends PureComponent {
     );
   }
 
-  handleDeleteExpense = expenseId => {
+  handleUpdateExpense = expenseId => e => {
+    e.preventDefault();
+    console.log('oopdate')
+
+  }
+
+  handleDeleteExpense = expenseId => () => {
     this.props.removeExpense(
       expenseId,
       this.props.categoryId
@@ -28,13 +34,15 @@ class CategoryPage extends PureComponent {
     const { name, budget: totalBudget, expenses } = this.props;
     return (
       <div className={`Category-page ${name}`}>
-        <h2>{name}:<span> ${totalBudget}</span></h2>
+        <h2>Expenses in Category: {name}<br/>
+          <small>total budget: ${totalBudget}</small>
+        </h2>
         <ExpenseForm
           onComplete={this.handleNewExpense}
           buttonText="Add"
         />
         <ul>
-          {expenses && expenses.length > 0 &&
+          {expenses.length > 0 &&
             expenses.map(expense => (
               <Expense 
                 key={expense._id} 
