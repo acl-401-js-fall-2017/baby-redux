@@ -3,7 +3,8 @@ import { LOADING, LOADED } from '../loader/reducer';
 import { ERROR } from '../error/reducers';
 import { 
   addExpense as apiAddExpense,
-  removeExpense as apiRemoveExpense 
+  removeExpense as apiRemoveExpense,
+  updateExpense as apiUpdateExpense 
 } from '../services/category-api';
 import { renameId } from '../categories/actions';
 
@@ -36,6 +37,25 @@ export function removeExpense(expenseId, categoryId) {
     dispatch({ type: LOADING });
     try {
       const updatedCategory = await apiRemoveExpense(expenseId, categoryId);
+      dispatch(update(updatedCategory));
+    }
+    catch(err) {
+      dispatch({
+        type: ERROR,
+        payload: err.state
+      });
+    }
+    finally {
+      dispatch({ type: LOADED });
+    }
+  };
+}
+
+export function updateExpense(categoryId, expenseId, expenseUpdates) {
+  return async dispatch => {
+    dispatch({ type: LOADING });
+    try {
+      const updatedCategory = await apiUpdateExpense(expenseId, categoryId, expenseUpdates);
       dispatch(update(updatedCategory));
     }
     catch(err) {

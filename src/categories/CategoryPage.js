@@ -2,7 +2,11 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Expense from '../expenses/Expense';
 import ExpenseForm from '../expenses/ExpenseForm';
-import { addExpense, removeExpense } from '../expenses/actions';
+import { addExpense, removeExpense, updateExpense } from '../expenses/actions';
+
+const addUpdate = (obj, propName, newProp) => {
+  if(newProp) obj[propName] = newProp;
+};
 
 class CategoryPage extends PureComponent {
 
@@ -19,8 +23,15 @@ class CategoryPage extends PureComponent {
 
   handleUpdateExpense = expenseId => e => {
     e.preventDefault();
-    console.log('oopdate')
+    const expenseUpdates = {};
+    addUpdate(expenseUpdates, 'name', e.target.name.value);
+    addUpdate(expenseUpdates, 'value', e.target.budget.value);
 
+    this.props.updateExpense(
+      this.props.categoryId,
+      expenseId,
+      expenseUpdates
+    );
   }
 
   handleDeleteExpense = expenseId => () => {
@@ -65,5 +76,5 @@ export default connect(
     loading: state.loading,
     error: state.error
   }),
-  { addExpense, removeExpense }
+  { addExpense, removeExpense, updateExpense }
 )(CategoryPage);
