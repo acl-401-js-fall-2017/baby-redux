@@ -8,7 +8,7 @@ const renameIds = categories => !categories ? null : categories.map(category => 
   delete category._id;
   return category;
 });
-const renameId = category =>  {
+export const renameId = category =>  {
   category.id = category._id;
   delete category._id;
   return category;

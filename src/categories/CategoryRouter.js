@@ -15,6 +15,7 @@ export default class CategoryRouter extends PureComponent {
                 <CategoryPage 
                   name={category.name} 
                   budget={category.budget} 
+                  categoryId={category.id}
                   expenses = {category.expenses}
                 />
               )}/>

@@ -33,10 +33,12 @@ class Dashboard extends PureComponent {
         <Link to={url}>
           <h1>Dash</h1>
         </Link>
-        <CategoryForm
-          onComplete={this.handleAdd}
-          buttonText={'Add'}
-        />
+        <Route exact path={url} render={() => (
+          <CategoryForm
+            onComplete={this.handleAdd}
+            buttonText="Add"
+          />
+        )}/>
         {loading &&
           <Loader />
         }

@@ -7,3 +7,6 @@ export const add = category => post('/categories', category);
 export const update = (update) => patch(`/categories/${update.id}`, update);
 
 export const remove = id => apiRemove(`/categories/${id}`);
+
+
+export const addExpense = (newExpense, categoryId) => patch(`/categories/${categoryId}/expenses`, newExpense);
