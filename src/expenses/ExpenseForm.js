@@ -3,7 +3,7 @@ import GenForm from '../utility-components/GenForm';
 
 export default class ExpenseForm extends PureComponent {
   render() {
-    const { onComplete, onDelete, buttonText } = this.props;
+    const { onComplete, onDelete, buttonText, editing } = this.props;
     return (
       <GenForm
         name="expense"
@@ -11,6 +11,7 @@ export default class ExpenseForm extends PureComponent {
         onComplete={onComplete}
         onDelete={onDelete}
         buttonText={buttonText}
+        editing={editing}
       />
     );
   }

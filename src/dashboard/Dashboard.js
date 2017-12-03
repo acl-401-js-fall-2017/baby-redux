@@ -16,6 +16,11 @@ class Dashboard extends PureComponent {
     this.props.getCategories();
   }
 
+  getTotalBudget = () => {
+    const { categories } = this.props;
+    return categories ? categories.reduce((total, category) => total + category.budget, 0) : 0;
+  }
+
   handleAdd = e => {
     e.preventDefault();
     this.props.addCategory({
@@ -35,11 +40,12 @@ class Dashboard extends PureComponent {
         <Route exact path={url} render={() => (
           <header>
             <h1>Categories<br/>
-              <small>Total Budget: ${totalBudget}</small>
+              <small>Total Budget: ${this.getTotalBudget()}</small>
             </h1>
             <CategoryForm
               onComplete={this.handleAdd}
               buttonText="Add"
+              editing="new category"
             />
           </header>
         )}/>

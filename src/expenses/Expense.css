@@ -1,0 +1,22 @@
+
+li {
+    margin: 0.2em;
+    padding: 0.6em;
+    background: #eee;
+}
+
+h4 {
+    margin: 0;
+    padding-bottom: 0.25em;
+    display: flex;
+    justify-content: center;
+}
+
+.name {
+    text-align: right;
+    padding-right: 0.5em;
+}
+
+.value {
+    text-align: left;
+}

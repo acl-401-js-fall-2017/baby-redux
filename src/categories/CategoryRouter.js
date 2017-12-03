@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import CategoryPage from './CategoryPage';
 
 export default class CategoryRouter extends PureComponent {
+  
   render() {
     const { categories, url } = this.props;
     return (
