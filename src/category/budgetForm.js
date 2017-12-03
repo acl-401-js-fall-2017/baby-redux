@@ -16,9 +16,9 @@ export default class BudgetForm extends PureComponent {
       super(props);
       const { budget = {} } = props;
       this.state = {
-        name: budget.name || null,
-        amount: budget.amount || null,
-        _id: budget._id || null,
+        name: budget.name || '',
+        amount: budget.amount || '',
+        _id: budget._id || '',
         timestamp: budget.timestamp
       };
     }

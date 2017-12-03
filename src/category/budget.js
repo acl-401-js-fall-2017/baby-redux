@@ -20,13 +20,16 @@ class Budget extends PureComponent {
   }
 
   render() {
-    const { budgets, addCategory, error } = this.props;
+    const { budgets, error } = this.props;
     return (
       <div>
         { error && <div className="error">{error}</div> }
         <BudgetForm onComplete={this.handleAdd}/>
         <ul>
-          {budgets.map(budget => (
+          {/* how did I get an objext for budgets state and not an array? */}
+          {console.log(budgets.budgets)}
+          {console.log(typeof budgets)}
+          {budgets.budgets.map(budget => (
             <li key={budget._id}>
               <h3>
                 For:{budget.name} Amount: ${budget.amount}
