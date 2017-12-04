@@ -33,13 +33,7 @@ class Categories extends PureComponent {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    categories: state.categories
-  };
-}
-
 export default connect(
-  mapStateToProps,
+  ({ categories }) => ({ categories }),
   { addCategory, updateCategory, removeCategory, loadCategories }
 )(Categories);
