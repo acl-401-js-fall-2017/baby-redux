@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { loadCategories, addCategory, updateCategory, removeCategory } from './actions';
+import Expenses from '../expenses/Expenses';
+import { Route } from 'react-router-dom';
 import CategoryForm from './CategoryForm';
 import 'bulma/css/bulma.css';
 import { ClipLoader } from 'react-spinners';
@@ -48,6 +50,7 @@ class Category extends PureComponent {
       <div className='content is-medium'>
         {loading && <ClipLoader color="#42f4b6"/> }
         {categories}
+        <Route path="/categories/:id" component={Expenses}/>
       </div>
     );
   }
