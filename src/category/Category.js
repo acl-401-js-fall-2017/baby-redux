@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { loadCategories, addCategory, updateCategory, removeCategory } from './actions';
 import Expenses from '../expenses/Expenses';
-import { Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import CategoryForm from './CategoryForm';
 import 'bulma/css/bulma.css';
@@ -44,9 +43,11 @@ class Category extends PureComponent {
             <td><CategoryForm category={c} text="Update"
               onComplete={this.handleUpdate}/></td>
             <td><button onClick={() => this.handleRemove(c)}>X</button></td>
+            
             { this.props.match.params.id === c._id && (
-              <td> <Expenses/> </td>
+              <td> <Expenses catId={c._id}/> </td>
             )}
+
             {/* <td> <Route path={`/categories/${c._id}`} render={() => <Expenses id={c._id}/>}/> </td> */}
 
           </tr>)}

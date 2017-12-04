@@ -4,7 +4,7 @@ export default class Expenses extends Component {
 
   render() {
 
-    // console.log(this.props.match.params.id);
+    console.log(this.props);
 
     return(
       <div>

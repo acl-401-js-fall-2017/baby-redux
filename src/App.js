@@ -13,7 +13,6 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Budget_Tracker.ly</h1>
           </header>
-          {/* <Category/> */}
           <Route path='/(categories)?/:id?' component={Category}/>
         </div>
       </Router>
