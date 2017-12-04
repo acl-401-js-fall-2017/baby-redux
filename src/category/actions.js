@@ -2,7 +2,31 @@ import * as actions from './constants';
 import categoriesApi from '../services/categories-api';
 
 
+export function addExpense(category, expense) {
+  console.log('in add expense', category, expense);
+  return async dispatch => {
+    dispatch({ type: actions.LOADING });
+    try {
+      category.expenses.push(expense);
+      const updated = await categoriesApi.update(category._id, category);
+      console.log( 'update from the server',updated);
+      dispatch({
+        type: actions.CATEGORY_UPDATE,
+        payload: updated
+      });
+    }
+    catch(err) {
+      dispatch({
+        type: actions.CATEGORY_ERROR,
+        payload: err
+      });
+    }
+  };
+}
+
+
 export function loadCategories () {
+  console.log('loading');
   return async (dispatch, getState) => {
     dispatch({ type: actions.LOADING });
     const { categories } = getState();

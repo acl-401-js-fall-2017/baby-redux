@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { updateCategory, loadCategories } from './actions';
 import styled from 'styled-components';
 
-export class NewCategory extends PureComponent {
+export class UpdateForm extends PureComponent {
   
   state = {
     editing: false
@@ -54,7 +54,7 @@ export default connect(
     editing: ownProps.editing,
     category: ownProps.categoryToUpdate
   })
-)(NewCategory);
+)(UpdateForm);
 
 const UpdateDiv = styled.div`
 display: ${props => props.editing? 'flex' : 'none'}

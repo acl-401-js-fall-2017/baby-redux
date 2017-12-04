@@ -6,6 +6,7 @@ import './App.css';
 import NewCategory from './category/newCategory';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import Expenses from './category/Expenses';
 
 class App extends Component {
   render() {
@@ -19,15 +20,16 @@ class App extends Component {
             <span> </span>
             <NavLink to ="/categories/newcategory">Add Category</NavLink>
           </header>
-          
-          {error && 
-            <ErrorDiv>
-              {Array.isArray(error)
-                ? <ul> error.map(err => <li>err</li>)</ul>
-                : error.error? error.error : error
-              }
-            </ErrorDiv>
-          }
+          <div>
+            {error && 
+              <ErrorDiv>
+                {Array.isArray(error)
+                  ? <ul> error.map(err => <li>err</li>)</ul>
+                  : error.TypeError? error.TypeError : error
+                }
+              </ErrorDiv>
+            }
+          </div>
           {loading &&
             <LoadingDiv>
               <img src={logo} className="App-logo" alt="logo" />
@@ -36,6 +38,7 @@ class App extends Component {
           <Switch>
             <Route path="/categories/newcategory" component={NewCategory}/>
             <Route path="/categories" component={Categories}/>
+            <Route path="/category/:id/expenses" component={Expenses}/>
           </Switch>
         </div>
       </Router>

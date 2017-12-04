@@ -19,7 +19,8 @@ export class NewCategory extends PureComponent {
     const { elements } = event.target;
     const category = {
       name: elements.name.value,
-      budget: elements.budget.value
+      budget: elements.budget.value,
+      expenses: []
     };
     this.setState({ redirect: true });
     this.handleAdd(category);
