@@ -1,6 +1,7 @@
 import shortid from 'shortid';
 import * as actions from './constants';
 import categoriesApi from '../services/categoriesApi';
+import expensesApi from '../services/expensesApi';
 import categories from './reducers';
 
 
@@ -11,6 +12,22 @@ export function loadCategories() {
       const loadedCategories = await categoriesApi.get();
       console.log(`gotCategories: ${JSON.stringify(loadedCategories)}`);
       dispatch({ type: actions.CATEGORY_LOAD, payload: loadedCategories });
+      dispatch({ type: actions.LOADED });
+    }
+    catch(error){
+      dispatch({ type: actions.CATEGORY_ERROR, payload: error });
+      dispatch({ type: actions.LOADED });
+    }
+  }
+}
+
+export function loadExpenses() {
+  return async dispatch => {
+    dispatch({ type: actions.LOADING });
+    try {
+      const loadedExpenses = await expensesApi.get();
+      console.log(`gotExpensess: ${JSON.stringify(loadedExpenses)}`);
+      dispatch({ type: actions.CATEGORY_LOAD, payload: loadedExpenses });
       dispatch({ type: actions.LOADED });
     }
     catch(error){
