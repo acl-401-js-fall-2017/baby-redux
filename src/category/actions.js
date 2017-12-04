@@ -1,12 +1,27 @@
-import { CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_LOAD, CATEGORY_REMOVE } from './reducer';
+import { CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_LOAD, CATEGORY_REMOVE, LOADING, ERROR } from './reducer';
 import categoryApi from '../services/categories-api';
 
-export function loadCategories() {
+export function loadCategories(categories) {
   return async dispatch => {
-    const categories = await categoryApi.get();
-    dispatch({ type: CATEGORY_LOAD, payload: categories });
+
+    dispatch({ type: LOADING });
+    try {
+      const categories = await categoryApi.get();
+      dispatch({ 
+        type: CATEGORY_LOAD, 
+        payload: categories
+      });
+    }
+    catch(err) {
+      dispatch({
+        type: ERROR,
+        payload: err
+      });
+      throw err;
+    }
   };
 }
+
 export function addCategory(category) {
   return async dispatch => {
     const saved = await categoryApi.add(category);
@@ -16,7 +31,6 @@ export function addCategory(category) {
     });
   };
 }
-
 export function updateCategory(category) {
   return async dispatch => {
     const updated = await categoryApi.update(category);
