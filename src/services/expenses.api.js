@@ -1,11 +1,14 @@
 import api from './api';
 
 export default {
+  getAll(categoryId) {
+    return api.get(`/categories/${categoryId}/expenses`);
+  },
   get(categoryId, expenseId) {
     return api.get(`/categories/${categoryId}/expenses/${expenseId}`);
   },
-  add(categoryId, expense) {
-    return api.post(`/categories/${categoryId}/expense`, expense);
+  add(categoryId, data) {
+    return api.post(`/categories/${categoryId}/expense`, data);
   },
   remove(categoryId, expenseId) {
     return api.delete(`/categories/${categoryId}/expenses/${expenseId}`);
