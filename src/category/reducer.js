@@ -18,8 +18,13 @@ export function budgets(state = [], { type, payload }) {
   }
 }
 
-export function budgetsLoading(state = false, { type, payload }) {
+export function budgetsLoading(state = false, { type }) {
   switch(type){
+    case actions.CATEGORY_LOADING:
+      return true;
+    case actions.CATEGORY_LOAD:
+    case actions.CATEGORY_ERROR:
+      return false;
     default:
       return state;
   }

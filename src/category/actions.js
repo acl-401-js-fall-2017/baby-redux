@@ -3,6 +3,7 @@ import budgetsApi from '../services/budgets-api';
 
 export function loadCategory() {
   return async dispatch => {
+    dispatch({ type: actions.CATEGORY_LOADING });
     try {
       const budgets = await budgetsApi.get();
       dispatch({ 
@@ -15,6 +16,8 @@ export function loadCategory() {
         type: actions.CATEGORY_ERROR,
         payload: err
       });
+      // check below line for random error;
+      throw err;
     }
   };
 }
