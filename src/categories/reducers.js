@@ -38,7 +38,6 @@ export function error(state = null, { type, payload }) {
   switch(type) {
     case actions.CATEGORY_ERROR:
       return payload;
-    case actions.CATEGORY_LOAD:
     case actions.LOADING:
       return null;
     default:
