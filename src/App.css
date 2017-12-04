@@ -40,12 +40,12 @@ main {
 
 .loader {
   position: absolute;
-  top: 0; bottom: 0;
+  top: 500px; bottom: 500px;
   right: 0; left: 0;
   text-align: center;
   justify-content: center;
   align-items: center;
-  animation: App-logo-spin infinite 10s linear;
+  animation: App-logo-spin infinite 15s linear;
 }
 
 .error {

@@ -2,7 +2,7 @@
   "name": "class31_redux-intro",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3002/",
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "query-string": "^5.0.1",
     "react": "^16.1.1",
