@@ -1,23 +1,23 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addCategory, updateCategory, removeCategory } from './actions';
+import { loadCategories, addCategory, updateCategory, removeCategory } from './actions';
 import CategoryForm from './CategoryForm';
 import CategoryItem from './CategoryItem';
 
 class Dashboard extends PureComponent {
 
   componentDidMount() {
-    this.props.addCategory({ name: 'Abc', budget: 111 });
-    this.props.addCategory({ name: 'Def', budget: 222 });
-    this.props.addCategory({ name: 'Ghi', budget: 333 });
+    this.props.loadCategories();
   }
   handleAdd = category => {
-    this.props.addCategory(category);
+    const { name, budget } = category;
+    this.props.addCategory({ name, budget });
   }
-  
   handleUpdate = category => {
-    this.props.updateCategory(category);
+    const { _id, name, budget } = category;
+    this.props.updateCategory({ _id, name, budget });
   }
+
   
   handleRemove = id => {
     this.props.removeCategory(id);
@@ -56,5 +56,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { addCategory, updateCategory, removeCategory }
+  { loadCategories, addCategory, updateCategory, removeCategory }
 )(Dashboard);
