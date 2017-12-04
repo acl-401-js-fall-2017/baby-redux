@@ -20,14 +20,12 @@ export function categories(state = null, { type, payload }) {
   }
 }
 
-export function categoryError(state= null, { type, payload }) {
+export function error(state= null, { type, payload }) {
   switch(type) {
-    case actions.CATEGORY_ADD:
-    case actions.CATEGORY_REMOVE:
-    case actions.CATEGORY_UPDATE:
-      return null;
-    case actions.CATEGORY_ERROR:
+    case actions.ERROR:
       return payload;
+    case actions.LOADING:
+      return null;
     default:
       return state;
   }
@@ -35,13 +33,11 @@ export function categoryError(state= null, { type, payload }) {
 
 export function loading (state = false, { type }) {
   switch(type) {
-    case actions.CATEGORY_ADD:
-    case actions.CATEGORY_REMOVE:
-    case actions.CATEGORY_UPDATE:
-    case actions.CATEGORY_LOAD:
-      return false;
     case actions.LOADING:
       return true;
+    case actions.LOADED:
+    case actions.ERROR:
+      return false;
     default:
       return state;
   }
