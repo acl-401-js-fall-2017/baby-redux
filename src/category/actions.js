@@ -28,7 +28,6 @@ export function addCategory(category) {
 
 export function updateCategory(category) {
 
-
   return async dispatch => {
     const updatedCategory = await categoryApi.update(category);
     dispatch({
