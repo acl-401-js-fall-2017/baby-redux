@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './App.css';
 
 import Categories from '../category/Categories';
-import LoadResponse from '../load/LoadResponse';
+// import LoadResponse from '../load/LoadResponse';
 
 
 class App extends Component {
@@ -19,7 +19,7 @@ class App extends Component {
           </header>
           <Categories/>
           <footer>
-            <LoadResponse/>
+            {/* <LoadResponse/> */}
             {loading && 
             <div className="loader">
               Loading...
