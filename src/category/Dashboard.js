@@ -18,30 +18,43 @@ class Dashboard extends PureComponent {
     this.props.updateCategory({ _id, name, budget });
   }
 
-  
   handleRemove = id => {
     this.props.removeCategory(id);
   }
   render() {
-    const { category } = this.props;
+    const { categories, loading, error } = this.props;
     return(
       <div>
-        <CategoryForm text="Add" onComplete={this.handleAdd}/>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Delete</th>
-              <th>Update</th>
-            </tr>
-          </thead>
-          <tbody>
-            {category.map((category) => (
-              <CategoryItem category={category} onRemove={this.handleRemove} onUpdate={this.handleUpdate} key={category._id}/>
-            ))}
-          </tbody>
-        </table>
+        <div>
+          <CategoryForm text="Add" onComplete={this.handleAdd}/>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Delete</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody>
+              {categories.map(category => (
+                <CategoryItem category={category} onRemove={this.handleRemove} onUpdate={this.handleUpdate} key={category._id}/>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {loading && 
+            <div className="loader">
+              Loading...
+            </div>
+        }
+        {error && 
+            <div className="error">
+              {Array.isArray(error) 
+                ? <ul>error.map(err => <li>err</li>)</ul>
+                : error.error ? error.error : error
+              }
+            </div>}
       </div>
     );
   }
@@ -49,7 +62,9 @@ class Dashboard extends PureComponent {
 
 function mapStateToProps(state) {
   return{ 
-    category: state
+    categories: state.categories,
+    loading: state.loading,
+    error: state.error
   };
 }
 
