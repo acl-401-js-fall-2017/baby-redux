@@ -3,8 +3,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
 
-import Categories from './category/Categories';
-import LoadResponse from './load/LoadResponse';
+import Categories from '../category/Categories';
+import LoadResponse from '../load/LoadResponse';
 
 
 class App extends Component {
@@ -47,5 +47,3 @@ export default connect(
   }),
   null
 )(App);
-
-// export default App;
