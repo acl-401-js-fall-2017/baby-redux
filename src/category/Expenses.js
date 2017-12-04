@@ -17,23 +17,26 @@ class Expenses extends PureComponent {
   render() {
 
     const { id } = this.props.match.params;
-    console.log(id, this.props);
     const category = this.props.categories? this.props.categories.filter(p => p._id === id)[0]: {};
-    console.log('category is', category);
     
+    if (!this.props.categories || !category) return <div></div>;
+
     return (
       <div>
+        <h4> {category.name} </h4>
         <AddExpense categoryToUpdate ={category}/>
         <ul>
-          {this.props.categories &&
-            category.expenses && category.expenses.map(expense =>(
-              <li style={{ display:'flex', justifyContent: 'center' }} type="none" key={category._id}>
-                <h4>Spend {expense.amount} on {expense.name} </h4>
-                <button style={{ height:'50%' }} onClick={()=> this.props.removeCategory(category._id)}>X</button>
-                <button style={{ height:'50%' }} onClick={()=> this.setState({ display: category._id })}>update</button>
-                <UpdateForm categoryToUpdate ={category} editing ={this.state.display===category._id}/>
-              </li>
-            ))}
+          {
+            category.expenses && 
+                category.expenses.map(expense =>(
+                  <li style={{ display:'flex', justifyContent: 'center' }} type="none" key={category._id}>
+                    <h4>Spend {expense.amount} on {expense.name} </h4>
+                    <button style={{ height:'50%' }} onClick={()=> this.props.removeCategory(category._id)}>X</button>
+                    <button style={{ height:'50%' }} onClick={()=> this.setState({ display: category._id })}>update</button>
+                    <UpdateForm categoryToUpdate ={category} editing ={this.state.display===category._id}/>
+                  </li>
+                ))
+          }
         </ul>
       </div>
     );
