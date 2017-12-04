@@ -6,9 +6,9 @@ export function loadExpenses() {
     dispatch({ type: LOADING });
 
     try {
-      const categories = await expenseApi.get();
+      const expenses = await expenseApi.get();
       dispatch({ type: DONE_LOADING });
-      dispatch({ type: EXPENSE_LOAD, payload: categories });
+      dispatch({ type: EXPENSE_LOAD, payload: expenses });
     }
 
     catch(err) {

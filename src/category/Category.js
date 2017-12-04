@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { loadCategories, addCategory, updateCategory, removeCategory } from './actions';
 import Expenses from '../expenses/Expenses';
 import { Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CategoryForm from './CategoryForm';
 import 'bulma/css/bulma.css';
 import { ClipLoader } from 'react-spinners';
@@ -36,13 +37,21 @@ class Category extends PureComponent {
           <tr><td><CategoryForm text="Add"
             onComplete={this.handleAdd}/></td></tr>
           {category.map(c => <tr key={c._id}>
-            <td>{c.name}</td>
+
+            <td><Link to={`/categories/${c._id}`}>{c.name}</Link></td>
+            
             <td>{c.budget}</td>
             <td><CategoryForm category={c} text="Update"
               onComplete={this.handleUpdate}/></td>
             <td><button onClick={() => this.handleRemove(c)}>X</button></td>
+            { this.props.match.params.id === c._id && (
+              <td> <Expenses/> </td>
+            )}
+            {/* <td> <Route path={`/categories/${c._id}`} render={() => <Expenses id={c._id}/>}/> </td> */}
+
           </tr>)}
         </tbody>
+        
       </table>
     );
 
@@ -50,7 +59,6 @@ class Category extends PureComponent {
       <div className='content is-medium'>
         {loading && <ClipLoader color="#42f4b6"/> }
         {categories}
-        <Route path="/categories/:id" component={Expenses}/>
       </div>
     );
   }
