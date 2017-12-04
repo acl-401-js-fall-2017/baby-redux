@@ -21,7 +21,6 @@ class Budget extends PureComponent {
   componentDidMount() {
     this.props.loadCategory();
   }
-  
   handleAdd = budget => {
     this.props.onaddCategory(budget);
   }
@@ -53,9 +52,6 @@ class Budget extends PureComponent {
     );
   }
 }
-
-
-
 
 export default connect(
   mapStateToProps,

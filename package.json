@@ -2,8 +2,9 @@
   "name": "budget-tracker",
   "version": "0.1.0",
   "private": true,
-  "proxy":"http://localhost:3001",
+  "proxy": "http://localhost:3001",
   "dependencies": {
+    "query-string": "^5.0.1",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-redux": "^5.0.6",
@@ -15,10 +16,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "lint":"eslint .",
+    "lint": "eslint .",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "pretest": "npm run lint",
+    "testdev": "react-scripts test --env=jsdom",
     "test": "exit 0"
   }
 }
