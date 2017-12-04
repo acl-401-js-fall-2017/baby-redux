@@ -36,13 +36,14 @@ class Expense extends Component {
               This is an ErRoR mEsSaGE!!!!
             </div>
         }
+        {expenses.length ===0 && <h5>There are no Expenses recorded!!!</h5>}
         <div>
           {expenses !== undefined  && expenses.map(expense => (
             <div className="category" key={expense._id}>
               <button onClick={() => removeExpense(expense._id)}>X</button>
-              expense name: {expense.name}
-              <span> </span>
-              amount: ${expense.amount}
+              {expense.name}
+              <span>  </span>
+              ${expense.amount}
               <AddForm  expense ={expense} text="update" onComplete={this.handleUpdate}/>
             </div>
           ))}

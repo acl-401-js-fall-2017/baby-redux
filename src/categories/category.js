@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadCategories, addCategory, removeCategory, updateCategory } from './actions';
 import AddForm from '../addForm';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../App.css';
 
 class Category extends Component {
@@ -41,8 +41,8 @@ class Category extends Component {
           {categories !== undefined  && categories.map(category => (
             <div className="category" key={category._id}>
               <button onClick={() => removeCategory(category._id)}>X</button>
-              <Link to={`/categories/${category._id}`}>category: {category.name}</Link>
-              <span> </span>amount: ${category.amount}
+              <NavLink to={`/categories/${category._id}`} className="link">{category.name} </NavLink>
+              <span>  </span> ${category.amount}
               <AddForm  category ={category} text="update" onComplete={this.handleUpdate}/>
             </div>
           ))}
