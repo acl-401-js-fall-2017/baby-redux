@@ -6,7 +6,7 @@ export const CATEGORY_LOAD = 'CATEGORY_LOAD';
 
 // ### Loading constants ###
 export const LOADING = 'LOADING';
-export const RESPONSE_LOAD = 'RESPONSE_LOAD';
+export const LOADED = 'LOADED';
 export const ERROR = 'ERROR';
 
 //### Expense constants ###

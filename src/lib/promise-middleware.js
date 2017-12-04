@@ -14,7 +14,7 @@ export default function promiseMiddleware() {
 
     try {
       const result = await payload;
-      dispatch({ type: actions.RESPONSE_LOAD });
+      dispatch({ type: actions.LOADED });
       dispatch({
         type,
         payload: result

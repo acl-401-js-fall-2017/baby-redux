@@ -2,7 +2,7 @@ import * as actions from '../category/constants';
 
 export function response(state = null, { type, payload }) {
   switch(type) {
-    case actions.RESPONSE_LOAD:
+    case actions.LOADED:
       return payload;
     default: 
       return state;
@@ -13,7 +13,7 @@ export function loading(state = false, { type }) {
   switch(type) {
     case actions.LOADING:
       return true;
-    case actions.RESPONSE_LOAD:
+    case actions.LOADED:
     case actions.ERROR:
       return false;
     default:
@@ -25,7 +25,7 @@ export function error(state = null, { type, payload }) {
   switch(type) {
     case actions.ERROR:
       return payload;
-    case actions.RESPONSE_LOAD:
+    case actions.LOADED:
     case actions.LOADING:
       return null;
     default:

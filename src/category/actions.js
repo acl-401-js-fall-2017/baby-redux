@@ -58,7 +58,7 @@ export function loadingResponse(options) {
     try {
       const response = await categoryApi.get(options);
       dispatch({
-        type: actions.RESPONSE_LOAD,
+        type: actions.LOADED,
         payload: response
       });
     }
