@@ -13,6 +13,8 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
+    "prebuild": "rm -rf ../budget-tracker-server/public",
+    "postbuild": "mv ./build ../budget-tracker/public",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
