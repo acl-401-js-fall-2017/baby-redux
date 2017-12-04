@@ -30,15 +30,3 @@ export function removeCategory(_id) {
   };
 }
 
-// export function removeCategory(_id) {
-  
-//   return async dispatch => {
-//     const category = await categoryApi.remove(_id);
-//     if(category.removed) {
-//       dispatch({
-//         type: actions.CATEGORY_REMOVE,
-//         payload: { _id }
-//       });
-//     }
-//   };
-// }
