@@ -1,14 +1,7 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 
 export default class AddForm extends PureComponent {
     
-    static propTypes = {
-      expense: PropTypes.object,
-      category: PropTypes.string,
-      onComplete: PropTypes.func.isRequired
-    }
-
     static defaultProps = {
       text: 'Add'
     }
@@ -28,12 +21,12 @@ export default class AddForm extends PureComponent {
       const { name, amount, _id } = this.state;
       const { category } = this.props;
       this.props.onComplete({ name, amount, _id, category });
-      event.target.reset();
+      this.setState({ name:'', amount:'' });
     }
 
-    handleChange = ({ target: input }) => {
+    handleChange = ({ target }) => {
       this.setState({
-        [input.name]: input.value
+        [target.name]: target.value
       });
     }
 
@@ -41,13 +34,9 @@ export default class AddForm extends PureComponent {
       const{ name, amount } = this.state;
       return (
         <form onSubmit={this.handleSubmit}>
-          <div>
-              Name: <input name="name" value={name} onChange={this.handleChange} required/>
-          </div>
-          <div>
-              Amount: <input  name="amount" value={amount} onChange={this.handleChange} required/>
-          </div>
-          <button type="submit">{this.props.text}</button>
+          <input placeholder="Name" name="name" value={name} onChange={this.handleChange} required/>
+          <input placeholder="Amount" name="amount" value={amount} onChange={this.handleChange} required/>
+          <button className="btn-submit" type="submit">{this.props.text}</button>
         </form>
       );
     }

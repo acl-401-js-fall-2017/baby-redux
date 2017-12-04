@@ -11,6 +11,7 @@ class Expense extends Component {
   }
   
   handleAdd = (expense) => {
+    console.log(expense);
     this.props.addExpense(expense);
   }
 
@@ -22,7 +23,8 @@ class Expense extends Component {
   render () {
     const { expenses, removeExpense } = this.props;
     return (
-      <div>
+      <div className="main">
+        <h3>Add a new expense</h3>
         <AddForm onComplete={this.handleAdd} category={this.props.match.params.id}/>
         {this.props.loading && 
             <div className="loader">
@@ -34,16 +36,17 @@ class Expense extends Component {
               This is an ErRoR mEsSaGE!!!!
             </div>
         }
-        <ul>
+        <div>
           {expenses !== undefined  && expenses.map(expense => (
-            <li key={expense._id}>
-              <h4>expense name: {expense.name}</h4>
-              <h4>amount: ${expense.amount}</h4>
-              <AddForm  expense ={expense} text="update" onComplete={this.handleUpdate}/>
+            <div className="category" key={expense._id}>
               <button onClick={() => removeExpense(expense._id)}>X</button>
-            </li>
+              expense name: {expense.name}
+              <span> </span>
+              amount: ${expense.amount}
+              <AddForm  expense ={expense} text="update" onComplete={this.handleUpdate}/>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     );
   }

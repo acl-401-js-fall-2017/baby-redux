@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadCategories, addCategory, removeCategory, updateCategory } from './actions';
 import AddForm from '../addForm';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../App.css';
 
 class Category extends Component {
@@ -16,13 +16,16 @@ class Category extends Component {
   }
 
   handleUpdate= (category) => {
-    this.props.updateCategory(category);
+    const { _id } = category.category;
+    const { name, amount } = category;
+    this.props.updateCategory({ name, amount, _id });
   }
 
   render () {
     const { categories, removeCategory } = this.props;
     return (
-      <div>
+      <div className="main">
+        <h3>Add a new expense category</h3>
         <AddForm onComplete={this.handleAdd}/>
         {this.props.loading && 
             <div className="loader">
@@ -34,17 +37,16 @@ class Category extends Component {
               This is an ErRoR mEsSaGE!!!!
             </div>
         }
-        <ul>
+        <div>
           {categories !== undefined  && categories.map(category => (
-            <li key={category._id}>
-              <h4>category name: {category.name}</h4>
-              <h4>amount: ${category.amount}</h4>
-              {/* <AddForm  category ={category} text="update" onComplete={this.handleUpdate}/> */}
+            <div className="category" key={category._id}>
               <button onClick={() => removeCategory(category._id)}>X</button>
-              <NavLink to={`/categories/${category._id}`}>{category.name}</NavLink>
-            </li>
+              <Link to={`/categories/${category._id}`}>category: {category.name}</Link>
+              <span> </span>amount: ${category.amount}
+              <AddForm  category ={category} text="update" onComplete={this.handleUpdate}/>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     );
   }
