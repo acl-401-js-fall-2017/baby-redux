@@ -5,8 +5,11 @@ import { BrowserRouter as Router,
      Redirect
     } from 'react-router-dom';
 import Dashboard from './dashboard/Dashboard';
-
+import Load from './categories/Load';
+import { connect } from 'react-redux';
 import './App.css';
+
+
 
 class App extends Component {
   render() {
@@ -23,4 +26,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const connectedApp = connect(
+  state => ({
+    loading: state.loading,
+    error: state.error
+  }), 
+  null
+)(App);
+
+export default connectedApp;

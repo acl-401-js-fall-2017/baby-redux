@@ -4,6 +4,7 @@ import { addCategory, loadCategories } from '../categories/actions';
 import CategoryForm from '../categories/CategoryForm';
 import CategoryItem from '../categories/CategoryItem';
 import categoriesApi from '../services/categoriesApi';
+import Load from '../categories/Load';
 
 class Dashboard extends PureComponent {
 
@@ -27,18 +28,7 @@ class Dashboard extends PureComponent {
 			<CategoryItem key={index} category={categoryItem}/>
     ));
     const view = this.props.loading ? 
-    <div>
-      <div className="loader">
-      </div>
-    {this.props.error && 
-      <div className="error">
-        {Array.isArray(this.props.error) 
-          ? <ul>error.map(err => <li>err</li>)</ul>
-          : this.props.error.error ? this.props.error.error : this.props.error
-        }
-      </div>
-    }
-    </div> : 
+    <Load/>: 
     (
       <div>
         <h1>Budget Dashboard</h1>
