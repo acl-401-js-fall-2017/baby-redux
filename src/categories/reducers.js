@@ -13,7 +13,7 @@ export function categories(state = [], { type, payload }) {
   case actions.CATEGORY_REMOVE:
     return state.filter(category => category._id !== payload);
   case actions.CATEGORY_UPDATE:
-    return state.map(category => category.id === payload.id ? { ...category, ...payload } : category);
+    return state.map(category => category._id === payload._id ? { ...category, ...payload } : category);
   case actions.CATEGORY_LOAD:
     return payload
   default:
@@ -25,11 +25,12 @@ export function loading(state = false, { type }){
   switch(type){
   case actions.LOADING:
     return true;
+  case actions.LOADED:
+    return false;
   case actions.CATEGORY_ERROR:
     return false;
   default:
     return state;
-
   }
 }
 
@@ -44,3 +45,4 @@ export function error(state = null, { type, payload }) {
       return state;
   }
 }
+

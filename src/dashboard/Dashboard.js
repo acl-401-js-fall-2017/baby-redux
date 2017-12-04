@@ -3,14 +3,13 @@ import { connect } from 'react-redux';
 import { addCategory, loadCategories } from '../categories/actions';
 import CategoryForm from '../categories/CategoryForm';
 import CategoryItem from '../categories/CategoryItem';
+import Loading from '../categories/Loading';
 import categoriesApi from '../services/categoriesApi';
 
 class Dashboard extends PureComponent {
 
   async componentDidMount() {
-    console.log('LOADING>>>>>>>>>>>>>>>>>');
     this.props.loadCategories();
-    console.log('the props', this.props);
   }
 
   handleAdd = event => {
@@ -27,14 +26,20 @@ class Dashboard extends PureComponent {
   render() {
     const cats = this.props.categories.map((categoryItem, index) => (
 			<CategoryItem key={index} category={categoryItem}/>
-		));
-    return (
+    ));
+    const view = this.props.loading ? <Loading/> : 
+    (
       <div>
         <h1>Budget Dashboard</h1>
         {cats}
-		<br/>
-		<h4>create new budget</h4>
-		<CategoryForm onComplete={this.handleAdd} buttonText={'create'}/>
+        <br/>
+        <h4>create new budget</h4>
+        <CategoryForm onComplete={this.handleAdd} buttonText={'create'}/>
+      </div>
+    );
+    return (
+      <div>
+        {view}
       </div>
     );
   }
@@ -60,7 +65,8 @@ function mapDispatchToProps(dispatch) {
 
 const ConnectedDash = connect(
   state => ({
-    categories: state.categories
+    categories: state.categories,
+    loading: state.loading
   }),
   { addCategory, loadCategories }
 )(Dashboard);
