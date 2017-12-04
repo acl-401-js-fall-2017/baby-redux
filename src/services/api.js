@@ -32,6 +32,18 @@ export default {
       })
     );
   },
+  put(path, data) {
+    return asyncWrap(
+      fetch(`${url}${path}`, {
+        method: 'put',
+        body: JSON.stringify(data),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+    );
+  },
   delete(path) {
     return asyncWrap(
       fetch(`${url}${path}`, {

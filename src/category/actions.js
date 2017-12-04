@@ -1,12 +1,14 @@
 import *  as actions from './constants';
-import shortid from 'shortid';
 import budgetsApi from '../services/budgets-api';
 
-export function loadCategory(){
+export function loadCategory() {
   return async dispatch => {
     try {
       const budgets = await budgetsApi.get();
-      dispatch({ type: actions.CATEGORY_LOAD, payload: budgets });
+      dispatch({ 
+        type: actions.CATEGORY_LOAD,
+        payload: budgets
+      });
     }
     catch(err) {
       dispatch({
@@ -18,24 +20,55 @@ export function loadCategory(){
 }
 
 export function addCategory(budget) {
-  budget._id = shortid.generate();
-  budget.timestamp = Date();
-  return {
-    type: actions.CATEGORY_ADD,
-    payload: budget
+  return async dispatch => {
+    try {
+      const saved = await budgetsApi.add(budget);
+      dispatch({
+        type: actions.CATEGORY_ADD,
+        payload: saved
+      });
+    }
+    catch(err) {
+      dispatch({
+        type: actions.CATEGORY_ERROR,
+        payload: err
+      });
+    }
   };
 }
 
 export function updateCategory(budget) {
-  return {
-    type: actions.CATEGORY_UPDATE,
-    payload: budget
+  return async dispatch => {
+    try{
+      const changed = await budgetsApi.update(budget);
+      dispatch({
+        type: actions.CATEGORY_UPDATE,
+        payload: { changed }
+      });
+    }
+    catch (err) {
+      dispatch({
+        type: actions.CATEGORY_ERROR,
+        payload: err
+      });
+    }  
   };
 }
 
 export function removeCategory(id) {
-  return {
-    type: actions.CATEGORY_REMOVE,
-    payload: id
+  return async dispatch => {
+    try {
+      const remove = await budgetsApi.remove(id);
+      dispatch({
+        type: actions.CATEGORY_REMOVE,
+        payload: remove
+      });
+    }
+    catch (err) {
+      dispatch({
+        type: actions.CATEGORY_ERROR,
+        payload: err
+      });
+    }   
   };
 }

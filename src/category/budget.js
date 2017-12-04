@@ -1,16 +1,29 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addCategory, updateCategory, removeCategory } from './actions';
+import { addCategory, updateCategory, loadCategory, removeCategory } from './actions';
 import BudgetForm from './budgetForm';
 
+function mapStateToProps(state) {
+  return {
+    budgets: state.budgets
+  };
+}
+
+const mapDispatchToProps = {
+  onaddCategory: addCategory,
+  updateCategory,
+  removeCategory,
+  loadCategory
+};
+
 class Budget extends PureComponent {
-
+  
   componentDidMount() {
-    this.props.addCategory({ name: 'rent', amount: 1700 });
+    this.props.loadCategory();
   }
-
+  
   handleAdd = budget => {
-    this.props.addCategory(budget);
+    this.props.onaddCategory(budget);
   }
   handleUpdate = budget => {
     this.props.updateCategory(budget);
@@ -18,25 +31,22 @@ class Budget extends PureComponent {
   handleRemove = id => {
     this.props.removeCategory(id);
   }
-
+  
   render() {
     const { budgets, error } = this.props;
     return (
       <div>
         { error && <div className="error">{error}</div> }
-        <BudgetForm onComplete={this.handleAdd}/>
+        <BudgetForm onComplete={this.handleAdd} isAdd={true}/>
         <ul>
-          {/* how did I get an objext for budgets state and not an array? */}
-          {console.log(budgets.budgets)}
-          {console.log(typeof budgets)}
-          {budgets.budgets.map(budget => (
+          {budgets.map(budget => (
             <li key={budget._id}>
               <h3>
                 For:{budget.name} Amount: ${budget.amount}
                 <button onClick={() => this.handleRemove(budget._id)}>X</button>
               </h3>  
               <BudgetForm budget={budget} text="Update"
-                onComplete={this.handleUpdate}/>
+                onComplete={this.handleUpdate} isAdd={false}/>
             </li>))}
         </ul>  
       </div>  
@@ -44,13 +54,10 @@ class Budget extends PureComponent {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    budgets: state
-  };
-}
+
+
 
 export default connect(
   mapStateToProps,
-  { addCategory, updateCategory, removeCategory }
+  mapDispatchToProps
 )(Budget);
