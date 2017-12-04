@@ -1,74 +1,74 @@
 import * as actions from './constants';
-import budgetsApi from '../services/budgets-api';
+import categoriesApi from '../services/category-api';
 
-export function loadBudgets() {
+export function loadCategories() {
   return async dispatch => {
     try {
       // action is starting, 
       // tell the store we are loading...
       dispatch({ type : actions.LOADING });
       // talk to server via api...
-      const budgets = await budgetsApi.get();
+      const categories = await categoriesApi.get();
       // dispatch load action when done...
-      dispatch({ type: actions.BUDGET_LOAD, payload: budgets });
+      dispatch({ type: actions.CATEGORY_LOAD, payload: categories });
     }
     catch(err) {
       dispatch({
-        type: actions.BUDGET_ERROR, 
+        type: actions.CATEGORY_ERROR, 
         payload: err
       });
     }
   };
 }
 
-export function addBudget(budget) {
+export function addCategory(category) {
   return async dispatch => {
     try {
-      const saved = await budgetsApi.add(budget);
+      const saved = await categoriesApi.add(category);
       dispatch({
-        type: actions.BUDGET_ADD,
+        type: actions.CATEGORY_ADD,
         payload: saved
       });
     }
     catch(err) {
       dispatch({
-        type: actions.BUDGET_ERROR,
+        type: actions.CATEGORY_ERROR,
         payload: err
       });
     }
   };
 }
 
-export function removeBudget(id) {
+export function removeCategory(id) {
   return async dispatch =>{
     try {
-      const removed = await budgetsApi.remove(id);
+      const removed = await categoriesApi.remove(id);
       dispatch({
-        type: actions.BUDGET_REMOVE,
+        type: actions.CATEGORY_REMOVE,
         payload: removed
       });
     }
     catch(err) {
       dispatch({
-        type: actions.BUDGET_ERROR,
+        type: actions.CATEGORY_ERROR,
         payload: err
       });
     }
   };
 }
 
-export function updateBudget(budget) {
+export function updateCategory(category) {
   return async dispatch => {
     try {
-      const updated= await budgetsApi.update(budget);
+      const updated= await categoriesApi.update(category);
       dispatch({
-        type: actions.BUDGET_UPDATE,
+        type: actions.CATEGORY_UPDATE,
         payload: updated
       });
     }
     catch(err) {
       dispatch({
-        type: actions.BUDGET_ERROR,
+        type: actions.CATEGORY_ERROR,
         payload: err
       });
     }

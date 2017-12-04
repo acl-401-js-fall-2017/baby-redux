@@ -1,11 +1,15 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { budgetsActions , budgetsLoading, budgetsError } from './Category/reducer';
+import { expensesActions , expensesLoading, expensesError } from './expenses/reducer';
+import { categoriesActions , categoriesLoading, categoriesError } from './categories/reducer';
 
 const rootReducer = combineReducers({
-  budgetsActions,
-  budgetsLoading,
-  budgetsError
+  expensesActions,
+  expensesLoading,
+  expensesError,
+  categoriesActions,
+  categoriesLoading,
+  categoriesError
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
