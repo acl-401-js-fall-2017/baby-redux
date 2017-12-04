@@ -34,7 +34,8 @@ class Category extends PureComponent {
       <div className="block">
       
         <div className="columns">
-          <div className="column is-three-quarters">
+          <div className="column"></div>
+          <div className="column">
             <CategoryForm text="Add"
               onComplete={this.handleAdd}/>
           </div>
