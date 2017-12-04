@@ -61,18 +61,20 @@ class Category extends PureComponent {
         {category.map(c => { 
           return (<div className="block" key={c._id}>
             <div className="columns">
-              <div className="column is-half">
+              <div className="column">
                 <Link to={`/categories/${c._id}`}>{c.name}</Link>
               </div>
               <div className="column">
                 {c.budget}
               </div>
               <div className="column">
+                <button onClick={() => this.handleRemove(c)}>X</button>
+              </div>
+              <div className="column">
                 <CategoryForm category={c} text="Update"
                   onComplete={this.handleUpdate}/>
               </div>
-              <div className="column">
-                <button onClick={() => this.handleRemove(c)}>X</button>
+              <div className="column is-half">
               </div>
             </div>
       
