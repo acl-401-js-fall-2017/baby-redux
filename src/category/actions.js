@@ -1,6 +1,5 @@
 import * as actions from './constants';
 import categoriesApi from '../services/categories.api';
-// import shortid from 'shortid';
 
 export function loadCategory() {
   return async dispatch => {
