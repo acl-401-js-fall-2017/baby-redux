@@ -12,7 +12,7 @@ export function loading(state = false, { type }) {
   }
 }
 
-export function err(state = null, { type, payload }) {
+export function error(state = null, { type, payload }) {
   switch(type) {
     case actions.ERROR:
       return payload;
