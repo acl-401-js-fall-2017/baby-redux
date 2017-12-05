@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+// import './App.css';
 import Expense from './expenses/expense';
 import Category from './categories/category';
 import Home from './components/home';
@@ -8,18 +8,19 @@ import {
   BrowserRouter as Router, 
   Route, Switch, Redirect, 
   Link  } from 'react-router-dom';
+import 'bulma/css/bulma.css';
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div>
-          <div className="topNav">
-            <Link className="nav" to="/">Home</Link>
-            <span> </span>
-            <Link className="nav" to="/about">About</Link>
-            <span> </span>
-            <Link className="nav" to="/categories">Expense Categories</Link>
+          <div className="navbar is-warning">
+            <Link className="navbar-item" to="/">Home</Link>
+            <Link className="navbar-item" to="/about">About</Link>
+            <div className="navbar-end">
+              <div className="navbar-item"><strong>Budget Tracker</strong></div>
+            </div>
           </div>
           <Switch>
             <Route exact path="/" component={Home}/>

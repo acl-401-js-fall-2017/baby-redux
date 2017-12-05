@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import { loadCategories, addCategory, removeCategory, updateCategory } from './actions';
 import AddForm from '../addForm';
 import { NavLink } from 'react-router-dom';
-import '../App.css';
+import 'bulma/css/bulma.css';
 
 class Category extends Component {
+  state = {
+    editing: null
+  }
 
   componentDidMount() {
     this.props.loadCategories();
@@ -24,26 +27,30 @@ class Category extends Component {
   render () {
     const { categories, removeCategory } = this.props;
     return (
-      <div className="main">
-        <h3>Add a new expense category</h3>
+      <div className="container is-fluid">
+        <h1 className="title">Add a new expense category</h1>
         <AddForm onComplete={this.handleAdd}/>
         {this.props.loading && 
-            <div className="loader">
-              Loading Super Fast...
+            <div className="loader"  style={{ fontSize:'36px' }}>
+              <i className="fa fa-spinner"></i>
             </div>
         }
         {this.props.error && 
-            <div className="error">
+            <div className="title">
               This is an ErRoR mEsSaGE!!!!
             </div>
         }
+        <hr/>
         <div>
           {categories !== undefined  && categories.map(category => (
             <div className="category" key={category._id}>
-              <button onClick={() => removeCategory(category._id)}>X</button>
-              <NavLink to={`/categories/${category._id}`} className="link">{category.name} </NavLink>
-              <span>  </span> ${category.amount}
-              <AddForm  category ={category} text="update" onComplete={this.handleUpdate}/>
+              <div style={{ width: '200px', display: 'inline-block' }}>
+                <NavLink to={`/categories/${category._id}`} className="link"><strong>{category.name}</strong></NavLink>
+                <span>  </span> ${category.amount}
+              </div>
+              <button className="delete" onClick={() => removeCategory(category._id)}>X</button>
+              <button onClick={()=> this.setState({ editing: category._id })}>update</button>
+              {this.state.editing === category._id && <AddForm  category ={category} text="✎" onComplete={this.handleUpdate}/>}
             </div>
           ))}
         </div>

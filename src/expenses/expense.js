@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadExpenses, addExpense, removeExpense, updateExpense } from './actions';
 import AddForm from '../addForm';
-import '../App.css';
 
 class Expense extends Component {
+  state = {
+    editing: null
+  }
 
   componentDidMount() {
     this.props.loadExpenses(this.props.match.params.id);
@@ -23,8 +25,8 @@ class Expense extends Component {
   render () {
     const { expenses, removeExpense } = this.props;
     return (
-      <div className="main">
-        <h3>Add a new expense</h3>
+      <div className="container is-fluid">
+        <h1 className="title">Add a new expense</h1>
         <AddForm onComplete={this.handleAdd} category={this.props.match.params.id}/>
         {this.props.loading && 
             <div className="loader">
@@ -32,19 +34,23 @@ class Expense extends Component {
             </div>
         }
         {this.props.error && 
-            <div className="error">
+            <h4 className="subtitle is-5">
               This is an ErRoR mEsSaGE!!!!
-            </div>
-        }
-        {expenses.length ===0 && <h5>There are no Expenses recorded!!!</h5>}
+            </h4>
+        } 
+        {expenses.length ===0 && <div className="title is-small">There are no Expenses recorded!!!</div>}
+        <hr/>
         <div>
           {expenses !== undefined  && expenses.map(expense => (
             <div className="category" key={expense._id}>
-              <button onClick={() => removeExpense(expense._id)}>X</button>
-              {expense.name}
-              <span>  </span>
-              ${expense.amount}
-              <AddForm  expense ={expense} text="update" onComplete={this.handleUpdate}/>
+              <div style={{ width: '200px', display: 'inline-block' }}>
+                <strong>{expense.name}</strong>
+                <span>  </span>
+                <strong>${expense.amount}</strong>
+              </div>
+              <button className="delete" onClick={() => removeExpense(expense._id)}>X</button>
+              <button onClick={()=> this.setState({ editing: expense._id })}>update</button>
+              {this.state.editing === expense._id && <AddForm  expense ={expense} text="✎" onComplete={this.handleUpdate}/>}
             </div>
           ))}
         </div>

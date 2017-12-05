@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import 'bulma/css/bulma.css';
 
 export default class AddForm extends PureComponent {
     
@@ -33,10 +34,16 @@ export default class AddForm extends PureComponent {
     render() {
       const{ name, amount } = this.state;
       return (
-        <form onSubmit={this.handleSubmit}>
-          <input placeholder="Name" name="name" value={name} onChange={this.handleChange} required/>
-          <input placeholder="Amount" name="amount" value={amount} onChange={this.handleChange} required/>
-          <button className="btn-submit" type="submit">{this.props.text}</button>
+        <form className="field is-grouped is-centered" onSubmit={this.handleSubmit}>
+          <div className="control">
+            <input className="input is-primary" placeholder="Name" name="name" value={name} onChange={this.handleChange} required/>
+          </div>
+          <div className="control">
+            <input className="input  is-primary" placeholder="Amount" name="amount" value={amount} onChange={this.handleChange} required/>
+          </div>
+          <div className="control">
+            <button className="button is-info" type="submit">{this.props.text}</button>
+          </div>
         </form>
       );
     }
