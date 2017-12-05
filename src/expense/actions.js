@@ -3,22 +3,29 @@ import expenseApi from '../services/expenses.api';
 
 
 //TODO: Need to figure out what to do with categoryId and expenseId
+// export function loadExpenses() {
+
+//   return async dispatch => {
+//     const expenses = await expenseApi.get(categoryId, expenseId);
+
+//     dispatch({
+//       type: actions.EXPENSE_LOAD,
+//       payload: expenses
+//     });
+//   };
+// }
+
 export function loadExpenses() {
-
-  return async dispatch => {
-    const expenses = await expenseApi.get(categoryId, expenseId);
-
-    dispatch({
-      type: actions.EXPENSE_LOAD,
-      payload: expenses
-    });
+  return {
+    type: actions.EXPENSE_LOAD,
+    payload: expenseApi.get()
   };
 }
 
-export function addExpense(categoryId, expense) {
+export function addExpense({ name, cost }) {
 
   return async dispatch => {
-    const { name, cost } = expense;
+    // const { name, cost } = expense;
     const expenses = await expenseApi.add({ name, cost });
     dispatch({
       type: actions.EXPENSE_ADD,
@@ -26,6 +33,7 @@ export function addExpense(categoryId, expense) {
     });
   };
 }
+
 
 export function removeExpense(categoryId, expenseId) {
 
