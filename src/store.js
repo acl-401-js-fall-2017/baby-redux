@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from './categories/rootReducer';
-
+import promiseMiddlewear from './utils/promise-middleware';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   
   const logger = store => next => action => {
@@ -12,7 +12,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const store = createStore(
     reducer,
     composeEnhancers(
-      applyMiddleware(logger, thunk)
+      applyMiddleware(logger, thunk, promiseMiddlewear)
     )
   );
   

@@ -24,7 +24,7 @@ class Dashboard extends PureComponent {
   }
   
   render() {
-    const cats = this.props.categories.map((categoryItem, index) => (
+    const cats = this.props.categories && this.props.categories.map((categoryItem, index) => (
 			<CategoryItem key={index} category={categoryItem}/>
     ));
       
