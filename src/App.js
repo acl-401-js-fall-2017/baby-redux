@@ -13,9 +13,12 @@ import './App.css';
 
 class App extends Component {
   render() {
+    const loader = this.props.loading ? 
+    <Load/>: null;
     return (
       <Router>
         <div className="App">
+        { loader }
           <Switch>
             <Route exact path="/" component={Dashboard}/>>
             <Redirect to="/"/>

@@ -27,20 +27,17 @@ class Dashboard extends PureComponent {
     const cats = this.props.categories.map((categoryItem, index) => (
 			<CategoryItem key={index} category={categoryItem}/>
     ));
-    const view = this.props.loading ? 
-    <Load/>: 
-    (
+      
+
+    return (
       <div>
+        <div>
         <h1>Budget Dashboard</h1>
         {cats}
         <br/>
         <h4>create new budget</h4>
         <CategoryForm onComplete={this.handleAdd} buttonText={'create'}/>
       </div>
-    );
-    return (
-      <div>
-        {view}
       </div>
     );
   }
