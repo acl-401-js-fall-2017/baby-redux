@@ -30,3 +30,31 @@ form {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+main {
+  position: relative;
+  text-align: left;
+  margin: 20px;
+  height: 300px;
+}
+
+.loader {
+  position: absolute;
+  top: 500px; bottom: 500px;
+  right: 0; left: 0;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  animation: App-logo-spin infinite 15s linear;
+}
+
+.error {
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  color: red;
+  margin: 20px;
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: bold;
+}

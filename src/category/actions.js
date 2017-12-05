@@ -1,25 +1,51 @@
 import * as actions from './constants';
-import shortid from 'shortid';
+import { RESPONSE_LOADED } from '../load/reducer';
+import categoriesApi from '../services/categories.api';
 
-export function addCategory(category) {
-  category._id = shortid.generate();
-  category.timestamp = new Date();
-  return {
-    type: actions.CATEGORY_ADD,
-    payload: category
+export function loadCategory() {
+  return async dispatch => {
+    try {
+      const categories = await categoriesApi.get();
+      dispatch({ type: RESPONSE_LOADED, payload: categories });
+    }
+    catch(err) {
+      dispatch({ type: actions.ERROR_LOAD, payload: err });
+    }
   };
 }
 
-export function updateCategory(category) {
-  return {
-    type: actions.CATEGORY_UPDATE,
-    payload: category
+export function addCategory(category) {
+  return async dispatch => {
+    try { 
+      const savedCat = await categoriesApi.add(category);
+      dispatch({ type: actions.CATEGORY_ADD, payload: savedCat });
+    }
+    catch(err) {
+      dispatch({ type: actions.ERROR_LOAD, payload: err });
+    }
+  };
+}
+
+export function updateCategory(id, data) {
+  return async dispatch => {
+    try {
+      const updateCat = await categoriesApi.update(id, data);
+      dispatch({ type: actions.CATEGORY_UPDATE, payload: updateCat });
+    }
+    catch(err) {
+      dispatch({ type: actions.ERROR_LOAD, payload: err });
+    }
   };
 }
 
 export function removeCategory(id) {
-  return {
-    type: actions.CATEGORY_REMOVE,
-    payload: id
+  return async dispatch => {
+    try {
+      await categoriesApi.remove(id);
+      dispatch({ type: actions.CATEGORY_REMOVE, payload: id });
+    }
+    catch(err) {
+      dispatch({ type: actions.ERROR_LOAD, payload: err });
+    }
   };
 }
