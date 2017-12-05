@@ -11,15 +11,16 @@ export default class ExpenseForm extends PureComponent {
     const { expense = {} } = props;
     this.state = {
       name: expense.name || '',
-      amount: expense.budget || '',
-      category: this.props.id
+      amount: expense.amount || '',
+      category: this.props.id,
+      _id: expense._id || '',
     };
   }
 
   handleSubmit = event => {
     event.preventDefault();
-    const { name, amount } = this.state;
-    this.props.onComplete({ name, amount });
+    const { name, amount, _id } = this.state;
+    this.props.onComplete({ name, amount, _id });
   }
 
   handleChange = ({ target: input }) => {
@@ -34,11 +35,11 @@ export default class ExpenseForm extends PureComponent {
       <form onSubmit={this.handleSubmit}>
         <div className="columns">
           <div className="column is-third">
-            Name: <input name="name" value={name} onChange={this.handleChange}/>
+            <input name="name" value={name} placeholder={'Name'} onChange={this.handleChange}/>
           </div>
 
           <div className="column is-third">
-            Amount: <input name="amount" value={amount} onChange={this.handleChange}/>
+            <input name="amount" value={amount} placeholder={'Amount'} onChange={this.handleChange}/>
           </div>
           <div className="column"><button type="submit">{this.props.text}</button></div>
         </div>

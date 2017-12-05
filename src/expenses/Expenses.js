@@ -36,6 +36,13 @@ class Expenses extends Component {
     this.setState({ expenses });
   }
 
+  handleUpdate = async expense => {
+    const { _id, name, amount } = expense;
+    await this.props.updateExpense({ _id, name, amount });
+    const expenses = await expenseApi.get(this.getCategoryId());
+    this.setState({ expenses });
+  }
+
   render() {
     const { expenses } = this.state;
 
@@ -47,6 +54,7 @@ class Expenses extends Component {
           <div key={expense._id} className='block'>
 
             <div className='columns'>
+
               <div className='column'>
                 {expense.name}
               </div>
@@ -56,9 +64,14 @@ class Expenses extends Component {
               </div>
 
               <div className="column">
+                <ExpenseForm expense={expense} text="Update"
+                  onComplete={this.handleUpdate}/>
+              </div>
+
+              <div className="column">
                 <button onClick={() => this.handleRemove(expense)}>X</button>
               </div>
-              
+
             </div>
 
           </div>
