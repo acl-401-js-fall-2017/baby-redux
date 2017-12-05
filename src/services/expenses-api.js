@@ -1,8 +1,8 @@
 import api from './api';
 
 export default {
-  get() {
-    return api.get('/expenses');
+  get(id) {
+    return (id) ? api.get(`/expenses/${id}`) : api.get('/expenses');
   },
 
   add(expense) {

@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import expenseApi from '../services/expenses-api';
 
 export default class ExpenseForm extends PureComponent {
 
