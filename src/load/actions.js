@@ -1,12 +1,12 @@
 import { RESPONSE_LOADED, PAGE_LOADING, ERROR_LOAD } from './reducer';
-import { loadApi } from '../services/loadApi';
+import { api } from '../services/api';
 
 export function responseLoadAction() {
   return async dispatch => {
     dispatch ({ type: PAGE_LOADING });
 
     try {
-      const response = await loadApi.get();
+      const response = await api.get();
       dispatch({
         type: RESPONSE_LOADED,
         payload: response
