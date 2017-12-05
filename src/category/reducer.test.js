@@ -1,4 +1,4 @@
-import reducer, { CATEGORY_LOAD, CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_REMOVE } from './reducer';
+import reducer, { CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_REMOVE } from './reducer';
 import *as actions from './constants';
 
 describe('category reducer', () => {
