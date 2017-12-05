@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export default class CategoryForm extends PureComponent {
-
+export default class ExpenseForm extends PureComponent {
     static propTypes = {
-      category: PropTypes.object,
+      expense: PropTypes.object,
       onComplete: PropTypes.func.isRequired
     }
 
@@ -14,24 +13,26 @@ export default class CategoryForm extends PureComponent {
 
     constructor(props) {
       super(props);
-      const { category = {} } = props;
+      const { expense = {} } = props;
+      const { categoryId } = props;
+      console.log('expenseForm',categoryId);
       this.state = {
-        name: category.name || null,
-        budget: category.budget || null,
-        _id: category._id || null,
+        name: expense.name || null,
+        cost: expense.cost || null,
+        category: this.props.categoryId || null
       };
     }
 
     handleSubmit = event => {
       event.preventDefault();
-      const form = event.target;
-      const { _id, name, budget } = this.state;
-      this.props.onComplete({
-        _id,
+      //   const form = event.target;
+      const { category, name, cost } = this.state;
+      this.props.onComplete(category,{
+        category,
         name,
-        budget
+        cost
       });
-      form.reset();
+    //   form.rest();
     }
 
     handleChange = ({ target: input }) => {
@@ -41,7 +42,7 @@ export default class CategoryForm extends PureComponent {
     }
 
     render() {
-      const { name, budget } = this.props;
+      const { name, cost } = this.props;
 
       return (
         <form onSubmit={this.handleSubmit}>
@@ -49,10 +50,9 @@ export default class CategoryForm extends PureComponent {
             Name: <input name="name" value={name} onChange={this.handleChange} required/>
           </div>
           <div>
-            Budget: <input name="budget" value={budget} onChange={this.handleChange} required/>
+            Cost: <input name="cost" value={cost} onChange={this.handleChange} required/>
           </div>
           <button type="submit">{this.props.text}</button>
-
         </form>
       );
     }

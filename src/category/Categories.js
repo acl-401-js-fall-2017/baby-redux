@@ -1,43 +1,42 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addCategory, updateCategory, removeCategory } from './actions';
+import { addCategory, updateCategory, removeCategory, loadCategories } from './actions';
 
 import CategoryForm from './CategoryForm';
+import Expenses from '../expense/Expenses';
 
 class Categories extends PureComponent {
 
   componentDidMount() {
-    this.props.addCategory({ name: 'Zach', budget: 1000 });
-    this.props.addCategory({ name: 'Hello', budget: 10 });
-  }
-
-  handleAdd = category => {
-    this.props.addCategory(category);
-  }
-
-  handleUpdate = category => {
-    this.props.updateCategory(category);
-  }
-
-  handleRemove = id => {
-    this.props.removeCategory(id);
+    this.props.loadCategories();
   }
 
   render() {
-    const { categories } = this.props;
+    const { categories, updateCategory, addCategory, removeCategory } = this.props;
     
     return (
       <div>
-        <CategoryForm onComplete={this.handleAdd}/>
+        <h4>Add a Budget</h4>
+        <CategoryForm onComplete={addCategory}/>
         <ul>
           {categories.map(category => (
             <li key={category._id}>
               <h4>
-                {category.name} with budget of: {category.budget}
-                <button onClick={() => this.handleRemove(category._id)}>Remove</button>
+                {category.name} with budget of: ${category.budget}
+                {!category.showExpense && 
+                  <button onClick={() => updateCategory({ ...category, showExpense: true })}>
+                    Expenses
+                  </button> 
+                }
+                
+                {category.showExpense && 
+                  <Expenses categoryId={category._id} />
+                }
+
+                <button onClick={() => removeCategory(category._id)}>Remove</button>
               </h4>
               <CategoryForm category={category} text="Update" 
-                onComplete={this.handleUpdate}/>
+                onComplete={updateCategory}/>
             </li>
           ))}
         </ul>
@@ -46,13 +45,7 @@ class Categories extends PureComponent {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    categories: state
-  };
-}
-
 export default connect(
-  mapStateToProps,
-  { addCategory, updateCategory, removeCategory }
+  ({ categories }) => ({ categories }),
+  { addCategory, updateCategory, removeCategory, loadCategories }
 )(Categories);
