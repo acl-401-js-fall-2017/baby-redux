@@ -1,4 +1,4 @@
-import { RESPONSE_LOADED, PAGE_LOADING, ERROR_LOAD } from './reducer';
+import { RESPONSE_LOADED, PAGE_LOADING, ERROR_LOAD } from '../App/reducer';
 import { api } from '../services/api';
 
 export function responseLoadAction() {
