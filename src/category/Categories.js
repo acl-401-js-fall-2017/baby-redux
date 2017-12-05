@@ -28,7 +28,11 @@ class Categories extends PureComponent {
                     Expenses
                   </button> 
                 }
-                {category.showExpense && <Expenses categoryId={category._id} />}
+                
+                {category.showExpense && 
+                  <Expenses categoryId={category._id} />
+                }
+
                 <button onClick={() => removeCategory(category._id)}>Remove</button>
               </h4>
               <CategoryForm category={category} text="Update" 
