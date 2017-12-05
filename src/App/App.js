@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Response from '../load/Response';
 import Categories from '../category/Categories';
 import logo from '../logo.svg';
 import './App.css';
@@ -17,7 +16,6 @@ class App extends Component {
             <h1 className="App-title">Welcome to Your Budget App</h1>
           </header>
           <Categories/>
-          <Response/>
           {loadSpinner && 
             <div className="loader">Patience...</div> }
           {loadError && 
