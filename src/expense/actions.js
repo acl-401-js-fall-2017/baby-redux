@@ -9,17 +9,26 @@ export function loadExpenses(categoryId) {
   };
 }
 
-export function addExpense({ name, cost }) {
-
-  return async dispatch => {
-    // const { name, cost } = expense;
-    const expenses = await expenseApi.add({ name, cost });
-    dispatch({
-      type: actions.EXPENSE_ADD,
-      payload: expenses
-    });
+export function addExpense(categoryId, payload) {
+  console.log('category id: ',categoryId);
+  console.log('payload',payload);
+  return {
+    type: actions.EXPENSE_ADD,
+    payload: expenseApi.add(payload)
   };
 }
+
+// export function addExpense({ name, cost }) {
+
+//   return async dispatch => {
+//     // const { name, cost } = expense;
+//     const expenses = await expenseApi.add({ name, cost });
+//     dispatch({
+//       type: actions.EXPENSE_ADD,
+//       payload: expenses
+//     });
+//   };
+// }
 
 
 export function removeExpense(categoryId, expenseId) {
