@@ -12,10 +12,13 @@ import './App.css';
 
 
 class App extends Component {
+  
   render() {
+    const view = this.props.loading ? <Load/> : null;
     return (
       <Router>
         <div className="App">
+        {view}
           <Switch>
             <Route exact path="/" component={Dashboard}/>>
             <Redirect to="/"/>
