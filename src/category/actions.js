@@ -12,14 +12,14 @@ export function loadCategories() {
 export function addCategory({ name, budget }) {
   return {
     type: actions.CATEGORY_ADD,
-    payload: categoryApi.add({ name, budget })
+    payload: categoryApi.add({ name, budget }).then(payload => ({ ...payload, showExpense: false }))
   };
 }
 
 export function updateCategory(category) {
   return {
     type: actions.CATEGORY_UPDATE,
-    payload: categoryApi.update(category)
+    payload: categoryApi.update(category).then(payload => ({ ...payload, showExpense: category.showExpense }))
   };
 }
 
