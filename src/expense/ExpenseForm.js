@@ -23,14 +23,14 @@ export default class ExpenseForm extends PureComponent {
 
     handleSubmit = event => {
       event.preventDefault();
-      const form = event.target;
+    //   const form = event.target;
       const { _id, name, cost } = this.state;
       this.props.onComplete({
         _id,
         name,
         cost
       });
-      form.rest();
+    //   form.rest();
     }
 
     handleChange = ({ target: input }) => {
