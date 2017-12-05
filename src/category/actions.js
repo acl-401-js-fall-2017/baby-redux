@@ -1,5 +1,5 @@
 import * as actions from './constants';
-import { RESPONSE_LOADED } from '../load/reducer';
+import { RESPONSE_LOADED } from '../App/reducer';
 import categoriesApi from '../services/categories.api';
 
 export function loadCategory() {
