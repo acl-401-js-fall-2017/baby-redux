@@ -30,6 +30,12 @@ class Expenses extends Component {
     this.setState({ expenses });
   }
 
+  handleRemove = async expense => {
+    await this.props.removeExpense(expense._id);
+    const expenses = await expenseApi.get(this.getCategoryId());
+    this.setState({ expenses });
+  }
+
   render() {
     const { expenses } = this.state;
 
@@ -49,8 +55,10 @@ class Expenses extends Component {
                 {expense.amount}
               </div>
 
-              <div className='column'>
+              <div className="column">
+                <button onClick={() => this.handleRemove(expense)}>X</button>
               </div>
+              
             </div>
 
           </div>
