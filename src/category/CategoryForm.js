@@ -52,7 +52,7 @@ export default class CategoryForm extends PureComponent {
     return (
       <form onSubmit={this.handleSubmit}>
         <div>
-        Name: <input name="name" value={name} onChange={this.handleChange}/>
+        Category/Name: <input name="name" value={name} onChange={this.handleChange}/>
         </div>
         <div>
           Budget: <input name="budget" value={budget} onChange={this.handleChange}/>

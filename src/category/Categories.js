@@ -25,12 +25,12 @@ class Categories extends PureComponent {
   
   render() {
     const { categories, error } = this.props;   
-    console.log('what are my categories', categories);
     return (
       <div>
         { error && <div className="error">{error}</div> }
         <CategoryForm onComplete={this.handleAdd}/>
         <ul>
+          <h2>Budget Category</h2>
           {categories.map(category => (
             <li key={category._id}>
               <h4>
