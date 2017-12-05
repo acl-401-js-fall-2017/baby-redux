@@ -8,6 +8,7 @@ class Categories extends PureComponent {
   
   componentDidMount() {
     this.props.loadCategory();
+    
   }
   
   handleAdd = category => {
@@ -23,8 +24,8 @@ class Categories extends PureComponent {
   }
   
   render() {
-    const { categories, error } = this.props;   // destructured
-    
+    const { categories, error } = this.props;   
+    console.log('what are my categories', categories);
     return (
       <div>
         { error && <div className="error">{error}</div> }
@@ -46,7 +47,7 @@ class Categories extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  categories: state.categoryReducer,
+  categories: state.loadResponse,
   error: state.categoriesError
 });
 

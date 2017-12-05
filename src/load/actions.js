@@ -1,14 +1,14 @@
-import { RESPONSE_LOAD, PAGE_LOAD, ERROR_LOAD } from './reducer';
+import { RESPONSE_LOADED, PAGE_LOADING, ERROR_LOAD } from './reducer';
 import { loadApi } from '../services/loadApi';
 
-export function loadResponse(options) {
+export function responseLoadAction() {
   return async dispatch => {
-    dispatch ({ type: PAGE_LOAD });
+    dispatch ({ type: PAGE_LOADING });
 
     try {
-      const response = await loadApi.get(options);
+      const response = await loadApi.get();
       dispatch({
-        type: RESPONSE_LOAD,
+        type: RESPONSE_LOADED,
         payload: response
       });
     }

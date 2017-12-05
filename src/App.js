@@ -8,7 +8,7 @@ import './App.css';
 
 class App extends Component {
   render() {
-    const { loadPage, loadError } = this.props;
+    const { loadSpinner, loadError } = this.props;
     return (
       <Router>
         <div className="App">
@@ -18,7 +18,7 @@ class App extends Component {
           </header>
           <Categories/>
           <Response/>
-          {loadPage && 
+          {loadSpinner && 
             <div className="loader">Patience...</div> }
           {loadError && 
               <div className="error">
@@ -34,7 +34,7 @@ class App extends Component {
 
 export default connect(
   state => ({
-    loadPage: state.loadPage,
+    loadResponse: state.loadResponse,
     loadError: state.loadError
   }),
   null

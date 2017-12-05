@@ -1,3 +1,4 @@
+import qs from 'query-string';
 const url = '/api';
 
 const wrap = async promise => {
@@ -53,5 +54,11 @@ export default {
         }
       })
     );
+  }
+};
+
+export const api = {
+  get(options = {}) {
+    return api.get(`/test?${qs.stringify(options)}`);
   }
 };

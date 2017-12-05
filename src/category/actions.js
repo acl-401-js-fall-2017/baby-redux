@@ -1,11 +1,12 @@
 import * as actions from './constants';
+import { RESPONSE_LOADED } from '../load/reducer';
 import categoriesApi from '../services/categories.api';
 
 export function loadCategory() {
   return async dispatch => {
     try {
       const categories = await categoriesApi.get();
-      dispatch({ type: actions.CATEGORY_LOAD, payload: categories });
+      dispatch({ type: RESPONSE_LOADED, payload: categories });
     }
     catch(err) {
       dispatch({ type: actions.ERROR_LOAD, payload: err });
