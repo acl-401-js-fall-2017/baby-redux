@@ -8,7 +8,6 @@ export default ({ dispatch }) =>  next => async action => {
   if(!isPromise(action.payload)) return next(action);   // if not a Promise anymore, return the action = payload
   
   const { type, payload } = action;
-  console.log('MIDDLEWARE', type, payload);
   dispatch ({ type: actions.PAGE_LOADING });
 
   try {

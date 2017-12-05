@@ -32,7 +32,7 @@ class App extends Component {
 
 export default connect(
   state => ({
-    loadResponse: state.loadResponse,
+    loadSpinner: state.loadSpinner,
     loadError: state.loadError
   }),
   null
