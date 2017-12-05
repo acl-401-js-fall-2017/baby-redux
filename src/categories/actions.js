@@ -1,4 +1,4 @@
-
+import shortid from 'shortid';
 import * as actions from './constants';
 import categoriesApi from '../services/categoriesApi';
 import expensesApi from '../services/expensesApi';

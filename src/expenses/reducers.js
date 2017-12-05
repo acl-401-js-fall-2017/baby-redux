@@ -1,19 +1,19 @@
-export function expenses(state = [], { type, payload }) {
-    console.log('in category reducr', type);
+export function expenses(state = {}, { type, payload }) {
+    console.log('in expenses reducr', type);
     
     switch (type) {
-    case actions.CATEGORY_ADD:
-      return [ 
-        ...state, 
-        payload
-      ];
-    case actions.CATEGORY_REMOVE:
-      return state.filter(category => category._id !== payload);
-    case actions.CATEGORY_UPDATE:
-    state.map(category => category._id === payload._id ? { ...category, ...payload } : category);
-      return [ ...state ]
-    case actions.CATEGORY_LOAD:
-      return payload
+    case actions.EXPENSE_ADD:
+    state[payload.categoryId].push(payload.newExpense);
+      return { ...state };
+    case actions.EXPENSE_REMOVE:
+    state[payload.categoryId] = state[payload.categoryId].filter(expense => expense._id !== payload.expenseId);
+      return { ...state }
+    case actions.EXPENSE_UPDATE:
+    state[payload.categoryId] = state[payload.categoryId].map(expense => expense._id === payload.expense._Id ? { ...expense, ...payload.expense } : expense);
+      return { ...state }
+    case actions.EXPENSE_LOAD:
+    state[payload.categoryId] = payload.expenses;
+      return 
     default:
       return state;
     }
