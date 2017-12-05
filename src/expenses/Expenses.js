@@ -22,9 +22,12 @@ class Expenses extends Component {
     return this.props.id;
   }
 
-  handleAdd = expense => {
+  handleAdd = async expense => {
+    const id = this.getCategoryId();
     const { name, amount } = expense;
-    this.props.addExpense({ name, amount });
+    await this.props.addExpense({ name, amount, category : id });
+    const expenses = await expenseApi.get(this.getCategoryId());
+    this.setState({ expenses });
   }
 
   render() {
