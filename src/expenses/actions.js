@@ -20,7 +20,7 @@ export function loadExpenses() {
   };
 }
 
-export function addCategory(expense) {
+export function addExpense(expense) {
   return async dispatch => {
     dispatch({ type: LOADING });
     const saved = await expenseApi.add(expense);
@@ -32,7 +32,7 @@ export function addCategory(expense) {
   };
 }
 
-export function updateCategory(expense) {
+export function updateExpense(expense) {
   return async dispatch => {
     dispatch({ type: LOADING });    
     const updated = await expenseApi.update(expense);
@@ -44,7 +44,7 @@ export function updateCategory(expense) {
   };
 }
 
-export function removeCategory(id) {
+export function removeExpense(id) {
   return async dispatch => {
     dispatch({ type: LOADING });
     await expenseApi.remove(id);

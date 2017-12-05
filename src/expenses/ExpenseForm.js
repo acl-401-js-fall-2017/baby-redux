@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
+import expenseApi from '../services/expenses-api';
 
-export default class CategoryForm extends PureComponent {
+export default class ExpenseForm extends PureComponent {
 
   static defaultProps = {
     text: 'Add'
@@ -8,18 +9,18 @@ export default class CategoryForm extends PureComponent {
 
   constructor(props) {
     super(props);
-    const { category = {} } = props;
+    const { expense = {} } = props;
     this.state = {
-      name: category.name || '',
-      budget: category.budget || '',
-      _id: category._id || '',
+      name: expense.name || '',
+      amount: expense.budget || '',
+      category: this.props.id
     };
   }
-  
+
   handleSubmit = event => {
     event.preventDefault();
-    const { name, budget, _id } = this.state;
-    this.props.onComplete({ name, budget, _id });
+    const { name, amount } = this.state;
+    this.props.onComplete({ name, amount });
   }
 
   handleChange = ({ target: input }) => {
@@ -29,7 +30,7 @@ export default class CategoryForm extends PureComponent {
   }
 
   render() {
-    const { name, budget } = this.state;
+    const { name, amount } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="columns">
@@ -38,7 +39,7 @@ export default class CategoryForm extends PureComponent {
           </div>
 
           <div className="column is-third">
-            Budget: <input name="budget" value={budget} onChange={this.handleChange}/>
+            Amount: <input name="amount" value={amount} onChange={this.handleChange}/>
           </div>
           <div className="column"><button type="submit">{this.props.text}</button></div>
         </div>

@@ -42,26 +42,10 @@ class Category extends PureComponent {
           <div className="column"></div>
         </div>
 
-        {/* {category.map(c => <tr key={c._id}>
-
-            <td><Link to={`/categories/${c._id}`}>{c.name}</Link></td>
-            
-            <td>{c.budget}</td>
-            <td><CategoryForm category={c} text="Update"
-              onComplete={this.handleUpdate}/></td>
-            <td><button onClick={() => this.handleRemove(c)}>X</button></td>
-            
-            { this.props.match.params.id === c._id && (
-              <td> <Expenses catId={c._id}/> </td>
-            )} */}
-
-        {/* <td> <Route path={`/categories/${c._id}`} render={() => <Expenses id={c._id}/>}/> </td> */}
-
-        {/* </tr>)} */}
-
         {category.map(c => { 
           return (<div className="block" key={c._id}>
             <div className="columns">
+
               <div className="column">
                 <Link to={`/categories/${c._id}`}>{c.name}</Link>
               </div>
@@ -69,19 +53,18 @@ class Category extends PureComponent {
                 {c.budget}
               </div>
               <div className="column">
-                <button onClick={() => this.handleRemove(c)}>X</button>
-              </div>
-              <div className="column">
                 <CategoryForm category={c} text="Update"
                   onComplete={this.handleUpdate}/>
               </div>
+              <div className="column">
+                <button onClick={() => this.handleRemove(c)}>X</button>
+              </div>
               <div className="column is-half">
               </div>
+              
             </div>
-      
-            <Route path={`/categories/${c._id}`} render={() => <Expenses id={c._id}/>}/>
-          </div>);
-            
+            <Route path={`/categories/${c._id}`} render={() => <div className="column is-half"><Expenses id={c._id}/></div>}/>
+          </div>);    
         })}
 
 
