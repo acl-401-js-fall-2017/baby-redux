@@ -14,19 +14,21 @@ export default class ExpenseForm extends PureComponent {
     constructor(props) {
       super(props);
       const { expense = {} } = props;
+      const { categoryId } = props;
+      console.log('expenseForm',categoryId);
       this.state = {
         name: expense.name || null,
         cost: expense.cost || null,
-        _id: expense._id || null
+        category: this.props.categoryId || null
       };
     }
 
     handleSubmit = event => {
       event.preventDefault();
       //   const form = event.target;
-      const { _id, name, cost } = this.state;
-      this.props.onComplete({
-        _id,
+      const { category, name, cost } = this.state;
+      this.props.onComplete(category,{
+        category,
         name,
         cost
       });
