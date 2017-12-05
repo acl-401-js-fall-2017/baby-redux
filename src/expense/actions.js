@@ -2,23 +2,10 @@ import * as actions from '../category/constants';
 import expenseApi from '../services/expenses.api';
 
 
-//TODO: Need to figure out what to do with categoryId and expenseId
-// export function loadExpenses() {
-
-//   return async dispatch => {
-//     const expenses = await expenseApi.get(categoryId, expenseId);
-
-//     dispatch({
-//       type: actions.EXPENSE_LOAD,
-//       payload: expenses
-//     });
-//   };
-// }
-
-export function loadExpenses() {
+export function loadExpenses(categoryId) {
   return {
     type: actions.EXPENSE_LOAD,
-    payload: expenseApi.get()
+    payload: expenseApi.getAll(categoryId)
   };
 }
 
