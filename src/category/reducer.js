@@ -2,6 +2,8 @@ import * as actions from './constants';
 
 export function categoryReducer(state = [], { type, payload }) {  //destructured "action"
   switch(type) {
+    case actions.CATEGORY_LOAD:
+      return payload;
     case actions.CATEGORY_ADD:
       return  [
         ...state,
