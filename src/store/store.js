@@ -1,5 +1,6 @@
 import { combineReducers, applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
+import promiseMiddleware from './promise-middleware';
 import { category } from '../category/reducer';
 import { loading, error } from '../utils/loading-reducer';
 
@@ -14,7 +15,10 @@ const rootReducer = combineReducers({
 const store = createStore(
   rootReducer,
   composeEnhancers(
-    applyMiddleware(thunk)
+    applyMiddleware(
+      thunk,
+      promiseMiddleware
+    )
   )
 );
 
