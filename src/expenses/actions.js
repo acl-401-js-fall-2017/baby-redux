@@ -22,13 +22,19 @@ export function loadExpenses() {
 
 export function addExpense(expense) {
   return async dispatch => {
-    dispatch({ type: LOADING });
-    const saved = await expenseApi.add(expense);
-    dispatch({ type: DONE_LOADING });
-    dispatch({ 
+
+    // const saved = await expenseApi.add(expense);
+    await dispatch({ 
       type: EXPENSE_ADD, 
-      payload: saved 
+      payload: expenseApi.add(expense)
     });
+    // dispatch({ type: DONE_LOADING });
+    
+    // await dispatch({ 
+    //   type: EXPENSE_ADD, 
+    //   payload: expenseApi.add(expense)
+    // })
+    //   .then(() => dispatch({ type: DONE_LOADING }));
   };
 }
 
