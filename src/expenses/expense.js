@@ -25,7 +25,7 @@ class Expense extends Component {
   render () {
     const { expenses, removeExpense } = this.props;
     return (
-      <div className="container is-fluid">
+      <section className="section">
         <h1 className="title">Add a new expense</h1>
         <AddForm onComplete={this.handleAdd} category={this.props.match.params.id}/>
         {this.props.loading && 
@@ -54,7 +54,7 @@ class Expense extends Component {
             </div>
           ))}
         </div>
-      </div>
+      </section>
     );
   }
 }

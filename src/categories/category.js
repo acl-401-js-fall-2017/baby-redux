@@ -51,6 +51,7 @@ class Category extends Component {
               <button className="delete" onClick={() => removeCategory(category._id)}>X</button>
               <button onClick={()=> this.setState({ editing: category._id })}>update</button>
               {this.state.editing === category._id && <AddForm  category ={category} text="✎" onComplete={this.handleUpdate}/>}
+              <hr/>
             </div>
           ))}
         </div>
