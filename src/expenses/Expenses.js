@@ -32,8 +32,27 @@ class Expenses extends Component {
 
     return(
       <div>
-        <h1>Hello</h1>
-        <ul>{ expenses.map(expense => <li>{expense.name}</li>)}</ul>
+
+        { expenses.map(expense =>
+
+          <div key={expense._id} className='block'>
+
+            <div className='columns'>
+              <div className='column'>
+                {expense.name}
+              </div>
+
+              <div className='column'>
+                {expense.amount}
+              </div>
+
+              <div className='column'>
+              </div>
+            </div>
+
+          </div>
+
+        )}
         <ExpenseForm id={this.props.id} onComplete={expense => this.handleAdd(expense)}/>
       </div>
     );
