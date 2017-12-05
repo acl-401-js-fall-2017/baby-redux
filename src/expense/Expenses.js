@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addExpense, updateExpense, removeExpense, loadExpenses } from './actions';
+import { addExpense, updateExpense, removeExpense } from './actions';
 import ExpenseForm from './ExpenseForm';
 
 class Expenses extends PureComponent {
 
-  componentDidMount() {
-    this.props.loadExpenses();
-  }
+//   componentDidMount() {
+//     this.props.loadExpenses();
+//   }
 
   render() {
     const { expenses, addExpense, removeExpense, updateExpense } = this.props;
@@ -35,5 +35,5 @@ class Expenses extends PureComponent {
 
 export default connect(
   ({ expenses }) => ({ expenses }),
-  { addExpense, removeExpense, updateExpense, loadExpenses }
+  { addExpense, removeExpense, updateExpense }
 )(Expenses);
