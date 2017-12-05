@@ -8,7 +8,7 @@ export default {
     return api.get(`/categories/${categoryId}/expenses/${expenseId}`);
   },
   add(categoryId, data) {
-    return api.post(`/categories/${categoryId}/expense`, data);
+    return api.post(`/categories/${categoryId}/expenses`, data);
   },
   remove(categoryId, expenseId) {
     return api.delete(`/categories/${categoryId}/expenses/${expenseId}`);
