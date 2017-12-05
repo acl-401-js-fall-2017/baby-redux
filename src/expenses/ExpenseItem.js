@@ -1,21 +1,24 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import ExpenseForm from './ExpenseFrom';
+import ExpenseForm from './ExpenseForm';
+import { removeExpense, updateExpense } from '../expenses/actions';
 
 
 
 class ExpenseItem  extends PureComponent {
-    handleUpdate = category => event => {
+    handleUpdate = expense => event => {
         event.preventDefault();
         const update = {
-          ...category,
+          ...expense,
           name: event.target.name.value,
-          budget: event.target.expense.value
+          amount: event.target.expense.value,
+          budget: this.props.expense.budget
         }
-        this.props.updateCategory(update);
+        this.props.updateExpense(update);
       }
 
-    handleRemove = id => this.props.removeCategory(id);
+    handleRemove = id => this.props.removeExpense(id, this.props.expense.budget);
+
     render(){
         const { expense } = this.props;
         return (
@@ -29,3 +32,9 @@ class ExpenseItem  extends PureComponent {
     }
 }
 
+const connectedExpenseItem = connect(
+    null, 
+    { removeExpense, updateExpense }
+  )(ExpenseItem);
+  
+  export default connectedExpenseItem;

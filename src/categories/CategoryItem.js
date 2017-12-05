@@ -1,6 +1,8 @@
 import { removeCategory, updateCategory, loadExpenses } from '../categories/actions';
 import React, { PureComponent } from 'react';
 import CategoryForm from './CategoryForm';
+import ExpenseForm from '../expenses/ExpenseForm';
+import ExpenseItem from '../expenses/ExpenseItem';
 import { connect } from 'react-redux';
 
 class CategoryItem extends PureComponent {
@@ -20,6 +22,13 @@ class CategoryItem extends PureComponent {
 
   render() {
     const { category } = this.props;
+    const expenseList = this.props.expenses[category._id] ? this.props.expenses[category._id].map(expense => {
+      return (
+        <li>
+          <ExpenseItem expense={expense}/>
+        </li>
+      );
+    }) : null;
     return (
       <div>
         <h1>{category.name}</h1>
@@ -34,7 +43,11 @@ class CategoryItem extends PureComponent {
 
 
 const connectedCategoryItem = connect(
-  null, 
+  state => ({
+    expenses: state.expenses,
+    loading: state.loading,
+    error: state.error
+  }), 
   { removeCategory, updateCategory, loadExpenses }
 )(CategoryItem);
 
