@@ -1,6 +1,6 @@
 import { LOADING, DONE_LOADING, ERROR } from '../utils/constants';
 
-const isPromise = val => val && typeof val.then === 'function';
+const isPromise = val => val && val.then instanceof Promise;
 
 export default ({ dispatch }) => next => async action => {
 
