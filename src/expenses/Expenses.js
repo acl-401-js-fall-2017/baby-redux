@@ -14,7 +14,6 @@ class Expenses extends Component {
 
   async componentDidMount() {
     const expenses = await expenseApi.get(this.getCategoryId());
-    console.log(expenses);
     this.setState({ expenses });
   }
 
