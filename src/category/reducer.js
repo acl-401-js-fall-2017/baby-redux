@@ -1,4 +1,4 @@
-import * as actions from './constants';
+import * as actions from '../utils/constants';
 
 export function category(state = [], { type, payload }) {
   switch (type) {

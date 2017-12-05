@@ -1,4 +1,4 @@
-import { EXPENSE_LOAD, EXPENSE_ADD, EXPENSE_UPDATE, EXPENSE_REMOVE, LOADING, DONE_LOADING, ERROR } from './constants';
+import { EXPENSE_LOAD, EXPENSE_ADD, EXPENSE_UPDATE, EXPENSE_REMOVE, LOADING, DONE_LOADING, ERROR } from '../utils/constants';
 import expenseApi from '../services/expenses-api';
 
 export function loadExpenses() {

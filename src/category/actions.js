@@ -1,4 +1,4 @@
-import { CATEGORY_LOAD, CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_REMOVE, LOADING, DONE_LOADING, ERROR } from './constants';
+import { CATEGORY_LOAD, CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_REMOVE, LOADING, DONE_LOADING, ERROR } from '../utils/constants';
 import categoryApi from '../services/categories-api';
 
 export function loadCategories() {
