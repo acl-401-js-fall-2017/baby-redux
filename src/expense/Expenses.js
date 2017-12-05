@@ -14,7 +14,7 @@ class Expenses extends PureComponent {
 
     return (
       <div>
-        <ExpenseForm onComplete={addExpense}/>
+        <ExpenseForm categoryId={this.props.categoryId} onComplete={addExpense}/>
         <ul>
           {expenses.map(expense => (
             <li key={expense._id}>
@@ -23,7 +23,7 @@ class Expenses extends PureComponent {
                 Cost: ${expense.cost}
                 <button onClick={() => removeExpense(expense._id)}>Remove</button>
               </h5>
-              <ExpenseForm expense={expense} text="Update"
+              <ExpenseForm categoryId={this.props.categoryId} expense={expense} text="Update"
                 onComplete={updateExpense}/>
             </li>    
           ))}
