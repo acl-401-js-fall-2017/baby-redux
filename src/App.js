@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import logo from './money_box1600.png';
 import './App.css';
-import Budget from './category/budget';
+import Budget from './category/Budget';
 import { connect } from 'react-redux';
+import { budgetsLoading, budgetsError } from './category/reducer';
 
 class App extends Component {
   render() {
@@ -15,11 +16,16 @@ class App extends Component {
         </header>
         <main>
           <Budget/>
+          loading div:
+          {console.log('props loading', loading)}
+          {console.log('props', this.props)}
+          {console.log('state', this.state)}
           {loading &&
           <div className="loader">
           Loading...
           </div>
           }
+          {console.log('props error', error)}
           {error &&
           <div className="error">
             {Array.isArray(error)
@@ -36,8 +42,8 @@ class App extends Component {
 
 export default connect(
   state => ({
-    loading: state.loading,
-    error: state.error
+    loading: state.budgetsLoading,
+    error: state.budgetsError
   }),
   null
 )(App);

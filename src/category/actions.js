@@ -1,11 +1,14 @@
 import *  as actions from './constants';
 import budgetsApi from '../services/budgets-api';
 
-export function loadCategory() {
+export function loadCategory(options) {
   return async dispatch => {
     dispatch({ type: actions.CATEGORY_LOADING });
     try {
-      const budgets = await budgetsApi.get();
+      const budgets = await budgetsApi.testGet(options);
+      console.log('budgets==========', budgets);
+      console.log('options==========', options);
+
       dispatch({ 
         type: actions.CATEGORY_LOAD,
         payload: budgets
