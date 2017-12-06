@@ -29,4 +29,3 @@ export function removeCategory(_id) {
     payload: categoryApi.remove(_id)
   };
 }
-
