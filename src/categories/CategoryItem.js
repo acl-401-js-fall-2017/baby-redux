@@ -22,6 +22,7 @@ class CategoryItem extends PureComponent {
 
   render() {
     const { category, match: { match: { url } } } = this.props;
+
     return (
       <article>
         <Link to={url + category.name}>
