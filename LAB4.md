@@ -9,7 +9,7 @@ Evolve your project to handle:
 ## App
 
 1. Use React Router and have a list of categories where clicking on a category
-links to a client side route with the list of expenses for that cateogry, _or_
+links to a client side route with the list of expenses for that category, _or_
 1. Display a List/Tree of Categories and Child Expenses
 
 For either strategy, manage the expenses in redux store as a (dictionary) object with keys by category id and
