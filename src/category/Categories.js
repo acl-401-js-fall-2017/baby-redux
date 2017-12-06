@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { loadCategory, addCategory, updateCategory, removeCategory } from './actions';
 import CategoryForm from './CategoryForm';
+import Category from './Category';
 import styled from 'styled-components';
 
 
@@ -33,13 +34,11 @@ class Categories extends PureComponent {
         <ul>
           <h2>Budget Category</h2>
           {categories.map(category => (
-            <li key={category._id}>
-              <h4>
-                The budget for {category.name} is ${category.budget}
-                <RemoveButton onClick={() => this.handleRemove(category._id)}>Remove</RemoveButton>
-              </h4>
-              <CategoryForm className="update" category={category} text="Update" onComplete={this.handleUpdate}/>
-            </li>)) }
+            <Category key={category._id} 
+              category={category} 
+              onRemove={this.handleRemove} 
+              onUpdate={this.handleUpdate}/>
+          )) }
         </ul>
       </div>
     );
