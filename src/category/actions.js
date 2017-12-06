@@ -1,58 +1,38 @@
-import { CATEGORY_LOAD, CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_REMOVE, LOADING, DONE_LOADING, ERROR } from '../utils/constants';
+import { CATEGORY_LOAD, CATEGORY_ADD, CATEGORY_UPDATE, CATEGORY_REMOVE } from '../utils/constants';
 import categoryApi from '../services/categories-api';
 
 export function loadCategories() {
   return async dispatch => {
-    dispatch({ type: LOADING });
-
-    try {
-      const categories = await categoryApi.get();
-      dispatch({ type: DONE_LOADING });
-      dispatch({ type: CATEGORY_LOAD, payload: categories });
-    }
-
-    catch(err) {
-      dispatch({ type: DONE_LOADING });      
-      dispatch({ type: ERROR, payload: err });
-      throw err;
-    }
-
+    await dispatch({
+      type: CATEGORY_LOAD,
+      payload: categoryApi.get()
+    });
   };
 }
 
 export function addCategory(category) {
   return async dispatch => {
-    dispatch({ type: LOADING });
-    const saved = await categoryApi.add(category);
-    dispatch({ type: DONE_LOADING });
-    dispatch({ 
-      type: CATEGORY_ADD, 
-      payload: saved 
+    await dispatch({
+      type: CATEGORY_ADD,
+      payload: categoryApi.add(category)
     });
   };
 }
 
 export function updateCategory(category) {
   return async dispatch => {
-    dispatch({ type: LOADING });    
-    const updated = await categoryApi.update(category);
-    dispatch({ type: DONE_LOADING });
-    dispatch({
+    await dispatch({
       type: CATEGORY_UPDATE,
-      payload: updated
+      payload: categoryApi.update(category)
     });
   };
 }
 
 export function removeCategory(id) {
   return async dispatch => {
-    dispatch({ type: LOADING });
-    await categoryApi.remove(id);
-    dispatch({ type: DONE_LOADING });
-    dispatch({
+    await dispatch({
       type: CATEGORY_REMOVE,
-      payload: id
+      payload: categoryApi.remove(id).then(() => id)
     });
   };
-
 }
