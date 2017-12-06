@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   loading,
   error
 });
-console.log('gg');
+
 const store = createStore(
   rootReducer,
   composeEnhancers(
