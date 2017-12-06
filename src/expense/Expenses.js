@@ -7,27 +7,26 @@ import ExpenseForm from './ExpenseForm';
 class Expenses extends PureComponent {
 
   componentDidMount() {
-    this.props.loadExpenses(this.props.categoryId);
+    this.props.loadExpenses(this.props.category._id);
   }
 
   render() {
-    const { expenses, addExpense, removeExpense, updateExpense } = this.props;
+    const { expenses, category, addExpense, removeExpense, updateExpense } = this.props;
 
     return (
       <div>
         <h4>Add Expense: </h4>
-        <ExpenseForm categoryId={this.props.categoryId} onComplete={addExpense}/>
+        <ExpenseForm categoryId={category._id} addExpense={addExpense}/>
         <div>
           {expenses.map(expense => (
             <div key={expense._id}>
-              <h5> Update {expense.category.name}'s Expenses </h5>
+              <h5> Update {category.name}'s Expenses </h5>
               <h5>
-                Expense: {expense.name}
-                Cost: ${expense.cost}
-                <StyledButton className="removebtn" onClick={() => removeExpense(this.props.categoryId, expense._id)}>Remove</StyledButton>
+                Expense: {expense.name} Cost: ${expense.cost}
+                <StyledButton className="removebtn" onClick={() => removeExpense(category._id, expense._id)}>Remove</StyledButton>
               </h5>
-              <ExpenseForm categoryId={this.props.categoryId} expense={expense} text="Update"
-                onComplete={updateExpense}/>
+              <ExpenseForm categoryId={category._id} expense={expense} text="Update"
+                updateExpense={updateExpense}/>
             </div>    
           ))}
         </div>
