@@ -27,8 +27,6 @@ export function removeExpense(categoryId, expenseId) {
   };
 }
 
-// TODO: This function is not working at all right now. I have access to categoryId and expenseId but cannot
-// seem to get the expenseId to be applied to the path. 
 export function updateExpense(categoryId, expenseId, data) {
 
   return {
@@ -36,14 +34,3 @@ export function updateExpense(categoryId, expenseId, data) {
     payload: expenseApi.update(categoryId, expenseId, data)
   };
 }
-
-// export function updateExpense(categoryId, expense) {
-
-//   return async dispatch => {
-//     const updatedExpense = await expenseApi.update(expense);
-//     dispatch({
-//       type: actions.EXPENSE_UPDATE,
-//       payload: updatedExpense
-//     });
-//   };
-// }
