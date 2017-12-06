@@ -5,7 +5,6 @@ import { StyledButton, StyledFormDiv } from '../styles/styled';
 export default class ExpenseForm extends PureComponent {
     static propTypes = {
       expense: PropTypes.object,
-      onComplete: PropTypes.func.isRequired
     }
 
     static defaultProps = {
@@ -26,14 +25,23 @@ export default class ExpenseForm extends PureComponent {
 
     handleSubmit = event => {
       event.preventDefault();
-      //   const form = event.target;
-      const { category, name, cost } = this.state;
-      this.props.onComplete(category, {
-        category,
-        name,
-        cost
-      });
-    //   form.rest();
+      const form = event.target;
+      const { category, expense, name, cost } = this.state;
+
+      if(this.props.addExpense) {
+        this.props.addExpense(category, {
+          category,
+          name,
+          cost
+        });
+      }
+      if(this.props.updateExpense) {
+        this.props.updateExpense(category, expense, {
+          name,
+          cost
+        });
+      }
+      form.reset();
     }
 
     handleChange = ({ target: input }) => {
