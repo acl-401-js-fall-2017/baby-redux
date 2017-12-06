@@ -14,8 +14,7 @@ export default class ExpenseForm extends PureComponent {
     constructor(props) {
       super(props);
       const { expense = {} } = props;
-      const { categoryId } = props;
-      console.log('expenseForm',categoryId);
+
       this.state = {
         name: expense.name || null,
         cost: expense.cost || null,
