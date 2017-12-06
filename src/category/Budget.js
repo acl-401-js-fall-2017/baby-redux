@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addCategory, updateCategory, loadCategory, removeCategory } from './actions';
+import { addCategory, updateCategory, loadCategory, testCondition, removeCategory } from './actions';
 import BudgetForm from './BudgetForm';
 
 function mapStateToProps(state) {
@@ -13,7 +13,8 @@ const mapDispatchToProps = {
   addCategory,
   updateCategory,
   removeCategory,
-  loadCategory
+  loadCategory,
+  testCondition
 };
 
 class Budget extends PureComponent {
@@ -32,7 +33,7 @@ class Budget extends PureComponent {
   }
   
   render() {
-    const { budgets, loadCategory, error } = this.props;
+    const { budgets, loadCategory, testCondition, error } = this.props;
 
     const showResponse = budgets
       ? <pre>{JSON.stringify(budgets, true, 2)}</pre>
@@ -40,10 +41,10 @@ class Budget extends PureComponent {
 
     return (
       <div>
-        <button onClick= {() => loadCategory({ wait: 1500 })}>
+        <button onClick= {() => testCondition({ wait: 1500 })}>
         Load with wait
         </button>
-        <button onClick={() => loadCategory({ unexpected: true })}>
+        <button onClick={() => testCondition({ unexpected: true })}>
           Load with Unexpected Error
         </button>
         { error && <div className="error">{error}</div> }

@@ -12,9 +12,7 @@ export default {
         query += `${key}=${option[key]}`;
       });
     }
-    console.log('option client side====', option);
-    console.log('query client side====', query);
-    return api.get(`/budgets${query}`);
+    return api.get(`/test${query}`);
   },
   add(budget) {
     return api.post('/budgets', { name: budget.name, amount: budget.amount });

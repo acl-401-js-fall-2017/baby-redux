@@ -16,16 +16,11 @@ class App extends Component {
         </header>
         <main>
           <Budget/>
-          loading div:
-          {console.log('props loading', loading)}
-          {console.log('props', this.props)}
-          {console.log('state', this.state)}
           {loading &&
           <div className="loader">
           Loading...
           </div>
           }
-          {console.log('props error', error)}
           {error &&
           <div className="error">
             {Array.isArray(error)
