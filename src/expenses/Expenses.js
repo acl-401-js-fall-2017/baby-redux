@@ -4,6 +4,8 @@ import { addExpense, updateExpense, removeExpense, loadExpenses } from './action
 import ExpenseForm from './ExpenseForm';
 import expenseApi from '../services/expenses-api';
 
+import styles from './Expenses.css';
+
 class Expenses extends Component {
   constructor() {
     super();
@@ -26,7 +28,7 @@ class Expenses extends Component {
     const { name, amount } = expense;
 
     await this.props.addExpense({ name, amount, category : id });
-    
+
     const expenses = await expenseApi.get(this.getCategoryId());
     this.setState({ expenses });
   }
@@ -48,7 +50,7 @@ class Expenses extends Component {
     const { expenses } = this.state;
 
     return(
-      <div>
+      <div className={styles.delet}>
 
         { expenses.map(expense =>
 

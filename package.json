@@ -20,7 +20,7 @@
     "build": "react-scripts build",
     "test": "exit 0",
     "eject": "react-scripts eject",
-    "build-css": "node-sass-chokidar src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./src/styles src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
   },
   "proxy": "http://localhost:3001",
