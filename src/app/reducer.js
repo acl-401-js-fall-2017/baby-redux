@@ -1,4 +1,4 @@
-import * as actions from '../category/constants';
+import * as actions from './constants';
 
 export function loading(state = false, { type }) {
   switch(type) {

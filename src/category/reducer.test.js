@@ -1,5 +1,5 @@
 import reducer from './reducer';
-import * as actions from './constants';
+import * as actions from '../app/constants';
 
 describe('category reducers', () => {
 

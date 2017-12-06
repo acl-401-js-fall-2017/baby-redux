@@ -1,4 +1,4 @@
-import * as actions from '../category/constants';
+import * as actions from '../app/constants';
 
 export default function expenses(state = [], { type, payload }) {
 

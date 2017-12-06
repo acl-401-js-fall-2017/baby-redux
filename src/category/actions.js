@@ -1,4 +1,4 @@
-import * as actions from './constants';
+import * as actions from '../app/constants';
 import categoryApi from '../services/categories.api';
 
 

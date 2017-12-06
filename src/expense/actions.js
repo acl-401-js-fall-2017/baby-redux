@@ -1,4 +1,4 @@
-import * as actions from '../category/constants';
+import * as actions from '../app/constants';
 import expenseApi from '../services/expenses.api';
 
 
