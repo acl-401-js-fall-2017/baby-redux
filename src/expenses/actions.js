@@ -16,7 +16,6 @@ export function loadExpenses() {
       dispatch({ type: ERROR, payload: err });
       throw err;
     }
-
   };
 }
 
@@ -31,25 +30,18 @@ export function addExpense(expense) {
 
 export function updateExpense(expense) {
   return async dispatch => {
-    dispatch({ type: LOADING });    
-    const updated = await expenseApi.update(expense);
-    dispatch({ type: DONE_LOADING });
-    dispatch({
+    await dispatch({
       type: EXPENSE_UPDATE,
-      payload: updated
+      payload: expenseApi.update(expense)
     });
   };
 }
 
 export function removeExpense(id) {
   return async dispatch => {
-    dispatch({ type: LOADING });
-    await expenseApi.remove(id);
-    dispatch({ type: DONE_LOADING });
-    dispatch({
+    await dispatch({
       type: EXPENSE_REMOVE,
-      payload: id
+      payload: expenseApi.remove(id)
     });
   };
-
 }
