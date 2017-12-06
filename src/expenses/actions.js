@@ -1,23 +1,5 @@
-import { EXPENSE_LOAD, EXPENSE_ADD, EXPENSE_UPDATE, EXPENSE_REMOVE, LOADING, DONE_LOADING, ERROR } from '../utils/constants';
+import { EXPENSE_LOAD, EXPENSE_ADD, EXPENSE_UPDATE, EXPENSE_REMOVE } from '../utils/constants';
 import expenseApi from '../services/expenses-api';
-
-// export function loadExpenses() {
-//   return async dispatch => {
-//     dispatch({ type: LOADING });
-
-//     try {
-//       const expenses = await expenseApi.get();
-//       dispatch({ type: DONE_LOADING });
-//       dispatch({ type: EXPENSE_LOAD, payload: expenses });
-//     }
-
-//     catch(err) {
-//       dispatch({ type: DONE_LOADING });      
-//       dispatch({ type: ERROR, payload: err });
-//       throw err;
-//     }
-//   };
-// }
 
 export function loadExpenses() {
   return async dispatch => {
