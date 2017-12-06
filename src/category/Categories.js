@@ -18,10 +18,10 @@ class Categories extends PureComponent {
     return (
       <div>
         <div>
+          <h4>Add a Budget</h4>
+          <CategoryForm onComplete={addCategory}></CategoryForm>
           {categories.map(category => (
             <div key={category._id}>
-              <h4>Add a Budget</h4>
-              <CategoryForm onComplete={addCategory} />
               <h4>
                 {category.name} with budget of: ${category.budget}
                 {!category.showExpense && 
@@ -30,7 +30,7 @@ class Categories extends PureComponent {
                   </StyledButton> 
                 }
                 {category.showExpense && 
-                  <Expenses categoryId={category._id} />
+                  <Expenses category={category}/>
                 }
                 {!category.showExpense &&
                 <StyledButton className="removebtn" onClick={() => removeCategory(category._id)}>Remove</StyledButton>
