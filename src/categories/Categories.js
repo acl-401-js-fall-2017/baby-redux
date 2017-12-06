@@ -23,9 +23,6 @@ class Categories extends Component {
     console.log('inHandleShowUpdate', this.props.categories[index]);
     this.setState({ editing: true });
     this.setState({ editingIndex: index });
-    // const { name, budget } = this.state;
-    // this.state.onComplete({ name, budget });
-    // this.props.updateCategory(id);
   }
 
   handleSubmitUpdate = (category) => {

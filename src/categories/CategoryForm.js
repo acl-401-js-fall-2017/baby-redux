@@ -19,8 +19,6 @@ export default class CategoryForm extends Component {
     this.state = {
       name: category.name || '',
       budget: category.budget || '',
-      // _id: category._id || null,
-      // timestamp: category.timestamp
     };
   }
 
@@ -28,7 +26,6 @@ export default class CategoryForm extends Component {
     console.log('onFormPage', this.props.id);
     const { name, budget } = this.props;
     this.setState({ name, budget });
-    // this.setState({ name: this.props.name });
   } 
 
 
