@@ -4,6 +4,7 @@ export function categoryReducer(state = [], { type, payload }) {  //destructured
   switch(type) {
     case actions.CATEGORY_LOAD:
       return payload;
+
     case actions.CATEGORY_ADD:
       return  [
         ...state,
