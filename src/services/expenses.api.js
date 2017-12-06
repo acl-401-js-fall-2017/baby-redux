@@ -13,7 +13,7 @@ export default {
   remove(categoryId, expenseId) {
     return api.delete(`/categories/${categoryId}/expenses/${expenseId}`);
   },
-  update(categoryId, data) {
-    return api.patch(`/categories/${categoryId}/expenses/${data._id}`, data);
+  update(categoryId, expenseId, data) {
+    return api.patch(`/categories/${categoryId}/expenses/${expenseId}`, data);
   }
 };
