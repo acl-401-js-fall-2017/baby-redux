@@ -43,13 +43,14 @@ class Expense extends Component {
         <div>
           {expenses !== undefined  && expenses.map(expense => (
             <div className="category" key={expense._id}>
-              <div style={{ width: '200px', display: 'inline-block' }}>
-                <div style={{ width: '140px', display: 'inline-block' }}><strong>{expense.name}</strong></div>
+              <div style={{ width: '300px', display: 'inline-block' }}>
+                <div style={{ width: '240px', display: 'inline-block' }}><strong>{expense.name}</strong></div>
                 <div style={{ width: '50px', display: 'inline-block' }}><strong>${expense.amount}</strong></div>
               </div>
-              <button className="delete" onClick={() => removeExpense(expense._id)}>X</button>
-              <button onClick={()=> this.setState({ editing: expense._id })}>update</button>
+              <button className="button" onClick={() => removeExpense(expense._id)}>X</button>
+              <button className="button" onClick={()=> this.setState({ editing: expense._id })}>✎</button>
               {this.state.editing === expense._id && <AddForm  expense ={expense} text="✎" onComplete={this.handleUpdate}/>}
+              <hr/>
             </div>
           ))}
         </div>

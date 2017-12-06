@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { loadCategories, addCategory, removeCategory, updateCategory } from './actions';
 import AddForm from '../addForm';
 import { NavLink } from 'react-router-dom';
-import 'bulma/css/bulma.css';
+
 
 class Category extends Component {
   state = {
@@ -44,12 +44,12 @@ class Category extends Component {
         <div>
           {categories !== undefined  && categories.map(category => (
             <div className="category" key={category._id}>
-              <div style={{ width: '200px', display: 'inline-block' }}>
-                <NavLink to={`/categories/${category._id}`} className="link"><strong>{category.name}</strong></NavLink>
-                <span>  </span> ${category.amount}
+              <div style={{ width: '300px', display: 'inline-block' }}>
+                <div style={{ width: '240px', display: 'inline-block' }}><NavLink to={`/categories/${category._id}`} className="link"><strong>{category.name}</strong></NavLink></div>
+                <div style={{ width: '50px', display: 'inline-block' }}>${category.amount}</div>
               </div>
-              <button className="delete" onClick={() => removeCategory(category._id)}>X</button>
-              <button onClick={()=> this.setState({ editing: category._id })}>update</button>
+              <button className="button" onClick={() => removeCategory(category._id)}>X</button>
+              <button className="button" onClick={()=> this.setState({ editing: category._id })}>✎</button>
               {this.state.editing === category._id && <AddForm  category ={category} text="✎" onComplete={this.handleUpdate}/>}
               <hr/>
             </div>

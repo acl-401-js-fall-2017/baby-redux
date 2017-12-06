@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-// import './App.css';
 import Expense from './expenses/expense';
 import Category from './categories/category';
 import Home from './components/home';
 import About from './components/about';
+import Footer from './components/footer';
 import { 
   BrowserRouter as Router, 
   Route, Switch, Redirect, 
   Link  } from 'react-router-dom';
-import 'bulma/css/bulma.css';
+import './style/mystyles.css';
+
 
 class App extends Component {
   render() {
@@ -29,6 +30,7 @@ class App extends Component {
             <Route  path="/categories/:id" component={Expense}/>
             {/* <Redirect to="/"/> */}
           </Switch>
+          <Footer/>
         </div>
       </Router>
     );

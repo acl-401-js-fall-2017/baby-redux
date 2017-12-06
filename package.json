@@ -17,7 +17,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "exit 0",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./src/styles src/ -o src/"
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:3001",
+  "devDependencies": {
+    "node-sass-chokidar": "0.0.3"
+  }
 }

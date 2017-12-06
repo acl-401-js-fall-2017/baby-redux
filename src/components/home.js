@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bulma/css/bulma.css';
 import Category from '../categories/category';
 
 export default function Home() {
