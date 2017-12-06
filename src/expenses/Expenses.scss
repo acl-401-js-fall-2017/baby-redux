@@ -1,8 +1,10 @@
+@import 'colors';
+
 :local(.delet) {
 
   button {
-    background-color: black;
-    color: white;
+    background-color: $secondary;
+    color: $primary;
   }
   
 }
