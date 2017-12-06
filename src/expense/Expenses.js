@@ -21,7 +21,7 @@ class Expenses extends PureComponent {
               <h5>
                 Expense: {expense.name}
                 Cost: ${expense.cost}
-                <button onClick={() => removeExpense(expense._id)}>Remove</button>
+                <button onClick={() => removeExpense(this.props.categoryId, expense._id)}>Remove</button>
               </h5>
               <ExpenseForm categoryId={this.props.categoryId} expense={expense} text="Update"
                 onComplete={updateExpense}/>
