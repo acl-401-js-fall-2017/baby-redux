@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { loadCategory, addCategory, updateCategory, removeCategory } from './actions';
 import CategoryForm from './CategoryForm';
+import styled from 'styled-components';
 
 
 class Categories extends PureComponent {
@@ -35,7 +36,7 @@ class Categories extends PureComponent {
             <li key={category._id}>
               <h4>
                 The budget for {category.name} is ${category.budget}
-                <button onClick={() => this.handleRemove(category._id)}>Remove</button>
+                <RemoveButton onClick={() => this.handleRemove(category._id)}>Remove</RemoveButton>
               </h4>
               <CategoryForm category={category} text="Update"
                 onComplete={this.handleUpdate}/>
@@ -45,6 +46,13 @@ class Categories extends PureComponent {
     );
   }
 }
+
+const RemoveButton = styled.button`
+background: red;
+color: white;
+height: ${props => props.dimension || 20}px;
+width: ${props => props.dimension || 50}px;
+`;
 
 const mapStateToProps = (state) => ({
   state : state,
