@@ -1,5 +1,4 @@
 import * as actions from '../category/constants';
-import { api } from '../services/api';
 
 const isPromise = val => val && typeof val.then === 'function';
 

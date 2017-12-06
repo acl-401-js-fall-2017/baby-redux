@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Categories from '../category/Categories';
 import dollarCircle from '../images/dollarCircle.png';
 import './App.css';
-import styled from 'styled-components';
 
 class App extends Component {
   render() {

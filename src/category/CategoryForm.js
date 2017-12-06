@@ -69,7 +69,6 @@ export default class CategoryForm extends PureComponent {
 const Section = styled.section`
   background-color: #2eb82e;
   border: 1px solid black;
-}
 `;
 
 const Label = styled.label`
@@ -77,18 +76,15 @@ const Label = styled.label`
   font-weight: bold;
   padding: 14px 20px;
   margin: 8px 0;
-}
 `;
 
 const Input = styled.input`
   width: 30%;
   background-color: white;
-  color: white;
+  color: #595959;
   padding: 14px 20px;
   margin: 8px 0;
   border-radius: 10px;
-  cursor: pointer;
-}
 `;
 
 const SubmitButton = styled.button`
@@ -100,20 +96,20 @@ const SubmitButton = styled.button`
   width: ${props => props.dimension || 50}px;
 
   &:hover {
-    background-color: teal;
+    background-color: #d6f5d6;
   }
 `;
 
 const ResetButton = styled.button`
-  margin: 0 1em;
   background: white;
   color: black;
   border: 1px solid black;
+  margin: 0 1em;
   height: ${props => props.dimension || 20}px;
   width: ${props => props.dimension || 50}px;
 
   &:hover {
-    background-color: teal;
+    background-color: #d6f5d6;
   }
 `;
 

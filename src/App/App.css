@@ -1,3 +1,17 @@
+body {
+  background-color: white;
+  width: 980px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow: hidden;
+}
+
+@media screen and (max-width:940px) {
+  width: auto;
+}
+
 .App {
   text-align: center;
 }
