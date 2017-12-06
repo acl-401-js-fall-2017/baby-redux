@@ -18,17 +18,25 @@ export function addExpense(categoryId, data) {
 }
 
 export function removeExpense(categoryId, expenseId) {
-
-  return async dispatch => {
-    const expense = await expenseApi.remove(expenseId);
-    if(expense.removed) {
-      dispatch({
-        type: actions.EXPENSE_REMOVE,
-        payload: { expenseId }
-      });
-    }
+  
+  return {
+    type: actions.EXPENSE_REMOVE,
+    payload: expenseApi.remove(categoryId, expenseId)
   };
 }
+
+// export function removeExpense(categoryId, expenseId) {
+
+//   return async dispatch => {
+//     const expense = await expenseApi.remove(expenseId);
+//     if(expense.removed) {
+//       dispatch({
+//         type: actions.EXPENSE_REMOVE,
+//         payload: { expenseId }
+//       });
+//     }
+//   };
+// }
 
 export function updateExpense(categoryId, expense) {
 
