@@ -17,34 +17,33 @@ export function addExpense(categoryId, data) {
   };
 }
 
+// TODO: remove function is not updating the DOM but is removing from server
+// Possible solution is to checkout categories reducer and see how the payload is being handled. 
 export function removeExpense(categoryId, expenseId) {
-  
+
   return {
     type: actions.EXPENSE_REMOVE,
     payload: expenseApi.remove(categoryId, expenseId)
   };
 }
 
-// export function removeExpense(categoryId, expenseId) {
+// TODO: This function is not working at all right now. I have access to categoryId and expenseId but cannot
+// seem to get the expenseId to be applied to the path. 
+export function updateExpense(categoryId, expenseId, data) {
 
-//   return async dispatch => {
-//     const expense = await expenseApi.remove(expenseId);
-//     if(expense.removed) {
-//       dispatch({
-//         type: actions.EXPENSE_REMOVE,
-//         payload: { expenseId }
-//       });
-//     }
-//   };
-// }
-
-export function updateExpense(categoryId, expense) {
-
-  return async dispatch => {
-    const updatedExpense = await expenseApi.update(expense);
-    dispatch({
-      type: actions.EXPENSE_UPDATE,
-      payload: updatedExpense
-    });
+  return {
+    type: actions.EXPENSE_UPDATE,
+    payload: expenseApi.update(categoryId, expenseId, data)
   };
 }
+
+// export function updateExpense(categoryId, expense) {
+
+//   return async dispatch => {
+//     const updatedExpense = await expenseApi.update(expense);
+//     dispatch({
+//       type: actions.EXPENSE_UPDATE,
+//       payload: updatedExpense
+//     });
+//   };
+// }
