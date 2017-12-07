@@ -4,9 +4,9 @@ import ExpenseForm from './ExpenseForm';
 import { removeExpense, updateExpense } from '../expenses/actions';
 
 
-
 class ExpenseItem  extends PureComponent {
-    handleUpdate = expense => event => {
+
+    handleUpdateExpense = expense => event => {
         event.preventDefault();
         const update = {
           ...expense,
@@ -15,18 +15,19 @@ class ExpenseItem  extends PureComponent {
           budget: this.props.expense.budget
         }
         this.props.updateExpense(update);
+        event.target.reset();
       }
 
-    handleRemove = id => this.props.removeExpense(id, this.props.expense.budget);
+    handleRemoveExpense = id => this.props.removeExpense(id, this.props.expense.budget);
 
     render(){
         const { expense } = this.props;
         return (
             <div>
               <h3>{expense.name}</h3>
-              <p>Expense - {expense.amount}</p>
-              <ExpenseForm onComplete={this.handleUpdate(expense)} buttonValue={'edit'}/>
-              <input type="button" value="remove" onClick={() => this.handleRemove(expense._id)}/>
+              <p>cost: ${expense.amount}</p>
+              <ExpenseForm onComplete={this.handleUpdateExpense(expense)} buttonValue={'Edit Expense ‎✎'}/>
+              <input type="button" value="remove" onClick={() => this.handleRemoveExpense(expense._id)}/>
             </div>
         )
     }

@@ -10,8 +10,8 @@ import { connect } from 'react-redux';
 import './App.css';
 
 
-
 class App extends Component {
+  
   render() {
     const loader = this.props.loading ? 
     <Load/>: null;

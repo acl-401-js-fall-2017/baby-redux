@@ -1,8 +1,6 @@
 import * as actions from './constants';
 
-export function expenses(state = {}, { type, payload }) {
-    console.log('in expenses reducr', type);
-    
+export const expenses =(state = {}, { type, payload }) => {
     switch (type) {
     case actions.EXPENSE_ADD:
     state[payload.categoryId] = state[payload.categoryId] ? state[payload.categoryId] : [];
@@ -12,10 +10,7 @@ export function expenses(state = {}, { type, payload }) {
     state[payload.categoryId] = state[payload.categoryId].filter(expense => expense._id !== payload.expenseId);
       return { ...state };
     case actions.EXPENSE_UPDATE:
-    const newArray = state[payload.categoryId].map(expense => {
-      return expense._id === payload.expense._id ? { ...payload.expense } : expense
-    });
-    state[payload.categoryId] =  newArray;
+    state[payload.categoryId] = state[payload.categoryId].map(expense =>  expense._id === payload.expense._id ? { ...payload.expense } : expense);
       return { ...state };
     case actions.EXPENSE_LOAD:
     state[payload.categoryId] = payload.expenses;
