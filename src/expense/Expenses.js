@@ -21,21 +21,21 @@ class Expenses extends PureComponent {
         <h5>Add an Expense</h5>
         <ExpenseForm categoryId={category._id} addExpense={addExpense}/>
         <div>
-          <table>
-            <h4> Update {category.name}'s Expenses </h4>
+          <h4> Update {category.name}'s Expenses </h4>
+          <div>
             {expenses.map(expense => (
               <div key={expense._id}>
-                <tr>
+                <div>
                 Expense: {expense.name}
                   {/* <br/> */}
                 Cost: ${expense.cost}
                   <StyledButton className="removebtn" onClick={() => removeExpense(category._id, expense._id)}>Remove</StyledButton>
-                </tr>
+                </div>
                 <ExpenseForm categoryId={category._id} expense={expense} text="Update"
                   updateExpense={updateExpense}/>
               </div>    
             ))}
-          </table>
+          </div>
         </div>
       </div>
     );
