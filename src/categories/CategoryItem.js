@@ -23,18 +23,18 @@ class CategoryItem extends PureComponent {
       budget: event.target.budget.value
     }
     this.props.updateCategory(update);
+    event.target.reset();
   }
 
   handleAddExpense = event => {
 		event.preventDefault();
-    event = event.target;
 		const newExpense = {
       name: event.target.name.value,
       amount: event.target.expense.value,
-      budget: event.targetdataset.value
+      budget: event.target.dataset.value
     }
     this.props.addExpense(newExpense);
-    event.reset();
+    event.target.reset();
   }
   
   handleRemove = id => this.props.removeCategory(id);
@@ -46,22 +46,29 @@ class CategoryItem extends PureComponent {
 
   render() {
     const { category, expenses } = this.props;
-    const expenseList = expenses[category._id] ? expenses[category._id].map((expense, index) => {
+    const { showExpenses } = this.state;
+    const expenseList = expenses[category._id] && expenses[category._id].map((expense, index) => {
       return (
         <li key={index}>
-          <ExpenseItem expense={expense} category={category}/>
+          <ExpenseItem expense={expense}/>
         </li>
       );
-    }) : null;
+    });
+    const Expenses = 
+      <div>
+        <ExpenseForm onComplete={event => this.handleAddExpense(event)} buttonValue={'Add Expense '} category={category}/>
+        <br/>
+        {expenseList}
+      </div>;
+  
     return (
       <div>
-        <h1>{category.name}</h1>
-        <p>Budget - {category.budget}</p>
-        <CategoryForm onComplete={this.handleUpdateCategory(category)} buttonValue={'edit'}/>
-        <ExpenseForm onComplete={event => this.handleAddExpense(event)} buttonValue={'new expense'} category={category}/>
-        <input type="button" value="remove" onClick={() => this.handleRemove(category._id)}/>
-        <input type="button" value="show expenses" onClick={() => this.loadExpenses(category._id) }/>
-        { this.state.showExpenses && expenseList}
+        <h2>{category.name}: ${category.budget}</h2>
+        <CategoryForm onComplete={this.handleUpdateCategory(category)} buttonValue={'Edit ‎✎'}/>
+        <input type="button" value="Delete" onClick={() => this.handleRemove(category._id)}/>
+        <input type="button" value={ showExpenses ? "Hide Expenses" : "Show Expenses"} onClick={() => this.loadExpenses(category._id) }/>
+        <br/>
+        {showExpenses && Expenses}
       </div>
     );
   }

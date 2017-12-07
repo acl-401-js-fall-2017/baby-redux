@@ -7,8 +7,8 @@ export default class ExpenseForm extends PureComponent {
         return (
           <form data-value={category && category._id} onSubmit={onComplete}>
             <input type="submit" value={buttonValue}/>
-            <input type="text" name="name" placeholder="title"/>
-            <input type="text" name="expense" placeholder="amount"/>
+            <input type="text" name="name" placeholder="Expense Name"/>
+            <input type="text" name="expense" placeholder="Amount"/>
           </form>
         );
     }
