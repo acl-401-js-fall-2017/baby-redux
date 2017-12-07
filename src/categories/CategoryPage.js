@@ -27,7 +27,7 @@ class CategoryPage extends Component {
     const percentMargin = this.state.budgetMargin / this.props.budget * 100;
     if(percentMargin < 0) return 'red';
     if(percentMargin < 5) return 'orange';
-    if(percentMargin < 20) return '#ccaa00';
+    if(percentMargin < 20) return '#67FF4D';
     return 'green';
   }
 
@@ -83,21 +83,29 @@ class CategoryPage extends Component {
     const { totalExpenses, budgetMargin, budgetMarginColorIndicator } = this.state;
     return (
       <div className={`Category-page ${name}`}>
-        <h2>
-          <span
-            style={{ color: budgetMarginColorIndicator }}
-          >Expenses in Category: {name}</span><br/>
-          <small>total budget: ${totalBudget}</small><br/>
-          <small>total expenses: ${totalExpenses}</small><br/>
-          <small
-            style={{ color: budgetMarginColorIndicator }}
-          >budget margin: ${budgetMargin}</small><br/>
-        </h2>
-        <ExpenseForm
-          onComplete={this.handleNewExpense}
-          buttonText="Add"
-          editing="new expense"
-        />
+        <h2>Expenses in Category: {name}</h2>
+        <aside className="category-page-sidebar">
+          <p>
+            <span className="sidebar-keys">total budget:</span> 
+            <span className="sidebar-values">${totalBudget}</span>
+          </p>
+          <p>
+            <span className="sidebar-keys">total expenses:</span> 
+            <span className="sidebar-values">${totalExpenses}</span>
+          </p>
+          <p>
+            <span className="sidebar-keys">budget margin:</span>
+            <span
+              style={{ color: budgetMarginColorIndicator }}
+              className="sidebar-values"
+            >${budgetMargin}</span>
+          </p>
+          <ExpenseForm
+            onComplete={this.handleNewExpense}
+            buttonText="Add"
+            editing="new expense"
+          />
+        </aside>
         <ul>
           {expenses.length > 0 &&
             expenses.map(expense => (

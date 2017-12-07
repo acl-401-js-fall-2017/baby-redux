@@ -1,0 +1,8 @@
+tr:nth-child(2n-1) {
+  background-color: #B8CEE0; }
+
+td {
+  text-align: center; }
+
+td:first-child {
+  text-decoration: underline; }

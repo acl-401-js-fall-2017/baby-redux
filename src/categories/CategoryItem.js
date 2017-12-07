@@ -6,6 +6,7 @@ import {
   removeCategory,
   updateCategory
 } from '../categories/actions';
+import './CategoryItem.css';
 
 class CategoryItem extends PureComponent {
 
@@ -24,19 +25,22 @@ class CategoryItem extends PureComponent {
     const { category, match: { match: { url } } } = this.props;
 
     return (
-      <article>
-        <Link to={url + category.name}>
-          <h3>{category.name}
-            <small>&nbsp;&nbsp;&nbsp;&nbsp;budget: ${category.budget}</small>
-          </h3>
-        </Link>
-        <p>Last Update: {JSON.stringify(category.timestamp)}</p>
-        <CategoryForm
-          onComplete={this.handleUpdate(category)}
-          onDelete={this.handleDelete(category.id)}
-          buttonText="update"
-        />
-      </article>
+      <tr>
+        <td>
+          <Link to={url + category.name}>
+            {category.name}
+          </Link>
+        </td>
+        <td>${category.budget}</td>
+        <td>{JSON.stringify(category.timestamp)}</td>
+        <td>
+          <CategoryForm
+            onComplete={this.handleUpdate(category)}
+            onDelete={this.handleDelete(category.id)}
+            buttonText="update"
+          />
+        </td>
+      </tr>
     );
   }
 }

@@ -1,5 +1,32 @@
-body, html {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box; }
+
+html, body {
   font-family: sans-serif;
-  background-color: #B8CEE0; }
+  background-color: white;
+  color: #304251; }
+
+a:link, a:visited, a:hover, a:target {
+  color: #304251;
+  text-decoration: none; }
+
+input[type="button"], input[type="submit"] {
+  height: 1.7em;
+  margin: 0 0.2em;
+  padding: 0 0.5em;
+  border-radius: 0.3em;
+  background-color: #55D43F;
+  border: none;
+  border-bottom: 1px solid #3caf28; }
+
+input[type="button"]:focus,
+input[type="button"]:hover,
+input[type="submit"]:focus,
+input[type="submit"]:hover {
+  border-bottom: 2px solid #3caf28; }
+
+input[type="button"]:active,
+input[type="submit"]:active {
+  border-bottom: none; }

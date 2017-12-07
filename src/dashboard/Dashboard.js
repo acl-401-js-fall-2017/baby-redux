@@ -9,6 +9,8 @@ import ErrorBar from '../error/ErrorBar';
 import { connect } from 'react-redux';
 import { getCategories, addCategory } from '../categories/actions';
 
+import './Dashboard.css';
+
 
 class Dashboard extends PureComponent {
 
@@ -35,19 +37,23 @@ class Dashboard extends PureComponent {
     return (
       <div>
         <Link to={url}>
-          <p>home</p>
+          <img className="home-link" src="https://images.vexels.com/media/users/3/140527/isolated/preview/449b95d58f554656b159dd3ca21ab123-home-round-icon-by-vexels.png"/>
         </Link>
         <Route exact path={url} render={() => (
           <header>
-            <h1>Categories<br/>
-              <small>Total Budget: ${this.getTotalBudget()}</small>
-            </h1>
+            <h1>Categories</h1>
+          </header>
+        )}/>
+        <Route exact path={url} render={() => (
+          <aside>
+            <h3>Total Budget: ${this.getTotalBudget()}</h3>
+            <div className="category-bar-divider">&nbsp;</div>
             <CategoryForm
               onComplete={this.handleAdd}
               buttonText="Add"
               editing="new category"
             />
-          </header>
+          </aside>
         )}/>
         {loading &&
           <Loader />
@@ -57,13 +63,25 @@ class Dashboard extends PureComponent {
         }
         <Switch>         
           <Route exact path={url} render={match => (
-            categories.map(cat => (
-              <CategoryItem
-                key={cat.id}
-                category={cat}
-                match={match}
-              />
-            ))
+            <section className="category-list">
+              <table>
+                <tbody>
+                  <tr>
+                    <th>Name</th>
+                    <th>Budget</th>
+                    <th>Last Update</th>
+                    <th></th>
+                  </tr>
+                  {categories.map(cat => (
+                    <CategoryItem
+                      key={cat.id}
+                      category={cat}
+                      match={match}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </section>
           )}/>
           <CategoryRouter categories={categories} url={url}/>
         </Switch>

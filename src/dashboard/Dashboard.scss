@@ -5,3 +5,48 @@
     width: 100%;
     position: relative;
 }
+
+.home-link {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    height: 50px;
+    width: 50px;
+}
+
+header {
+    padding: 2em 2em 1.5em 2em;
+    background-color: $fiord;
+    color: white;
+}
+
+aside {
+    width: 100%;
+    // border: 8px white solid;
+    padding: 0.5em 2em;
+    background: $ziggurat;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .category-bar-divider {
+        height: 75%;
+        width: 2px;
+        background: $fiord;
+    }
+}
+
+.category-list {
+    width: 100%;
+    border: solid white 8px;
+
+    table, tbody {
+        width: 100%;
+
+        th {
+            background: $fiord;
+            color: white;
+            padding: 0.4em;
+        }
+    }
+}
