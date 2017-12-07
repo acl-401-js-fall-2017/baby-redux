@@ -12,39 +12,43 @@ class Dashboard extends PureComponent {
     this.props.loadCategories();
   }
 
-  handleAdd = event => {
+  handleAddCategory = event => {
 		event.preventDefault();
-		event = event.target;
-		const newBudget = {
-      name: event.name.value,
-      budget: event.budget.value
+		const newCategory = {
+      name: event.target.name.value,
+      budget: event.target.budget.value
     }
-    this.props.addCategory(newBudget);
-    event.reset();
+    this.props.addCategory(newCategory);
+    event.target.reset();
   }
   
   render() {
-    const cats = this.props.categories && this.props.categories.map((categoryItem, index) => (
-			<CategoryItem key={index} category={categoryItem}/>
-    ));
-      
-
+    const formStyle = { float: 'right', margin: '30px 20px'}
+    const listStyle = { float: 'right'}
+    let budgetSum = 0;
+    const sortedCategories = this.props.categories ? this.props.categories.sort((a, b) => a.budget < b.budget) : [];
+    const categories = sortedCategories.map((categoryItem, index) => {
+      budgetSum += categoryItem.budget;
+			return (<li key={index}><CategoryItem category={categoryItem}/></li>)
+    });
+    
     return (
       <div>
         <div>
         <h1>Budget Dashboard</h1>
-        {cats}
-        <br/>
-        <h4>create new budget</h4>
-        <CategoryForm onComplete={this.handleAdd} buttonText={'create'}/>
+        <h1>Total: ${budgetSum}</h1>
+        <div style={formStyle}>
+          <h4>Add New Category</h4>
+          <CategoryForm onComplete={this.handleAddCategory} buttonText={'create'}/>
+        </div>
+        <ol style={listStyle} >
+          {categories}
+        </ol>
       </div>
-      </div>
+    </div>
     );
   }
 }
-
-
-
 
 const ConnectedDash = connect(
   state => ({
