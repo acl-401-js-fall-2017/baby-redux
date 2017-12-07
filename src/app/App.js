@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
-import Categories from './category/Categories';
-import logo from './logo.svg';
+import Categories from '../category/Categories';
 import './App.css';
-import NewCategory from './category/newCategory';
+import NewCategory from '../category/newCategory';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import Expenses from './category/Expenses';
+import Expenses from '../expenses/Expenses';
 
 class App extends Component {
   render() {
@@ -32,7 +31,7 @@ class App extends Component {
           </div>
           {loading &&
             <LoadingDiv>
-              <img src={logo} className="App-logo" alt="logo" />
+              <div>Loading</div>
             </LoadingDiv>
           }
           <Switch>

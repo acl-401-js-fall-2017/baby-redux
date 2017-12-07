@@ -18,6 +18,7 @@ export default {
       fetch(`${url}${path}`)
     );
   },
+  
   post(path, data) {
     return wrap(
       fetch(`${url}${path}`, {

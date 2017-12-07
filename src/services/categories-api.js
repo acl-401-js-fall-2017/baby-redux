@@ -12,5 +12,11 @@ export default {
   },
   remove(id) {
     return api.delete(`/categories/${id}`);
+  },
+  addExpense(id, expense){
+    return api.post(`/categories/${id}/expenses`, expense);
+  },
+  removeExpense(id, expenseId){
+    return api.delete(`/categories/${id}/expenses/${expenseId}`);
   }
 };

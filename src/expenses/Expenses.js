@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addCategory, updateCategory, removeCategory, loadCategories } from './actions';
+import { addExpense, removeExpense } from './actions';
+import { loadCategories } from '../category/actions';
 import AddExpense from './AddExpense';
 
 class Expenses extends PureComponent {
@@ -21,15 +22,16 @@ class Expenses extends PureComponent {
 
     return (
       <div>
-        <h4> {category.name} </h4>
+        <h4> Expenses for {category.name} </h4>
+        <h5> Budget is {category.budget} </h5>
         <AddExpense categoryToUpdate ={category}/>
         <ul>
           {
             category.expenses && 
                 category.expenses.map(expense =>(
                   <li style={{ display:'flex', justifyContent: 'center' }} type="none" key={category._id}>
-                    <h4>Spend {expense.amount} on {expense.name} </h4>
-                    {/* <button style={{ height:'50%' }} onClick={()=> this.props.removeExpense(category._id)}>X</button> */}
+                    <h4>Spend {expense.amount}$ on {expense.name} </h4>
+                    <button style={{ height:'50%' }} onClick={()=> this.props.removeExpense(category._id, expense._id)}>X</button>
                   </li>
                 ))
           }
@@ -41,6 +43,6 @@ class Expenses extends PureComponent {
 
 export default connect( 
   state => ({ categories: state.categories, error: state.categoryError }),
-  { addCategory, updateCategory, removeCategory, loadCategories }
+  { addExpense, loadCategories, removeExpense }
 )(Expenses);
 
