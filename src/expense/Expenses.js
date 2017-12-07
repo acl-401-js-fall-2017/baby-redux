@@ -4,6 +4,8 @@ import { StyledButton } from '../styles/styled';
 import { addExpense, updateExpense, removeExpense, loadExpenses } from './actions';
 import ExpenseForm from './ExpenseForm';
 
+import styled from 'styled-components';
+
 class Expenses extends PureComponent {
 
   componentDidMount() {
@@ -15,20 +17,25 @@ class Expenses extends PureComponent {
 
     return (
       <div>
-        <h4>Add Expense: </h4>
+        <h4>{category.name}'s' Expense: </h4>
+        <h5>Add an Expense</h5>
         <ExpenseForm categoryId={category._id} addExpense={addExpense}/>
         <div>
-          {expenses.map(expense => (
-            <div key={expense._id}>
-              <h5> Update {category.name}'s Expenses </h5>
-              <h5>
-                Expense: {expense.name} Cost: ${expense.cost}
-                <StyledButton className="removebtn" onClick={() => removeExpense(category._id, expense._id)}>Remove</StyledButton>
-              </h5>
-              <ExpenseForm categoryId={category._id} expense={expense} text="Update"
-                updateExpense={updateExpense}/>
-            </div>    
-          ))}
+          <table>
+            <h4> Update {category.name}'s Expenses </h4>
+            {expenses.map(expense => (
+              <div key={expense._id}>
+                <tr>
+                Expense: {expense.name}
+                  {/* <br/> */}
+                Cost: ${expense.cost}
+                  <StyledButton className="removebtn" onClick={() => removeExpense(category._id, expense._id)}>Remove</StyledButton>
+                </tr>
+                <ExpenseForm categoryId={category._id} expense={expense} text="Update"
+                  updateExpense={updateExpense}/>
+              </div>    
+            ))}
+          </table>
         </div>
       </div>
     );
@@ -39,3 +46,7 @@ export default connect(
   ({ expenses }) => ({ expenses }),
   { addExpense, removeExpense, updateExpense, loadExpenses }
 )(Expenses);
+
+const tableStyle = styled.table`
+  text-align: center;
+`;
