@@ -65,7 +65,7 @@ class CategoryItem extends PureComponent {
       <div>
         <h2>{category.name}: ${category.budget}</h2>
         <CategoryForm onComplete={this.handleUpdateCategory(category)} buttonValue={'Edit ‎✎'}/>
-        <input type="button" value="Delete" onClick={() => this.handleRemove(category._id)}/>
+        <input type="button" value="Delete Category" onClick={() => this.handleRemove(category._id)}/>
         <input type="button" value={ showExpenses ? "Hide Expenses" : "Show Expenses"} onClick={() => this.loadExpenses(category._id) }/>
         <br/>
         {showExpenses && Expenses}

@@ -24,7 +24,7 @@ class Dashboard extends PureComponent {
   
   render() {
     const formStyle = { float: 'right', margin: '30px 20px'}
-    const listStyle = { float: 'right'}
+    const listStyle = { float: 'right', listStyle: 'none'}
     let budgetSum = 0;
     const sortedCategories = this.props.categories ? this.props.categories.sort((a, b) => a.budget < b.budget) : [];
     const categories = sortedCategories.map((categoryItem, index) => {
@@ -41,9 +41,9 @@ class Dashboard extends PureComponent {
           <h4>Add New Category</h4>
           <CategoryForm onComplete={this.handleAddCategory} buttonText={'create'}/>
         </div>
-        <ol style={listStyle} >
+        <ul style={listStyle} >
           {categories}
-        </ol>
+        </ul>
       </div>
     </div>
     );
