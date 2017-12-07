@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import logo from './money_box1600.png';
 import './App.css';
-import Budget from './category/Budget';
+import Expense from './category/Expense';
 import { connect } from 'react-redux';
-import { budgetsLoading, budgetsError } from './category/reducer';
+import { expensesLoading, expensesError } from './category/reducer';
 
 class App extends Component {
   render() {
@@ -12,10 +12,10 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Mr Hog's Budget</h1>
+          <h1 className="App-title">Welcome to Mr Hog's Expense</h1>
         </header>
         <main>
-          <Budget/>
+          <Expense/>
           {loading &&
           <div className="loader">
           Loading...
@@ -37,8 +37,8 @@ class App extends Component {
 
 export default connect(
   state => ({
-    loading: state.budgetsLoading,
-    error: state.budgetsError
+    loading: state.expensesLoading,
+    error: state.expensesError
   }),
   null
 )(App);

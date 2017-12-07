@@ -2,7 +2,7 @@ import api from './api';
 
 export default {
   get() {
-    return api.get('/budgets');
+    return api.get('/expenses');
   },
   testGet(option) {
     let query = '';
@@ -14,13 +14,13 @@ export default {
     }
     return api.get(`/test${query}`);
   },
-  add(budget) {
-    return api.post('/budgets', { name: budget.name, amount: budget.amount });
+  add(expense) {
+    return api.post('/expenses', { name: expense.name, amount: expense.amount });
   },
-  update(budget) {
-    return api.put(`/budgets/${budget._id}`, { name: budget.name, amount: budget.amount });
+  update(expense) {
+    return api.put(`/expenses/${expense._id}`, { name: expense.name, amount: expense.amount });
   },
   remove(id) {
-    return api.delete(`/budgets/${id}`);
+    return api.delete(`/expenses/${id}`);
   }
 };

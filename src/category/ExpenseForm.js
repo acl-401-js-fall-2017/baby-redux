@@ -1,31 +1,31 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export default class BudgetForm extends PureComponent {
+export default class ExpenseForm extends PureComponent {
 
     static PropTypes = {
-      budget: PropTypes.object,
+      expense: PropTypes.object,
       onComplete: PropTypes.func.isRequired
     }
     
     static defaultProps = {
-      budget: {},
+      expense: {},
       text: 'Add'
     }
 
     constructor(props) {
       super(props);
-      const { budget } = props;
+      const { expense } = props;
       this.state = {
-        name: budget.name || '',
-        amount: budget.amount || ''
+        name: expense.name || '',
+        amount: expense.amount || ''
       };
     }
 
     handleSubmit = async event => {
       event.preventDefault();
       try {
-        const { _id } = this.props.budget;
+        const { _id } = this.props.expense;
         const { name, amount } = this.state;
         this.props.onComplete({ _id, name, amount });
         if(this.props.isAdd === true){ this.setState({ name:'', amount:'' });}

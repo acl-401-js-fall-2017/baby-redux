@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { addCategory, updateCategory, loadCategory, testCondition, removeCategory } from './actions';
-import BudgetForm from './BudgetForm';
+import ExpenseForm from './ExpenseForm';
 
 function mapStateToProps(state) {
   return {
-    budgets: state.budgets
+    expenses: state.expenses
   };
 }
 
@@ -17,26 +17,26 @@ const mapDispatchToProps = {
   testCondition
 };
 
-class Budget extends PureComponent {
+class Expense extends PureComponent {
   
   componentDidMount() {
     this.props.loadCategory();
   }
-  handleAdd = budget => {
-    this.props.addCategory(budget);
+  handleAdd = expense => {
+    this.props.addCategory(expense);
   }
-  handleUpdate = budget => {
-    this.props.updateCategory(budget);
+  handleUpdate = expense => {
+    this.props.updateCategory(expense);
   }
   handleRemove = id => {
     this.props.removeCategory(id);
   }
   
   render() {
-    const { budgets, loadCategory, testCondition, error } = this.props;
+    const { expenses, loadCategory, testCondition, error } = this.props;
 
-    const showResponse = budgets
-      ? <pre>{JSON.stringify(budgets, true, 2)}</pre>
+    const showResponse = expenses
+      ? <pre>{JSON.stringify(expenses, true, 2)}</pre>
       : <div>No response</div>;
 
     return (
@@ -48,15 +48,15 @@ class Budget extends PureComponent {
           Load with Unexpected Error
         </button>
         { error && <div className="error">{error}</div> }
-        <BudgetForm onComplete={this.handleAdd} isAdd={true}/>
+        <ExpenseForm onComplete={this.handleAdd} isAdd={true}/>
         <ul>
-          {budgets.map(budget => (
-            <li key={budget._id}>
+          {expenses.map(expense => (
+            <li key={expense._id}>
               <h3>
-                For:{budget.name} Amount: ${budget.amount}
-                <button onClick={() => this.handleRemove(budget._id)}>⨂</button>
+                For:{expense.name} Amount: ${expense.amount}
+                <button onClick={() => this.handleRemove(expense._id)}>⨂</button>
               </h3>  
-              <BudgetForm budget={budget} text="Update"
+              <ExpenseForm expense={expense} text="Update"
                 onComplete={this.handleUpdate} isAdd={false}/>
             </li>))}
         </ul>  
@@ -68,4 +68,4 @@ class Budget extends PureComponent {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Budget);
+)(Expense);

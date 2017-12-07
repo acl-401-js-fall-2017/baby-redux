@@ -1,6 +1,6 @@
 import * as actions from './constants';
 
-export function budgets(state = [], { type, payload }) {
+export function expenses(state = [], { type, payload }) {
   switch (type) {
     case actions.CATEGORY_LOAD:
       return payload;
@@ -18,7 +18,7 @@ export function budgets(state = [], { type, payload }) {
   }
 }
 
-export function budgetsLoading(state = false, { type }) {
+export function expensesLoading(state = false, { type }) {
   switch(type){
     case actions.CATEGORY_LOADING:
       return true;
@@ -30,7 +30,7 @@ export function budgetsLoading(state = false, { type }) {
   }
 }
 
-export function budgetsError(state = null, { type, payload }) {
+export function expensesError(state = null, { type, payload }) {
   switch(type) {
     case actions.CATEGORY_LOAD:
     case actions.CATEGORY_ADD:

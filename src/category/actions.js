@@ -1,14 +1,14 @@
 import *  as actions from './constants';
-import budgetsApi from '../services/budgets-api';
+import expensesApi from '../services/expenses-api';
 
 export function loadCategory(options) {
   return async dispatch => {
     dispatch({ type: actions.CATEGORY_LOADING });
     try {
-      const budgets = await budgetsApi.get(options);
+      const expenses = await expensesApi.get(options);
       dispatch({ 
         type: actions.CATEGORY_LOAD,
-        payload: budgets
+        payload: expenses
       });
     }
     catch(err) {
@@ -26,10 +26,10 @@ export function testCondition(options) {
   return async (dispatch, getState) => {
     dispatch({ type: actions.CATEGORY_LOADING });
     try {
-      const budgets = await budgetsApi.testGet(options);
+      const expenses = await expensesApi.testGet(options);
       dispatch({
         type: actions.CATEGORY_LOAD,
-        payload: getState().budgets
+        payload: getState().expenses
       });
     }
     catch (err) {
@@ -43,10 +43,10 @@ export function testCondition(options) {
   };
 }
 
-export function addCategory(budget) {
+export function addCategory(expense) {
   return async dispatch => {
     try {
-      const saved = await budgetsApi.add(budget);
+      const saved = await expensesApi.add(expense);
       dispatch({
         type: actions.CATEGORY_ADD,
         payload: saved
@@ -61,10 +61,10 @@ export function addCategory(budget) {
   };
 }
 
-export function updateCategory(budget) {
+export function updateCategory(expense) {
   return async dispatch => {
     try{
-      const changed = await budgetsApi.update(budget);
+      const changed = await expensesApi.update(expense);
       dispatch({
         type: actions.CATEGORY_UPDATE,
         payload: { changed }
@@ -82,7 +82,7 @@ export function updateCategory(budget) {
 export function removeCategory(id) {
   return async dispatch => {
     try {
-      const remove = await budgetsApi.remove(id);
+      const remove = await expensesApi.remove(id);
       dispatch({
         type: actions.CATEGORY_REMOVE,
         payload: remove
