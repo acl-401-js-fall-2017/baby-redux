@@ -25,7 +25,7 @@ class ExpenseItem  extends PureComponent {
             <div>
               <h3>{expense.name}</h3>
               <p>Expense - {expense.amount}</p>
-              <ExpenseForm onComplete={this.handleUpdate(expense)} buttonText={'edit'}/>
+              <ExpenseForm onComplete={this.handleUpdate(expense)} buttonValue={'edit'}/>
               <input type="button" value="remove" onClick={() => this.handleRemove(expense._id)}/>
             </div>
         )

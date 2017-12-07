@@ -34,7 +34,8 @@ class CategoryItem extends PureComponent {
 		event = event.target;
 		const newExpense = {
       name: event.name.value,
-      budget: event.expense.value
+      amount: event.expense.value,
+      budget: event.target.dataset.value
     }
     this.props.addExpense(newExpense);
     event.reset();
@@ -48,7 +49,7 @@ class CategoryItem extends PureComponent {
     const expenseList = this.props.expenses[category._id] ? this.props.expenses[category._id].map(expense => {
       return (
         <li>
-          <ExpenseItem expense={expense}/>
+          <ExpenseItem expense={expense} category={category}/>
         </li>
       );
     }) : null;
