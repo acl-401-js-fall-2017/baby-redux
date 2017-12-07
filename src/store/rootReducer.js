@@ -3,7 +3,7 @@ import { categoryReducer } from '../category/reducer';
 import { loadSpinner, loadError } from '../App/reducer';
 
 const rootReducer = combineReducers({
-  categoryReducer,
+  categories: categoryReducer,
   loadSpinner,
   loadError
 });
