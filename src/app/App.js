@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './App.css';
+import { ErrorStyled, LoadingStyled, HeaderStyled, ContainerDiv } from '../styles/styled';
+import styled from 'styled-components';
 
 import Categories from '../category/Categories';
 
@@ -12,26 +13,30 @@ class App extends Component {
 
     return (
       <Router>
-        <div className="App">
-          <header className="App-header">
-            <h1 className="App-title">Budget Tracker</h1>
-          </header>
-          <Categories/>
-          <footer>
-            {loading && 
-            <div className="loader">
+        <div>
+          <HeaderStyled>
+            <h1>Budget Tracker</h1>
+          </HeaderStyled>
+          <ContainerDiv>
+            <div>
+              <Categories/>
+              <FooterStyled>
+                {loading && 
+            <LoadingStyled>
               Loading...
-            </div>
-            }
-            {error &&
-            <div className="error">
+            </LoadingStyled>
+                }
+                {error &&
+            <ErrorStyled>
               {Array.isArray(error)
                 ? <ul>error.map(err => <li>err</li>)</ul>
                 : error.error ? error.error : error
               }
+            </ErrorStyled>
+                }
+              </FooterStyled>
             </div>
-            }
-          </footer>
+          </ContainerDiv>
         </div>
       </Router>
     );
@@ -45,3 +50,10 @@ export default connect(
   }),
   null
 )(App);
+
+const FooterStyled = styled.footer`
+  position: relative;
+  text-align: left;
+  margin: 20px;
+  height: 100px;
+`;
