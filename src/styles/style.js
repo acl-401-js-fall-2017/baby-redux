@@ -49,7 +49,7 @@ export const ModifyButton = styled.button`
   width: ${props => props.dimension || 60}px;
 
   &:hover {
-  background-color: #f4ea7b;
+  background-color: #d6f5d6;
   color: black;
   }
 `;
@@ -59,8 +59,8 @@ export const SubmitButton = styled.button`
   color: white;
   border: 1px solid black;
   margin: 8px 0;
-  height: ${props => props.dimension || 20}px;
-  width: ${props => props.dimension || 50}px;
+  height: ${props => props.dimension || 30}px;
+  width: ${props => props.dimension || 60}px;
 
   &:hover {
     background-color: #d6f5d6;
@@ -73,8 +73,8 @@ export const ResetButton = styled.button`
   color: black;
   border: 1px solid black;
   margin: 0 1em;
-  height: ${props => props.dimension || 20}px;
-  width: ${props => props.dimension || 50}px;
+  height: ${props => props.dimension || 30}px;
+  width: ${props => props.dimension || 60}px;
 
   &:hover {
     background-color: #f4ea7b;

@@ -1,16 +1,10 @@
 import * as actions from './constants';
 import categoriesApi from '../services/categories.api';
 
-export function loadCategory() {
-  return dispatch => {
-    dispatch({ type: actions.CATEGORY_LOAD, payload: categoriesApi.get() });
-  };
-}
+export const loadCategory = () => ({ type: actions.CATEGORY_LOAD, payload: categoriesApi.get() });
 
 export function addCategory(category) {
-  return dispatch => {
-    dispatch({ type: actions.CATEGORY_ADD, payload: categoriesApi.add(category) });
-  };
+  return { type: actions.CATEGORY_ADD, payload: categoriesApi.add(category) };
 }
 
 export function updateCategory(id, data) {
