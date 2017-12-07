@@ -56,7 +56,7 @@ class Category extends PureComponent {
                   onComplete={this.handleUpdate}/>
               </div>
               <div className="column">
-                <button onClick={() => this.handleRemove(c)}>X</button>
+                <button className="delete is-large" onClick={() => this.handleRemove(c)}>X</button>
               </div>
               <div className="column is-half">
               </div>

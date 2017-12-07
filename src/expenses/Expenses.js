@@ -50,7 +50,7 @@ class Expenses extends Component {
     const { expenses } = this.state;
 
     return(
-      <div className={styles.delet}>
+      <div>
 
         { expenses.map(expense =>
 
@@ -73,7 +73,7 @@ class Expenses extends Component {
               </div>
 
               <div className="column">
-                <DeleteButton onClick={() => this.handleRemove(expense)}>X</DeleteButton>
+                <DeleteButton  className="delete is-large" onClick={() => this.handleRemove(expense)}>X</DeleteButton>
               </div>
 
             </div>
@@ -90,7 +90,7 @@ class Expenses extends Component {
 
 const DeleteButton = styled.button`
   background-color: black;
-  color: white;
+  color: red;
 `;
 
 function mapStateToProps(state) {
