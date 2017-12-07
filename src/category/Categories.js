@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { loadCategory, addCategory, updateCategory, removeCategory } from './actions';
 import CategoryForm from './CategoryForm';
 import Category from './Category';
+import { List } from '../styles/style';
 import styled from 'styled-components';
 
 
@@ -31,33 +32,19 @@ class Categories extends PureComponent {
       <div>
         { error && <div className="error">{error}</div> }
         <CategoryForm onComplete={this.handleAdd}/>
-        <ul>
-          <h2>Budget Category</h2>
+        <List>
+          <h2>Budget List</h2>
           {categories.map(category => (
             <Category key={category._id} 
               category={category} 
               onRemove={this.handleRemove} 
               onUpdate={this.handleUpdate}/>
           )) }
-        </ul>
+        </List>
       </div>
     );
   }
 }
-
-const RemoveButton = styled.button`
-  background: white;
-  color: red;
-  border: 1px solid black;
-  margin: 0 1em;
-  height: ${props => props.dimension || 20}px;
-  width: ${props => props.dimension || 60}px;
-
-  &:hover {
-    background-color: #ffb3b3;
-  }
-`;
-
 
 const mapStateToProps = (state) => ({
   state : state,

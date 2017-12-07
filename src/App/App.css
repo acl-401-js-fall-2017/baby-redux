@@ -72,3 +72,15 @@ main {
   font-size: 20px;
   font-weight: bold;
 }
+
+.update {
+  background: white;
+  color: red;
+  border: 1px solid black;
+  margin: 8px 0;
+  height:  30px;
+  width: 60px;
+}
+.update:hover {
+  background-color: #ffb3b3;
+  }  
