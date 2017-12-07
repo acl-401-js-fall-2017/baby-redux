@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { addExpense, updateExpense, removeExpense, loadExpenses } from './actions';
 import ExpenseForm from './ExpenseForm';
 import expenseApi from '../services/expenses-api';
-
+import styled from 'styled-components';
 import styles from './Expenses.css';
 
 class Expenses extends Component {
@@ -73,7 +73,7 @@ class Expenses extends Component {
               </div>
 
               <div className="column">
-                <button onClick={() => this.handleRemove(expense)}>X</button>
+                <DeleteButton onClick={() => this.handleRemove(expense)}>X</DeleteButton>
               </div>
 
             </div>
@@ -88,6 +88,10 @@ class Expenses extends Component {
   }
 }
 
+const DeleteButton = styled.button`
+  background-color: black;
+  color: white;
+`;
 
 function mapStateToProps(state) {
   return {
