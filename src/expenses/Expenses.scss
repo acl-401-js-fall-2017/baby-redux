@@ -1,10 +1,9 @@
 // @import 'colors';
 @import '../styles/bulma.scss';
 
-:local(.delet) {
+:local{
+  .columnhover:hover {
 
-  button {
-    background-color: $greentest;
+  background-color: lightgrey;
   }
-  
 }
