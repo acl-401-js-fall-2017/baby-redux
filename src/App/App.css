@@ -73,14 +73,24 @@ main {
   font-weight: bold;
 }
 
-.update {
+.remove {  
   background: white;
   color: red;
-  border: 1px solid black;
-  margin: 8px 0;
-  height:  30px;
-  width: 60px;
 }
-.update:hover {
-  background-color: #ffb3b3;
-  }  
+.remove:hover {
+      background-color: rgb(248, 213, 213);
+}
+
+.submit {  
+  background: black;
+  color: white;
+  margin: 8px 0;
+}
+.submit:hover {
+  color: black;
+}
+
+.expense {  
+  background: rgb(112, 110, 110);
+  color: white;
+}

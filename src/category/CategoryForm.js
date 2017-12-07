@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Section, Label, Input, SubmitButton, ResetButton } from '../styles/style';
+import { Section, Label, Input, Button } from '../styles/style';
 import styled from 'styled-components';
 
 export default class CategoryForm extends PureComponent {
@@ -60,8 +60,8 @@ export default class CategoryForm extends PureComponent {
           <Label>Budget: </Label>
           <Input name="budget" value={budget} placeholder="Dollar Amount" onChange={this.handleChange}/>
         </Section>
-        <SubmitButton type="submit">{this.props.text}</SubmitButton>
-        <ResetButton onClick={this.handleReset}>Reset</ResetButton>
+        <Button className="submit" type="submit">{this.props.text}</Button>
+        <Button className="reset" onClick={this.handleReset}>Reset</Button>
       </form>
     );
   }

@@ -27,58 +27,16 @@ margin: 8px 0;
 border-radius: 10px;
 `;
 
-export const RemoveButton = styled.button`
+export const Button = styled.button`
   background: white;
-  color: red;
+  color: black;
   border: 1px solid black;
-  margin: 8px 0;
+  margin: 0 1em;
   height: ${props => props.dimension || 30}px;
   width: ${props => props.dimension || 60}px;
 
   &:hover {
-    background-color: #ffb3b3;
+    background-color: #cbcbc8;
   }
   `;
-
-export const ModifyButton = styled.button`
-  background: white;
-  color: black;
-  border: 1px solid black;
-  margin: 0 1em;
-  height: ${props => props.dimension || 30}px;
-  width: ${props => props.dimension || 60}px;
-
-  &:hover {
-  background-color: #d6f5d6;
-  color: black;
-  }
-`;
-
-export const SubmitButton = styled.button`
-  background: black;
-  color: white;
-  border: 1px solid black;
-  margin: 8px 0;
-  height: ${props => props.dimension || 30}px;
-  width: ${props => props.dimension || 60}px;
-
-  &:hover {
-    background-color: #d6f5d6;
-    color: black;
-  }
-`;
-
-export const ResetButton = styled.button`
-  background: white;
-  color: black;
-  border: 1px solid black;
-  margin: 0 1em;
-  height: ${props => props.dimension || 30}px;
-  width: ${props => props.dimension || 60}px;
-
-  &:hover {
-    background-color: #f4ea7b;
-  }
-`;
-
 

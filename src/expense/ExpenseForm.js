@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { SubmitButton } from  '../styles/style';
 
 export default class ExpenseForm extends PureComponent {
 
@@ -34,5 +35,20 @@ export default class ExpenseForm extends PureComponent {
     this.setState({
       [input.expense]: input.value
     });
+  }
+
+  render(){
+    const { expense, amount } = this.state;
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <div>
+          <label>Expense Name:</label>
+          <input name="expense" value={expense} placeholder="Type of Expense" onChange={this.handleChange}/>
+          <label>Amount:</label>
+          <input name="amount" value={amount} placeholder="Amount Expensed" onChange={this.handleChange}/>>
+        </div>
+        <SubmitButton type="submit">{this.props.text}</SubmitButton>
+      </form>
+    );
   }
 }
