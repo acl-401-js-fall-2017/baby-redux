@@ -31,11 +31,12 @@ class CategoryItem extends PureComponent {
 
   handleAddExpense = event => {
 		event.preventDefault();
-		event = event.target;
+    event = event.target;
+    console.log('event.target', event);
 		const newExpense = {
       name: event.name.value,
       amount: event.expense.value,
-      budget: event.target.dataset.value
+      budget: event.dataset.value
     }
     this.props.addExpense(newExpense);
     event.reset();
@@ -58,7 +59,7 @@ class CategoryItem extends PureComponent {
         <h1>{category.name}</h1>
         <p>Budget - {category.budget}</p>
         <CategoryForm onComplete={this.handleUpdate(category)} buttonValue={'edit'}/>
-        <ExpenseForm onComplete={event => this.handleAddExpense(event)} buttonValue={'new expense'}/>
+        <ExpenseForm onComplete={event => this.handleAddExpense(event)} buttonValue={'new expense'} category={category}/>
         <input type="button" value="remove" onClick={() => this.handleRemove(category._id)}/>
         <input type="button" value="show expenses" onClick={() => this.loadExpenses(category._id) }/>
       </div>

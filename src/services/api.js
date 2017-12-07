@@ -8,7 +8,9 @@ const wrap = promise => {
 
 export default {
   get(path) {
-    console.log(`api: getting on path ${url}${path}` )
+    console.log('api url: ', url);
+    console.log('api path: ', path);
+    console.log(`api: getting on path ${url}${path}` );
     return wrap(
       fetch(`${url}${path}`, {
         method: 'get',

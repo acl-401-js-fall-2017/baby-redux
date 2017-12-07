@@ -15,11 +15,11 @@ export function loadExpenses(id) {
       }
 }
 
-
 export const addExpense = ({ name, amount, budget }) => {
   return { 
       type: actions.EXPENSE_ADD,
       payload: expensesApi.add({ name, amount, budget }).then(expense => {
+        console.log('addexpenese payload', { name, amount, budget })
         return {
          expense,
          categoryId: budget
