@@ -48,7 +48,7 @@ class Categories extends PureComponent {
 
 const mapStateToProps = (state) => ({
   state : state,
-  categories: state.categoryReducer,
+  categories: state.categories,
   error: state.categoriesError
 });
 
