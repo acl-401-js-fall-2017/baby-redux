@@ -52,3 +52,10 @@ export default class ExpenseForm extends PureComponent {
     );
   }
 }
+
+const Expenses = (category) =>{
+  <div>
+    <h1>Expenses for {category.name}</h1>
+    <Link to="/category/expenses"></Link>
+  </div>
+}

@@ -4,8 +4,6 @@ import { loadCategory, addCategory, updateCategory, removeCategory } from './act
 import CategoryForm from './CategoryForm';
 import Category from './Category';
 import { List } from '../styles/style';
-import styled from 'styled-components';
-
 
 class Categories extends PureComponent {
   
