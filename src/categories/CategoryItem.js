@@ -7,6 +7,7 @@ import ExpenseItem from '../expenses/ExpenseItem';
 import { connect } from 'react-redux';
 
 class CategoryItem extends PureComponent {
+  
   constructor(){
     super();
     this.state = {

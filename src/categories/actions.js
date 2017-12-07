@@ -5,12 +5,8 @@ import expensesApi from '../services/expensesApi';
 import categories from './reducers';
 
 
-export function loadCategories() {
+export const loadCategories = () => {
       return { type: actions.CATEGORY_LOAD, payload: categoriesApi.get() }
-}
-
-export function loadExpenses() {
-  return { type: actions.CATEGORY_LOAD, payload: expensesApi.get() }
 }
 
 export const addCategory = ({ name, budget }) => {
