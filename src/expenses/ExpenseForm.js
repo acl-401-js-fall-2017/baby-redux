@@ -41,7 +41,7 @@ export default class ExpenseForm extends PureComponent {
           <div className="column is-third">
             <input name="amount" value={amount} placeholder={'Amount'} onChange={this.handleChange}/>
           </div>
-          <div className="column"><button type="submit">{this.props.text}</button></div>
+          <div className="column"><button className="button" type="submit">{this.props.text}</button></div>
         </div>
       </form>
     );
