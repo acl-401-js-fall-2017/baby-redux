@@ -4,9 +4,11 @@ import expensesApi from '../services/expensesApi';
 
 
 export function loadExpenses(id) {
+    console.log('LOADING EXPENSES WITH ID ', id);
       return { 
           type: actions.EXPENSE_LOAD,
           payload: expensesApi.get(id).then( expenses => {
+            console.log('loadexpenses expense:...', expenses)
             return {
               expenses,
               categoryId: id

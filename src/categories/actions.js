@@ -22,5 +22,5 @@ export const removeCategory = (id) => {
 }
 
 export const updateCategory = (category) => {
-      return { type: actions.CATEGORY_UPDATE, payload: categoriesApi.update(category) }
+      return { type: actions.CATEGORY_UPDATE, payload: categoriesApi.update(category).then(()=> category) }
 }

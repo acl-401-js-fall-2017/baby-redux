@@ -5,7 +5,7 @@ export function expenses(state = {}, { type, payload }) {
     
     switch (type) {
     case actions.EXPENSE_ADD:
-    state[payload.categoryId] = [];
+    state[payload.categoryId] = state[payload.categoryId] ? state[payload.categoryId] : [];
     console.log('state', state);
     console.log('payload', payload);
     console.log('payload.categoryId', payload.categoryId)
