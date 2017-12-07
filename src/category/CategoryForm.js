@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { StyledButton, StyledFormDiv } from '../styles/styled';
+import { StyledButton, FormStyled } from '../styles/styled';
+import styled from 'styled-components';
 
 export default class CategoryForm extends PureComponent {
 
@@ -45,17 +46,21 @@ export default class CategoryForm extends PureComponent {
       const { name, budget } = this.props;
 
       return (
-        <form onSubmit={this.handleSubmit}>
-          <StyledFormDiv>
+
+        <div>
+          <FormStyled onSubmit={this.handleSubmit}>
             <div>
+              <div>
             Name: <input name="name" value={name} onChange={this.handleChange} required/>
-            </div>
-            <div>
+              </div>
+              <div>
             Budget: <input name="budget" value={budget} onChange={this.handleChange} required/>
+              </div>
+              <StyledButton className="propsbtn" type="submit">{this.props.text}</StyledButton>
             </div>
-            <StyledButton type="submit">{this.props.text}</StyledButton>
-          </StyledFormDiv>
-        </form>
+          </FormStyled>
+        </div>
+
       );
     }
 }
