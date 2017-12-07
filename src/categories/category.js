@@ -28,7 +28,7 @@ class Category extends Component {
     const { categories, removeCategory } = this.props;
     return (
       <div className="container is-fluid">
-        <h1 className="title">Add a new expense category</h1>
+        <h3>Add a new expense category</h3>
         <AddForm onComplete={this.handleAdd}/>
         {this.props.loading && 
             <div className="loader"  style={{ fontSize:'36px' }}>
