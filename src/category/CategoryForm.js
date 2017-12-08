@@ -26,7 +26,7 @@ export default class CategoryForm extends PureComponent {
   handleSubmit = event => {
     event.preventDefault();
     const { id, timestamp, name, budget } = this.state;
-    this.props.onComplete({ id, timestamp, name, budget });
+    this.props.onComplete({ _id: id, timestamp, name, budget });
     event.target.reset();
   }   
 
@@ -52,7 +52,7 @@ export default class CategoryForm extends PureComponent {
     return (
       <form onSubmit={this.handleSubmit}>
         <div>
-        Name: <input name="name" value={name} onChange={this.handleChange}/>
+        Category/Name: <input name="name" value={name} onChange={this.handleChange}/>
         </div>
         <div>
           Budget: <input name="budget" value={budget} onChange={this.handleChange}/>
