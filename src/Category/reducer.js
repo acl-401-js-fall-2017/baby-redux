@@ -20,8 +20,12 @@ export function budgetsActions(state = [], { type, payload }) {
 
 
 
-export function budgetsLoading(state = false, { type, payload }) {
+export function budgetsLoading(state = false, { type }) {
   switch(type) {
+    case actions.LOADING:
+      return true;
+    case actions.BUDGET_LOAD:
+      return false;
     default:
       return state;
   }

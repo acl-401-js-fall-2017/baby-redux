@@ -43,7 +43,7 @@ export default class BudgetForm extends PureComponent {
               Name: <input name="name" value={name} onChange={this.handleChange} required/>
           </div>
           <div>
-              Amount: <input type="number" name="amount" value={amount} onChange={this.handleChange} required/>
+              Amount: <input  name="amount" value={amount} onChange={this.handleChange} required/>
           </div>
           <button type="submit">{this.props.text}</button>
         </form>
