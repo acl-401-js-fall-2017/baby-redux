@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addCategory, updateCategory, loadCategory, removeCategory } from './actions';
-import BudgetForm from './budgetForm';
+import { addCategory, updateCategory, loadCategory, testCondition, removeCategory } from './actions';
+import BudgetForm from './BudgetForm';
 
 function mapStateToProps(state) {
   return {
@@ -10,10 +10,11 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  onaddCategory: addCategory,
+  addCategory,
   updateCategory,
   removeCategory,
-  loadCategory
+  loadCategory,
+  testCondition
 };
 
 class Budget extends PureComponent {
@@ -21,9 +22,8 @@ class Budget extends PureComponent {
   componentDidMount() {
     this.props.loadCategory();
   }
-  
   handleAdd = budget => {
-    this.props.onaddCategory(budget);
+    this.props.addCategory(budget);
   }
   handleUpdate = budget => {
     this.props.updateCategory(budget);
@@ -33,9 +33,20 @@ class Budget extends PureComponent {
   }
   
   render() {
-    const { budgets, error } = this.props;
+    const { budgets, loadCategory, testCondition, error } = this.props;
+
+    const showResponse = budgets
+      ? <pre>{JSON.stringify(budgets, true, 2)}</pre>
+      : <div>No response</div>;
+
     return (
       <div>
+        <button onClick= {() => testCondition({ wait: 1500 })}>
+        Load with wait
+        </button>
+        <button onClick={() => testCondition({ unexpected: true })}>
+          Load with Unexpected Error
+        </button>
         { error && <div className="error">{error}</div> }
         <BudgetForm onComplete={this.handleAdd} isAdd={true}/>
         <ul>
@@ -43,7 +54,7 @@ class Budget extends PureComponent {
             <li key={budget._id}>
               <h3>
                 For:{budget.name} Amount: ${budget.amount}
-                <button onClick={() => this.handleRemove(budget._id)}>X</button>
+                <button onClick={() => this.handleRemove(budget._id)}>⨂</button>
               </h3>  
               <BudgetForm budget={budget} text="Update"
                 onComplete={this.handleUpdate} isAdd={false}/>
@@ -53,9 +64,6 @@ class Budget extends PureComponent {
     );
   }
 }
-
-
-
 
 export default connect(
   mapStateToProps,

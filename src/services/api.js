@@ -1,4 +1,4 @@
-
+import qs from 'query-string';
 const url = '/api';
 
 const asyncWrap = async promise => {
@@ -50,5 +50,11 @@ export default {
         method: 'delete'
       })    
     );
+  }
+};
+
+export const responseApi = {
+  get(options = {}) {
+    return applicationCache.get(`/test?${qs.stringify(options)}`);
   }
 };
