@@ -19,16 +19,14 @@ export default class CategoryForm extends PureComponent {
         name: category.name || null,
         budget: category.budget || null,
         _id: category._id || null,
-        timestamp: category.timestamp
       };
     }
 
     handleSubmit = event => {
       event.preventDefault();
-      const { _id, timestamp, name, budget } = this.state;
+      const { _id, name, budget } = this.state;
       this.props.onComplete({
         _id,
-        timestamp,
         name,
         budget
       });
@@ -46,13 +44,12 @@ export default class CategoryForm extends PureComponent {
       return (
         <form onSubmit={this.handleSubmit}>
           <div>
-            Name: <input name="name" value={name} onChange={this.handleChange}/>
+            Name: <input name="name" value={name} onChange={this.handleChange} required/>
           </div>
           <div>
-            Budget: <input name="budget" value={budget} onChange={this.handleChange}/>
+            Budget: <input name="budget" value={budget} onChange={this.handleChange} required/>
           </div>
           <button type="submit">{this.props.text}</button>
-
         </form>
       );
     }

@@ -1,27 +1,52 @@
 import * as actions from './constants';
-import shortid from 'shortid';
+import categoryApi from '../services/categories.api';
+
+export function loadCategories() {
+
+  return async dispatch => {
+
+    const categories = await categoryApi.get();
+
+    dispatch({
+      type: actions.CATEGORY_LOAD,
+      payload: categories
+    });
+  };
+}
 
 export function addCategory(category) {
 
-  category._id = shortid.generate();
-  category.timestamp = new Date();
-  
-  return {
-    type: actions.CATEGORY_ADD,
-    payload: category
+  return async dispatch => {
+    const { name, budget } = category;
+    const categories = await categoryApi.add({ name, budget });
+    dispatch({
+      type: actions.CATEGORY_ADD,
+      payload: categories
+    });
   };
 }
 
 export function updateCategory(category) {
-  return {
-    type: actions.CATEGORY_UPDATE,
-    payload: category
+
+
+  return async dispatch => {
+    const updatedCategory = await categoryApi.update(category);
+    dispatch({
+      type: actions.CATEGORY_UPDATE,
+      payload: updatedCategory
+    });
   };
 }
 
-export function removeCategory(id) {
-  return {
-    type: actions.CATEGORY_REMOVE,
-    payload: id
+export function removeCategory(_id) {
+
+  return async dispatch => {
+    const category = await categoryApi.remove(_id);
+    if(category.removed) {
+      dispatch({
+        type: actions.CATEGORY_REMOVE,
+        payload: { _id }
+      });
+    }
   };
 }
