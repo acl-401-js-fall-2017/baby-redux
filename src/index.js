@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent} from 'react';
 import ReactDOM from 'react-dom';
 import App from './app/App';
 import registerServiceWorker from './registerServiceWorker';
