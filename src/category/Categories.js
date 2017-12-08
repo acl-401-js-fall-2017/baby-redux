@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loadCategory, addCategory, updateCategory, removeCategory } from './actions';
 import CategoryForm from './CategoryForm';
@@ -28,17 +29,23 @@ class Categories extends PureComponent {
     const { categories, error } = this.props;   
     return (
       <div>
-        { error && <div className="error">{error}</div> }
-        <CategoryForm onComplete={this.handleAdd}/>
-        <List>
-          <h2>Budget List</h2>
-          {categories.map(category => (
-            <Category key={category._id} 
-              category={category} 
-              onRemove={this.handleRemove} 
-              onUpdate={this.handleUpdate}/>
-          )) }
-        </List>
+        <Route exact path="/" render={() => (
+          <div>
+            { error && <div className="error">{error}</div> }
+            <CategoryForm onComplete={this.handleAdd}/>
+            <List>
+              <h2>Budget List</h2>
+              {categories.map(category => (
+                <Category key={category._id} 
+                  category={category} 
+                  onRemove={this.handleRemove} 
+                  onUpdate={this.handleUpdate}/>
+              )) }
+            </List>
+          </div>
+        )}>
+        </Route>
+        <Route path="/expenses" />
       </div>
     );
   }

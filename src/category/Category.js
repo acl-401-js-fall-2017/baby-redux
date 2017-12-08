@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
 import CategoryForm from './CategoryForm';
 import { Button } from '../styles/style';
 
@@ -26,7 +25,7 @@ export default class Category extends PureComponent {
           <CategoryForm className="update" category={category} text="✎" onComplete={onUpdate}/>
           }
           <Button className="remove" onClick={() => onRemove(category._id)}>🗑</Button>
-          <Link to="/category/expenses"  className="expense" expense={category._id} onComplete={onUpdate}>Expense</Link>
+          <Button  className="expense" expense={category._id} onComplete={onUpdate}>Expense</Button>          {/* <Link to="/category/expenses"  className="expense" expense={category._id}>Expense</Link> */}
         </h4>
       </li>
     );
