@@ -19,7 +19,8 @@ export default class CategoryForm extends PureComponent {
       id: category._id ||'',
       timestamp: category.timestamp,
       name: category.name || '',
-      budget: category.budget || ''
+      budget: category.budget || '',
+      expense: category.expense
     };
   }
 
