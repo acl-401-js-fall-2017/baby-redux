@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Categories from '../category/Categories';
-import logo from '../logo.svg';
+import dollarCircle from '../images/dollarCircle.png';
 import './App.css';
 
 class App extends Component {
@@ -12,8 +12,8 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to Your Budget App</h1>
+            <img src={dollarCircle} className="App-logo" alt="logo" />
+            <h1 className="App-title">Your Mint Tracker</h1>
           </header>
           <Categories/>
           {loadSpinner && 

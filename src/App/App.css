@@ -1,3 +1,17 @@
+body {
+  background-color: white;
+  width: 980px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow: hidden;
+}
+
+@media screen and (max-width:940px) {
+  width: auto;
+}
+
 .App {
   text-align: center;
 }
@@ -57,4 +71,26 @@ main {
   font-family: monospace;
   font-size: 20px;
   font-weight: bold;
+}
+
+.remove {  
+  background: white;
+  color: red;
+}
+.remove:hover {
+      background-color: rgb(248, 213, 213);
+}
+
+.submit {  
+  background: black;
+  color: white;
+  margin: 8px 0;
+}
+.submit:hover {
+  color: black;
+}
+
+.expense {  
+  background: rgb(112, 110, 110);
+  color: white;
 }

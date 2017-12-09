@@ -2,6 +2,9 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { loadCategory, addCategory, updateCategory, removeCategory } from './actions';
 import CategoryForm from './CategoryForm';
+import Category from './Category';
+import { List } from '../styles/style';
+import styled from 'styled-components';
 
 
 class Categories extends PureComponent {
@@ -29,18 +32,15 @@ class Categories extends PureComponent {
       <div>
         { error && <div className="error">{error}</div> }
         <CategoryForm onComplete={this.handleAdd}/>
-        <ul>
-          <h2>Budget Category</h2>
+        <List>
+          <h2>Budget List</h2>
           {categories.map(category => (
-            <li key={category._id}>
-              <h4>
-                The budget for {category.name} is ${category.budget}
-                <button onClick={() => this.handleRemove(category._id)}>Remove</button>
-              </h4>
-              <CategoryForm category={category} text="Update"
-                onComplete={this.handleUpdate}/>
-            </li>)) }
-        </ul>
+            <Category key={category._id} 
+              category={category} 
+              onRemove={this.handleRemove} 
+              onUpdate={this.handleUpdate}/>
+          )) }
+        </List>
       </div>
     );
   }
@@ -48,7 +48,7 @@ class Categories extends PureComponent {
 
 const mapStateToProps = (state) => ({
   state : state,
-  categories: state.categoryReducer,
+  categories: state.categories,
   error: state.categoriesError
 });
 
