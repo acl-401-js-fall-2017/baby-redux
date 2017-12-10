@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import logo from '../money_box1600.png';
-import './App.css';
+import '../App.css';
 import Expense from '../category/Expense';
 import { connect } from 'react-redux';
-import { expensesLoading, expensesError } from '../category/reducer';
+// import { expensesLoading, expensesError } from '../category/reducer';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import PrivateRoute from './PrivateRoute';
+// import PrivateRoute from './PrivateRoute';
 import Home from '../home/Home';
 
 class App extends Component {
@@ -21,9 +21,9 @@ class App extends Component {
           <main>
             <Switch>
               <Route exact path="/" render={() => <Home />} />;
-              <Route path="/auth" render={() => <Auth />} />;
+              {/* <Route path="/auth" render={() => <Auth />} />;
               <PrivateRoute exact path="/" component={Categories} />;
-              <PrivateRoute path="/categories/:id" render={({ match }) => <CategoryDetail id={match.params.id} />} />;
+              <PrivateRoute path="/categories/:id" render={({ match }) => <CategoryDetail id={match.params.id} />} />; */}
               <Redirect to="/"/>
               <Expense/>
             </Switch>  

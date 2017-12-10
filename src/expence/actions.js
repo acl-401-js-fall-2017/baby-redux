@@ -1,7 +1,7 @@
 import *  as actions from './constants';
-import expensesApi from '../services/categories-api';
+import expensesApi from '../services/expenses-api';
 
-export function loadCategory(options) {
+export function loadExpense(options) {
   return async dispatch => {
     dispatch({ type: actions.CATEGORY_LOADING });
     try {
@@ -22,7 +22,7 @@ export function loadCategory(options) {
   };
 }
 
-export function addCategory(expense) {
+export function addExpense(expense) {
   return async dispatch => {
     try {
       const saved = await expensesApi.add(expense);
@@ -40,7 +40,7 @@ export function addCategory(expense) {
   };
 }
 
-export function updateCategory(expense) {
+export function updateExpense(expense) {
   return async dispatch => {
     try{
       const changed = await expensesApi.update(expense);
@@ -58,7 +58,7 @@ export function updateCategory(expense) {
   };
 }
 
-export function removeCategory(id) {
+export function removeExpense(id) {
   return async dispatch => {
     try {
       const remove = await expensesApi.remove(id);
@@ -76,7 +76,7 @@ export function removeCategory(id) {
   };
 }
 
-export function testCondition(options) {
+export function testExpense(options) {
   return async (dispatch, getState) => {
     dispatch({ type: actions.CATEGORY_LOADING });
     try {
