@@ -45,6 +45,10 @@ export default class ExpenseForm extends PureComponent {
       const { name, amount } = this.state;
       return (
         <form onSubmit={this.handleSubmit}>
+          {/* <div>
+              Name: <input name="category" value={category} onChange={this.handleChange}/>
+          </div>   
+ */}
           <div>
               Name: <input name="name" value={name} onChange={this.handleChange}/>
           </div>   
