@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { SubmitButton } from  '../styles/style';
+import { Button } from  '../styles/style';
 
 export default class ExpenseForm extends PureComponent {
 
@@ -47,15 +47,9 @@ export default class ExpenseForm extends PureComponent {
           <label>Amount:</label>
           <input name="amount" value={amount} placeholder="Amount Expensed" onChange={this.handleChange}/>>
         </div>
-        <SubmitButton type="submit">{this.props.text}</SubmitButton>
+        <Button type="submit">{this.props.text}</Button>
       </form>
     );
   }
 }
 
-const Expenses = (category) =>{
-  <div>
-    <h1>Expenses for {category.name}</h1>
-    <Link to="/category/expenses"></Link>
-  </div>
-}

@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loadExpense, addExpense, updateExpense, removeExpense } from './actions';
 import ExpenseForm from './ExpenseForm';
-import Category from './Category';
+// import Category from './Category';
 import { List } from '../styles/style';
 
 class Expenses extends PureComponent {
