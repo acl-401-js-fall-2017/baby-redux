@@ -1,31 +1,31 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export default class ExpenseForm extends PureComponent {
+export default class CategoryForm extends PureComponent {
 
     static PropTypes = {
-      expense: PropTypes.object,
+      category: PropTypes.object,
       onComplete: PropTypes.func.isRequired
     }
     
     static defaultProps = {
-      expense: {},
+      category: {},
       text: 'Add'
     }
 
     constructor(props) {
       super(props);
-      const { expense } = props;
+      const { category } = props;
       this.state = {
-        name: expense.name || '',
-        amount: expense.amount || ''
+        name: category.name || '',
+        amount: category.amount || ''
       };
     }
 
     handleSubmit = async event => {
       event.preventDefault();
       try {
-        const { _id } = this.props.expense;
+        const { _id } = this.props.category;
         const { name, amount } = this.state;
         this.props.onComplete({ _id, name, amount });
         if(this.props.isAdd === true){ this.setState({ name:'', amount:'' });}
@@ -35,9 +35,10 @@ export default class ExpenseForm extends PureComponent {
       }
     }
 
-    handleChange = async ({ target: input }) => {
+    handleChange = async (event) => {
+      const { name, value } = event.target;
       this.setState({
-        [input.name]: input.value
+        [name]: value
       });
     }
 
@@ -45,15 +46,11 @@ export default class ExpenseForm extends PureComponent {
       const { name, amount } = this.state;
       return (
         <form onSubmit={this.handleSubmit}>
-          {/* <div>
-              Name: <input name="category" value={category} onChange={this.handleChange}/>
-          </div>   
- */}
           <div>
-              Name: <input name="name" value={name} onChange={this.handleChange}/>
+            Name: <input name="name" value={name} onChange={this.handleChange}/>
           </div>   
           <div>
-              Amount: <input name="amount" value={amount} onChange={this.handleChange} />
+            Amount: <input name="amount" value={amount} onChange={this.handleChange} />
           </div> 
           <button type="submit">{this.props.text}</button>    
         </form>

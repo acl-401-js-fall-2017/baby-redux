@@ -1,19 +1,19 @@
-import *  as actions from './constants';
-import expensesApi from '../services/expenses-api';
+import *  as ACTIONS from './expense.constants';
+import expensesApi from '../../services/expenses-api';
 
 export function loadExpense(options) {
   return async dispatch => {
-    dispatch({ type: actions.CATEGORY_LOADING });
+    dispatch({ type: ACTIONS.EXPENSE_LOADING });
     try {
       const expenses = await expensesApi.get(options);
       dispatch({ 
-        type: actions.CATEGORY_LOAD,
+        type: ACTIONS.EXPENSE_LOAD,
         payload: expenses
       });
     }
     catch(err) {
       dispatch({
-        type: actions.CATEGORY_ERROR,
+        type: ACTIONS.EXPENSE_ERROR,
         payload: err
       });
       // check below line for random error;
@@ -27,13 +27,13 @@ export function addExpense(expense) {
     try {
       const saved = await expensesApi.add(expense);
       dispatch({
-        type: actions.CATEGORY_ADD,
+        type: ACTIONS.EXPENSE_ADD,
         payload: saved
       });
     }
     catch(err) {
       dispatch({
-        type: actions.CATEGORY_ERROR,
+        type: ACTIONS.EXPENSE_ERROR,
         payload: err
       });
     }
@@ -45,13 +45,13 @@ export function updateExpense(expense) {
     try{
       const changed = await expensesApi.update(expense);
       dispatch({
-        type: actions.CATEGORY_UPDATE,
+        type: ACTIONS.EXPENSE_UPDATE,
         payload: { changed }
       });
     }
     catch (err) {
       dispatch({
-        type: actions.CATEGORY_ERROR,
+        type: ACTIONS.EXPENSE_ERROR,
         payload: err
       });
     }  
@@ -63,36 +63,15 @@ export function removeExpense(id) {
     try {
       const remove = await expensesApi.remove(id);
       dispatch({
-        type: actions.CATEGORY_REMOVE,
+        type: ACTIONS.EXPENSE_REMOVE,
         payload: remove
       });
     }
     catch (err) {
       dispatch({
-        type: actions.CATEGORY_ERROR,
+        type: ACTIONS.EXPENSE_ERROR,
         payload: err
       });
     }   
-  };
-}
-
-export function testExpense(options) {
-  return async (dispatch, getState) => {
-    dispatch({ type: actions.CATEGORY_LOADING });
-    try {
-      const expenses = await expensesApi.testGet(options);
-      dispatch({
-        type: actions.CATEGORY_LOAD,
-        payload: getState().expenses
-      });
-    }
-    catch (err) {
-      dispatch({
-        type: actions.CATEGORY_ERROR,
-        payload: err
-      });
-      // check below line for random error;
-      throw err;
-    }
   };
 }

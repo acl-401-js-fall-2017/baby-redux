@@ -35,28 +35,25 @@ export default class ExpenseForm extends PureComponent {
       }
     }
 
-    handleChange = async ({ target: input }) => {
-      this.setState({
-        [input.name]: input.value
-      });
-    }
+  handleChange = async (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  }
 
-    render() {
-      const { name, amount } = this.state;
-      return (
-        <form onSubmit={this.handleSubmit}>
-          {/* <div>
-              Name: <input name="category" value={category} onChange={this.handleChange}/>
-          </div>   
- */}
-          <div>
+  render() {
+    const { name, amount } = this.state;
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <div>
               Name: <input name="name" value={name} onChange={this.handleChange}/>
-          </div>   
-          <div>
+        </div>   
+        <div>
               Amount: <input name="amount" value={amount} onChange={this.handleChange} />
-          </div> 
-          <button type="submit">{this.props.text}</button>    
-        </form>
-      );
-    }
+        </div> 
+        <button type="submit">{this.props.text}</button>    
+      </form>
+    );
+  }
 }

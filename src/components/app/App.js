@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import logo from '../money_box1600.png';
-import '../App.css';
-import Expense from '../category/Expense';
 import { connect } from 'react-redux';
-// import { expensesLoading, expensesError } from '../category/reducer';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import './App.css';
+import Expense from '../expense/Expense';
+// import { expensesLoading, expensesError } from '../category/reducer';
 // import PrivateRoute from './PrivateRoute';
 import Home from '../home/Home';
+import logo from '../../images/money_box1600.png';
 
 class App extends Component {
   render() {

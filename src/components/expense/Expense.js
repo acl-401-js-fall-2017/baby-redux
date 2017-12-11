@@ -1,52 +1,43 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addCategory, updateCategory, loadCategory, testCondition, removeCategory } from './actions';
+import { addExpense, updateExpense, loadExpense, removeExpense } from './expense.actions';
 import ExpenseForm from './ExpenseForm';
 
-function mapStateToProps(state) {
-  return {
-    expenses: state.expenses
-  };
-}
+const mapStateToProps = ({ expenses }) => ({
+  expenses
+});
 
 const mapDispatchToProps = {
-  addCategory,
-  updateCategory,
-  removeCategory,
-  loadCategory,
-  testCondition
+  addExpense,
+  updateExpense,
+  removeExpense,
+  loadExpense
 };
 
 class Expense extends PureComponent {
   
   componentDidMount() {
-    this.props.loadCategory();
+    this.props.loadExpense();
   }
   handleAdd = expense => {
-    this.props.addCategory(expense);
+    this.props.addExpense(expense);
   }
   handleUpdate = expense => {
-    this.props.updateCategory(expense);
+    this.props.updateExpense(expense);
   }
   handleRemove = id => {
-    this.props.removeCategory(id);
+    this.props.removeExpense(id);
   }
   
   render() {
-    const { expenses, loadCategory, testCondition, error } = this.props;
+    const { expenses, error } = this.props;
 
-    const showResponse = expenses
-      ? <pre>{JSON.stringify(expenses, true, 2)}</pre>
-      : <div>No response</div>;
+    // const showResponse = expenses
+    //   ? <pre>{JSON.stringify(expenses, true, 2)}</pre>
+    //   : <div>No response</div>;
 
     return (
       <div>
-        <button onClick= {() => testCondition({ wait: 1500 })}>
-        Load with wait
-        </button>
-        <button onClick={() => testCondition({ unexpected: true })}>
-          Load with Unexpected Error
-        </button>
         { error && <div className="error">{error}</div> }
         <ExpenseForm onComplete={this.handleAdd} isAdd={true}/>
         <ul>

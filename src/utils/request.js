@@ -1,5 +1,5 @@
-import store from './/store/index';
 import superagent from 'superagent';
+import store from '../data/store';
 
 let token = '';
 
@@ -24,20 +24,16 @@ const authWrap = cmd => cmd
     r => r.body,
     ({ response }) => {
       const { body, text } = response;
-      const error = body ? body.message || body.error || body : text;
+      const error = body 
+        ? body.message || body.error || body 
+        : text;
       throw error;
     }
   );
 
-export const request = {
-  get(url) {
-    return authWrap(superagent.get(`${API_URL}${url}`));
-  },
-  post(url, data) {
-    return authWrap(superagent.post(`${API_URL}${url}`).send(data));
-  },
-  delete(url) {
-    return authWrap(superagent.delete(`${API_URL}${url}`));
-  },
-
+export default {
+  get: (url) => authWrap(superagent.get(`${API_URL}${url}`)),
+  post: (url, data) => authWrap(superagent.post(`${API_URL}${url}`).send(data)),
+  put: (url, data) => authWrap(superagent.post(`${API_URL}${url}`).send(data)),
+  delete: (url) => authWrap(superagent.delete(`${API_URL}${url}`)),
 };

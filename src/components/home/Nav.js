@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signout } from '../auth/action';
+// import { signout } from '../auth/action';
 import styled from 'styled-components';
 
 const NavList = styled.ul`
@@ -17,7 +17,7 @@ const NavItem = styled.li`
 
 const NavLink = props => <Link style={{ color: 'green' }} {...props}/>;
 
-function Nav({ user, signout }) {
+const Nav = ({ user, signout }) => {
   return (
     <nav>
       <NavList>
@@ -25,14 +25,14 @@ function Nav({ user, signout }) {
         <NavItem><NavLink to="/caegories">Categories</NavLink></NavItem>  
         <NavItem>
           { user 
-            ? <NavLink to="/" onClick={singout}>Logout</NavLink>
+            ? <NavLink to="/" onClick={signout}>Logout</NavLink>
             : <NavLink to="/auth/signin">Login</NavLink>
           }
         </NavItem>  
       </NavList>
     </nav>    
   );
-}
+};
 
 export default connect(
   state => ({ user: state.auth.user }),
