@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
+import logo from '../../images/money_box1600.png';
+import Nav from './Nav';
 import SignUp from '../auth/SignUp';
 import SignIn from '../auth/SignIn';
 import Category from '../category/Category';
@@ -9,7 +11,6 @@ import Expense from '../expense/Expense';
 // import { expensesLoading, expensesError } from '../category/reducer';
 // import PrivateRoute from './PrivateRoute';
 import Home from '../home/Home';
-import logo from '../../images/money_box1600.png';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Welcome to Mr Hog's Expense</h1>
+            <Nav />
           </header>
           <main>
             <Switch>

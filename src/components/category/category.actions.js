@@ -5,10 +5,10 @@ export function loadCategory(options) {
   return async dispatch => {
     dispatch({ type: ACTIONS.CATEGORY_LOADING });
     try {
-      const expenses = await categoriesApi.get(options);
+      const category = await categoriesApi.get(options);
       dispatch({ 
         type: ACTIONS.CATEGORY_LOAD,
-        payload: expenses
+        payload: category
       });
     }
     catch(err) {
@@ -25,10 +25,10 @@ export function loadCategory(options) {
 export function addCategory(expense) {
   return async dispatch => {
     try {
-      const saved = await categoriesApi.add(expense);
+      const category = await categoriesApi.add(expense);
       dispatch({
         type: ACTIONS.CATEGORY_ADD,
-        payload: saved
+        payload: category
       });
     }
     catch(err) {
@@ -43,10 +43,10 @@ export function addCategory(expense) {
 export function updateCategory(expense) {
   return async dispatch => {
     try{
-      const changed = await categoriesApi.update(expense);
+      const category = await categoriesApi.update(expense);
       dispatch({
         type: ACTIONS.CATEGORY_UPDATE,
-        payload: { changed }
+        payload: category
       });
     }
     catch (err) {
@@ -61,10 +61,10 @@ export function updateCategory(expense) {
 export function removeCategory(id) {
   return async dispatch => {
     try {
-      const remove = await categoriesApi.remove(id);
+      const category = await categoriesApi.remove(id);
       dispatch({
         type: ACTIONS.CATEGORY_REMOVE,
-        payload: remove
+        payload: category
       });
     }
     catch (err) {

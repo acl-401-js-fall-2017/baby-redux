@@ -6,7 +6,8 @@ let token = '';
 const storage = window.localStorage;
 
 store.subscribe(() => {
-  const { token: newToken } = store.getState().auth;
+  // const { token: newToken } = store.getState().auth;
+  const { token: newToken } = {};
   if(newToken !== token) {
     token = newToken;
     token? storage.token = token : storage.clear('token');
@@ -34,6 +35,6 @@ const authWrap = cmd => cmd
 export default {
   get: (url) => authWrap(superagent.get(`${API_URL}${url}`)),
   post: (url, data) => authWrap(superagent.post(`${API_URL}${url}`).send(data)),
-  put: (url, data) => authWrap(superagent.post(`${API_URL}${url}`).send(data)),
+  put: (url, data) => authWrap(superagent.put(`${API_URL}${url}`).send(data)),
   delete: (url) => authWrap(superagent.delete(`${API_URL}${url}`)),
 };
