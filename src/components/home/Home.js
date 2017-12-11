@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 
 const GetStarted = () => (
   <p>
-    <Link to="/auth/signin">Sign in</Link>
+    <Link to="/signin">Sign in</Link>
     {' or'}
-    <Link to="/auth/signup">Sign up</Link>
+    <Link to="/signup">Sign up</Link>
     {' to get started. '}
   </p>
 );
