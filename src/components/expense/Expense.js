@@ -17,10 +17,13 @@ const mapDispatchToProps = {
 class Expense extends PureComponent {
   
   componentDidMount() {
-    this.props.loadExpense();
+    const { _id: category } = this.props.match.params;
+    this.props.loadExpense({ category });
   }
   handleAdd = expense => {
-    this.props.addExpense(expense);
+    const{ _id } = this.props.match.params;
+
+    this.props.addExpense({ ...expense, category: _id });
   }
   handleUpdate = expense => {
     this.props.updateExpense(expense);
@@ -31,10 +34,6 @@ class Expense extends PureComponent {
   
   render() {
     const { expenses, error } = this.props;
-
-    // const showResponse = expenses
-    //   ? <pre>{JSON.stringify(expenses, true, 2)}</pre>
-    //   : <div>No response</div>;
 
     return (
       <div>

@@ -32,7 +32,7 @@ class App extends Component {
               {/* <PrivateRoute exact path="/" component={Categories} /> */}
               <Route exact path="/categories" component={Category} />} />
               {/* <PrivateRoute path="/categories/:id" render={({ match }) => <CategoryDetail id={match.params.id} />} /> */}
-              <Route exact path="/categories/:id" component={Expense} />} />
+              <Route exact path="/categories/:_id" component={Expense} />} />
               <Redirect to="/" />
             </Switch>  
             {loading &&

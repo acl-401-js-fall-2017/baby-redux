@@ -1,16 +1,16 @@
 import request from '../utils/request';
 
 export default {
-  get: () => (
-    request.get('/expenses')
+  get: (query) => (
+    request.get('/expenses', query)
   ),
-  add: (expense) => (
-    request.post('/expenses', { name: expense.name, amount: expense.amount })
+  add: ({ name, amount, category }) => (
+    request.post('/expenses', { name, amount, category })
   ),
-  update: (expense) => (
-    request.put(`/expenses/${expense._id}`, { name: expense.name, amount: expense.amount })
+  update: ({ _id, name, amount }) => (
+    request.put(`/expenses/${_id}`, { name, amount })
   ),
-  remove: (id) => (
-    request.delete(`/expenses/${id}`)
+  remove: (_id) => (
+    request.delete(`/expenses/${_id}`)
   )
 };

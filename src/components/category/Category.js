@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { addCategory, updateCategory, loadCategory, removeCategory } from './category.actions';
 import CategoryForm from './CategoryForm';
 
@@ -13,7 +14,7 @@ const mapDispatchToProps = {
   addCategory,
   updateCategory,
   removeCategory,
-  loadCategory,
+  loadCategory
 };
 
 class Category extends PureComponent {
@@ -34,10 +35,6 @@ class Category extends PureComponent {
   render() {
     const { categories, loadCategory, error } = this.props;
 
-    const showResponse = categories
-      ? <pre>{JSON.stringify(categories, true, 2)}</pre>
-      : <div>No response</div>;
-
     return (
       <div>
         { error && <div className="error">{error}</div> }
@@ -46,7 +43,7 @@ class Category extends PureComponent {
           {categories.map(category => (
             <li key={category._id}>
               <h3>
-                For:{category.name} Amount: ${category.amount}
+                <Link to={`/categories/${category._id}`}> For: {category.name} Amount: ${category.amount} </Link>
                 <button onClick={() => this.handleRemove(category._id)}>⨂</button>
               </h3>  
               <CategoryForm category={category} text="Update"

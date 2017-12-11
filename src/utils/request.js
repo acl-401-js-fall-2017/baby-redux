@@ -33,7 +33,7 @@ const authWrap = cmd => cmd
   );
 
 export default {
-  get: (url) => authWrap(superagent.get(`${API_URL}${url}`)),
+  get: (url, query = {}) => authWrap(superagent.get(`${API_URL}${url}`).query(query)),
   post: (url, data) => authWrap(superagent.post(`${API_URL}${url}`).send(data)),
   put: (url, data) => authWrap(superagent.put(`${API_URL}${url}`).send(data)),
   delete: (url) => authWrap(superagent.delete(`${API_URL}${url}`)),
