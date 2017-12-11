@@ -3,28 +3,18 @@ import CategoryForm from '../categories/CategoryForm';
 import CategoryItem from '../categories/CategoryItem';
 
 import { connect } from 'react-redux';
-import { addCategory } from '../categories/actions';
-
-
-
+import { getCategories, addCategory } from '../categories/actions';
 
 
 class Dashboard extends PureComponent {
 
   componentDidMount() {
-    this.props.onAddCategory({
-      name: 'Black Friday',
-      budget: 300
-    });
-    this.props.onAddCategory({
-      name: 'Cyber Monday',
-      budget: 700
-    });
+    this.props.getCategories();
   }
 
   handleAdd = e => {
     e.preventDefault();
-    this.props.onAddCategory({
+    this.props.addCategory({
       name: e.target.name.value,
       budget: e.target.budget.value
     });
@@ -39,12 +29,14 @@ class Dashboard extends PureComponent {
           onComplete={this.handleAdd}
           buttonText={'Add'}
         />
-        {this.props.categories.map(cat => (
-          <CategoryItem
-            key={cat.id}
-            category={cat}
-          />
-        ))}
+        {
+          this.props.categories.map(cat => (
+            <CategoryItem
+              key={cat.id}
+              category={cat}
+            />
+          ))
+        }
       </div>
     );
   }
@@ -60,17 +52,12 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onAddCategory: newCategory => {
-      dispatch(addCategory(newCategory));
-    }
-  };
-}
-
 const ConnectedDash = connect(
   mapStateToProps,
-  mapDispatchToProps
+  {
+    addCategory,
+    getCategories
+  }
 )(Dashboard);
 
 export default ConnectedDash;

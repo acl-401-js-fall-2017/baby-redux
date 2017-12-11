@@ -6,10 +6,6 @@ import {
   updateCategory
 } from '../categories/actions';
 
-
-
-
-
 class CategoryItem extends PureComponent {
 
   handleDelete = id => () => this.props.onRemoveCategory({ id });
@@ -25,7 +21,6 @@ class CategoryItem extends PureComponent {
 
   render() {
     const { category } = this.props;
-    console.log(this.props.children);
     return (
       <article>
         <h3>{category.name}</h3>
