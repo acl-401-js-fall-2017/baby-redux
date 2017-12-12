@@ -1,0 +1,24 @@
+.error-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(226, 94, 94, 0.829);
+    border: 2px solid red;
+    box-sizing: border-box;
+    line-height: 2em;
+    text-align: left;
+    padding: 0 1em;
+    color: darkred;
+    overflow: wrap;
+}
+
+.remove-button {
+    position: absolute;
+    background-color: rgba(133, 3, 3, 0.534);
+    padding: 0 0.5em;
+    line-height: 2em;
+    top: 0;
+    right: 0;
+    height: 100%;
+    vertical-align: center;
+}
