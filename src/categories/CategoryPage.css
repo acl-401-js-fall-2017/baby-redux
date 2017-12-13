@@ -1,0 +1,30 @@
+h2 {
+  padding: 1.25em 1.25em 1em 1.25em;
+  background-color: #3E5363;
+  color: white; }
+
+ul {
+  list-style: none;
+  margin: 1.5em;
+  padding: 0; }
+
+.category-page-sidebar {
+  float: right;
+  height: fill;
+  width: 33%;
+  padding-top: 2em;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  justify-content: flex-start; }
+  .category-page-sidebar p {
+    width: 100%;
+    margin-bottom: 1.5em; }
+    .category-page-sidebar p .sidebar-keys {
+      display: inline-block;
+      width: 9em;
+      padding-right: 1em;
+      font-weight: bold; }
+    .category-page-sidebar p .sidebar-values {
+      display: inline-block;
+      width: 4em; }

@@ -1,5 +1,38 @@
 .Dashboard {
-    height: 100%;
-    width: 100%;
-    position: relative;
-}
+  height: 100%;
+  width: 100%;
+  position: relative; }
+
+.home-link {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  height: 50px;
+  width: 50px; }
+
+header {
+  padding: 2em 2em 1.5em 2em;
+  background-color: #3E5363;
+  color: white; }
+
+aside {
+  width: 100%;
+  padding: 0.5em 2em;
+  background: #B8CEE0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center; }
+  aside .category-bar-divider {
+    height: 75%;
+    width: 2px;
+    background: #3E5363; }
+
+.category-list {
+  width: 100%;
+  border: solid white 8px; }
+  .category-list table, .category-list tbody {
+    width: 100%; }
+    .category-list table th, .category-list tbody th {
+      background: #3E5363;
+      color: white;
+      padding: 0.4em; }

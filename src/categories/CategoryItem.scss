@@ -1,0 +1,14 @@
+@import '../styles/colors';
+
+
+tr:nth-child(2n-1) {
+    background-color: $ziggurat;
+}
+
+td {
+    text-align: center;
+}
+
+td:first-child {
+    text-decoration: underline;
+}

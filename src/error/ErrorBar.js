@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { clearError } from './actions';
-import './Error.css';
+import './ErrorBar.css';
 
-class Error extends PureComponent {
+class ErrorBar extends PureComponent {
   render() {
     return(
       <footer className="error-bar">
@@ -20,4 +20,4 @@ class Error extends PureComponent {
 export default connect(
   state => ({ error: state.error }),
   { clearError }
-)(Error);
+)(ErrorBar);

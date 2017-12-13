@@ -8,7 +8,7 @@ const renameIds = categories => !categories ? null : categories.map(category => 
   delete category._id;
   return category;
 });
-const renameId = category =>  {
+export const renameId = category =>  {
   category.id = category._id;
   delete category._id;
   return category;
@@ -19,21 +19,22 @@ export function getCategories() {
     
     dispatch({ type: LOADING });
     try{
-      const categories = await get();
-      if(categories.error) throw categories;
-  
+      const { categories, totalBudget } = await get();
+      
       dispatch({
         type: actions.CATEGORY_GET,
         payload: renameIds(categories)
+      });
+      dispatch({
+        type: actions.GET_TOTAL_BUDGET,
+        payload: totalBudget
       });
     }
     catch(err) {
       dispatch({
         type: ERROR,
-        payload: err.error
+        payload: err.stack
       });
-
-      throw err;
     }
     finally {
       dispatch({ type: LOADED });
@@ -47,7 +48,7 @@ export function addCategory(input) {
     dispatch({ type: LOADING });
     try {
       const newCategory = await add(input);
-      if(newCategory.error) throw newCategory.error;
+      console.log(newCategory);
 
       dispatch({
         type: actions.CATEGORY_ADD,
@@ -57,7 +58,7 @@ export function addCategory(input) {
     catch(err) {
       dispatch({
         type: ERROR,
-        payload: err
+        payload: err.stack
       });
     }
     finally {
@@ -73,7 +74,6 @@ export function removeCategory({ id }) {
     dispatch({ type: LOADING });
     try {
       const isRemoved = await remove(id);
-      if(isRemoved.error) throw isRemoved.error;
       
       if(isRemoved) dispatch({
         type: actions.CATEGORY_REMOVE,
@@ -83,7 +83,7 @@ export function removeCategory({ id }) {
     catch(err) {
       dispatch({
         type: ERROR,
-        payload: err
+        payload: err.stack
       });
     }
     finally {
@@ -102,7 +102,6 @@ export function updateCategory(category) {
     dispatch({ type: LOADING });
     try{
       const updated = await update(category);
-      if(updated.error) throw updated.error;
       
       if(Object.keys(updated).length !== 0)
         dispatch({
@@ -113,7 +112,7 @@ export function updateCategory(category) {
     catch(err) {
       dispatch({
         type: ERROR,
-        payload: err
+        payload: err.stack
       });
     }
     finally {

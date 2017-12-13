@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 import CategoryForm from './CategoryForm';
 import { connect } from 'react-redux';
 import {
   removeCategory,
   updateCategory
 } from '../categories/actions';
+import './CategoryItem.css';
 
 class CategoryItem extends PureComponent {
 
@@ -20,18 +22,25 @@ class CategoryItem extends PureComponent {
   }
 
   render() {
-    const { category } = this.props;
+    const { category, match: { match: { url } } } = this.props;
+
     return (
-      <article>
-        <h3>{category.name}</h3>
-        <p>Budget: ${category.budget}</p>
-        <p>Last Update: {JSON.stringify(category.timestamp)}</p>
-        <input type="button" value="delete" onClick={this.handleDelete(category.id)}/>
-        <CategoryForm
-          onComplete={this.handleUpdate(category)}
-          buttonText={'Update'}
-        />
-      </article>
+      <tr>
+        <td>
+          <Link to={url + category.name}>
+            {category.name}
+          </Link>
+        </td>
+        <td>${category.budget}</td>
+        <td>{JSON.stringify(category.timestamp)}</td>
+        <td>
+          <CategoryForm
+            onComplete={this.handleUpdate(category)}
+            onDelete={this.handleDelete(category.id)}
+            buttonText="update"
+          />
+        </td>
+      </tr>
     );
   }
 }
