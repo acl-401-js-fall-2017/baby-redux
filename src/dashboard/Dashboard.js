@@ -1,17 +1,14 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addCategory } from '../categories/actions';
+import { addCategory, loadCategories } from '../categories/actions';
 import CategoryForm from '../categories/CategoryForm';
 import CategoryItem from '../categories/CategoryItem';
+import categoriesApi from '../services/categoriesApi';
 
 class Dashboard extends PureComponent {
 
-  componentDidMount() {
-		const intialBudget = {
-      name: 'Groceries',
-      budget: 150
-    }
-    this.props.onAddCategory(intialBudget);
+  async componentDidMount() {
+    this.props.loadCategories();
   }
 
   handleAdd = event => {
@@ -21,7 +18,7 @@ class Dashboard extends PureComponent {
       name: event.name.value,
       budget: event.budget.value
     }
-    this.props.onAddCategory(newBudget);
+    this.props.addCategory(newBudget);
     event.reset();
   }
   
@@ -30,8 +27,8 @@ class Dashboard extends PureComponent {
     return (
       <div>
         <h1>Budget Dashboard</h1>
-        {this.props.categories.map(categoryItem => (
-			<CategoryItem key={categoryItem.id} category={categoryItem}/>
+        {this.props.categories.map((categoryItem, index) => (
+			<CategoryItem key={index} category={categoryItem}/>
 		))}
 		<br/>
 		<h4>create new budget</h4>
@@ -52,13 +49,18 @@ function mapDispatchToProps(dispatch) {
   return {
     onAddCategory: newCategory => {
       dispatch(addCategory(newCategory));
+    },
+    onLoadCategory: () => {
+      dispatch(loadCategories());
     }
   };
 }
 
 const ConnectedDash = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  state => ({
+    categories: state
+  }),
+  { addCategory, loadCategories }
 )(Dashboard);
 
 export default ConnectedDash;

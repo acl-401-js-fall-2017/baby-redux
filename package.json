@@ -2,6 +2,7 @@
   "name": "budget-tracker",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3000",
   "dependencies": {
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
@@ -9,6 +10,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
     "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "shortid": "^2.2.8"
   },
   "scripts": {
