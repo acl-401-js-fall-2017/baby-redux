@@ -1,11 +1,21 @@
 import { removeCategory, updateCategory } from '../categories/actions';
+import { removeExpense, updateExpense, addExpense, loadExpenses } from '../expenses/actions';
 import React, { PureComponent } from 'react';
 import CategoryForm from './CategoryForm';
+import ExpenseForm from '../expenses/ExpenseForm';
+import ExpenseItem from '../expenses/ExpenseItem';
 import { connect } from 'react-redux';
 
 class CategoryItem extends PureComponent {
-  
-  handleUpdate = category => event => {
+
+  constructor(){
+    super();
+    this.state = {
+      showExpenses: false
+    };
+  }
+
+  handleUpdateCategory = category => event => {
     event.preventDefault();
     const update = {
       ...category,
@@ -13,18 +23,54 @@ class CategoryItem extends PureComponent {
       budget: event.target.budget.value
     }
     this.props.updateCategory(update);
+    event.target.reset();
+  }
+
+  handleAddExpense = event => {
+		event.preventDefault();
+		const newExpense = {
+      name: event.target.name.value,
+      amount: event.target.expense.value,
+      budget: event.target.dataset.value
+    }
+    this.props.addExpense(newExpense);
+    event.target.reset();
   }
   
   handleRemove = id => this.props.removeCategory(id);
 
+  loadExpenses = id => {
+    this.setState({ showExpenses: !this.state.showExpenses })
+    return this.props.loadExpenses(id);
+  };
+
   render() {
-    const { category } = this.props;
+    const { category, expenses } = this.props;
+    const { showExpenses } = this.state;
+    const expenseList = expenses[category._id] && expenses[category._id].map((expense, index) => {
+      return (
+        <li key={index}>
+          <ExpenseItem expense={expense}/>
+        </li>
+      );
+    });
+    const Expenses = 
+      <div>
+        <ul>
+          {expenseList}
+        </ul>
+        <br/>
+          <ExpenseForm onComplete={event => this.handleAddExpense(event)} buttonValue={'+ Expense '} category={category}/>
+      </div>;
+  
     return (
       <div>
-        <h1>{category.name}</h1>
-        <p>Budget - {category.budget}</p>
-        <CategoryForm onComplete={this.handleUpdate(category)} buttonText={'edit'}/>
-        <input type="button" value="remove" onClick={() => this.handleRemove(category._id)}/>
+        <h2>{category.name}: ${category.budget}</h2>
+        <CategoryForm onComplete={this.handleUpdateCategory(category)} buttonValue={'Edit Category ‎✎'}/>
+        <input type="button" value="Delete Category" onClick={() => this.handleRemove(category._id)}/>
+        <input type="button" value={ showExpenses ? "Hide Expenses" : "Show Expenses"} onClick={() => this.loadExpenses(category._id) }/>
+        <br/>
+        {showExpenses && Expenses}
       </div>
     );
   }
@@ -32,8 +78,12 @@ class CategoryItem extends PureComponent {
 
 
 const connectedCategoryItem = connect(
-  null, 
-  { removeCategory, updateCategory }
+  state => ({
+    expenses: state.expenses,
+    loading: state.loading,
+    error: state.error
+  }), 
+  { removeCategory, updateCategory, loadExpenses, addExpense }
 )(CategoryItem);
 
 export default connectedCategoryItem;

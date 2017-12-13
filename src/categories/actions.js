@@ -1,63 +1,22 @@
 import shortid from 'shortid';
 import * as actions from './constants';
 import categoriesApi from '../services/categoriesApi';
+import expensesApi from '../services/expensesApi';
 import categories from './reducers';
 
 
-export function loadCategories() {
-  return async dispatch => {
-    try {
-      const loadedCategories = await categoriesApi.get();
-      console.log(`gotCategories: ${JSON.stringify(loadedCategories)}`);
-      dispatch({ type: actions.CATEGORY_LOAD, payload: loadedCategories });
-    }
-    catch(error){
-      dispatch({ type: actions.CATEGORY_ERROR, payload: error });
-    }
-  }
+export const loadCategories = () => {
+      return { type: actions.CATEGORY_LOAD, payload: categoriesApi.get() }
 }
 
 export const addCategory = ({ name, budget }) => {
-  return async (dispatch) => {
-    try {
-      const savedCategory = await categoriesApi.add({ name, budget })
-      console.log(`add a new category with: ${ savedCategory }`);
-      dispatch({
-        type: actions.CATEGORY_ADD,
-        payload: savedCategory
-      });
-    }
-    catch(error){
-      dispatch({ type: actions.CATEGORY_ERROR, payload: error });
-    }
-  }
-
+  return { type: actions.CATEGORY_ADD, payload: categoriesApi.add({ name, budget })}
 }
 
 export const removeCategory = (id) => {
-  return async (dispatch) => {
-    try {
-      const isRemoved = await categoriesApi.remove(id)
-      console.log(`delete successful?: ${ isRemoved.removed }`);
-      dispatch({ type: actions.CATEGORY_REMOVE, payload: id });
-    }
-    catch(error){
-      dispatch({ type: actions.CATEGORY_ERROR, payload: error });
-    }
-  }
+      return { type: actions.CATEGORY_REMOVE, payload: categoriesApi.remove(id).then(()=> id) }
 }
 
 export const updateCategory = (category) => {
-  return async (dispatch) => {
-    try {
-      const updatedBudget = await categoriesApi.update(category);
-      console.log(`update successful?: ${ updatedBudget }`);
-      dispatch({ type: actions.CATEGORY_UPDATE, payload: category });
-    }
-    catch(error){
-      dispatch({ type: actions.CATEGORY_ERROR, payload: error });
-    }
-  }
-  return { type: actions.CATEGORY_UPDATE, payload: category
-  };
+      return { type: actions.CATEGORY_UPDATE, payload: categoriesApi.update(category).then(()=> category) }
 }

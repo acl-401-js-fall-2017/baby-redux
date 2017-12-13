@@ -5,14 +5,20 @@ import { BrowserRouter as Router,
      Redirect
     } from 'react-router-dom';
 import Dashboard from './dashboard/Dashboard';
-
+import Load from './categories/Load';
+import { connect } from 'react-redux';
 import './App.css';
 
+
 class App extends Component {
+  
   render() {
+    const loader = this.props.loading ? 
+    <Load/>: null;
     return (
       <Router>
         <div className="App">
+        { loader }
           <Switch>
             <Route exact path="/" component={Dashboard}/>>
             <Redirect to="/"/>
@@ -23,4 +29,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const connectedApp = connect(
+  state => ({
+    loading: state.loading,
+    error: state.error
+  }), 
+  null
+)(App);
+
+export default connectedApp;

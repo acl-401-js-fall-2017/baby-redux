@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 
 export default class CategoryForm extends PureComponent {
-
   render() {
     const { onComplete, buttonValue } = this.props;
     return (
