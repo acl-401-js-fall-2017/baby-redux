@@ -4,6 +4,7 @@ import { addCategory, loadCategories } from '../categories/actions';
 import CategoryForm from '../categories/CategoryForm';
 import CategoryItem from '../categories/CategoryItem';
 import categoriesApi from '../services/categoriesApi';
+import Load from '../categories/Load';
 
 class Dashboard extends PureComponent {
 
@@ -23,42 +24,33 @@ class Dashboard extends PureComponent {
   }
   
   render() {
-
+    const cats = this.props.categories.map((categoryItem, index) => (
+			<CategoryItem key={index} category={categoryItem}/>
+    ));
+    
+    
     return (
       <div>
-        <h1>Budget Dashboard</h1>
-        {this.props.categories.map((categoryItem, index) => (
-			<CategoryItem key={index} category={categoryItem}/>
-		))}
-		<br/>
-		<h4>create new budget</h4>
-		<CategoryForm onComplete={this.handleAdd} buttonText={'create'}/>
+        <div>
+          <h1>Budget Dashboard</h1>
+            {cats}
+          <br/>
+        <h4>create new budget</h4>
+        <CategoryForm onComplete={this.handleAdd} buttonText={'create'}/>
+      </div>
       </div>
     );
   }
 }
 
 
-function mapStateToProps(state) {
-  return {
-    categories: state
-  };
-}
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onAddCategory: newCategory => {
-      dispatch(addCategory(newCategory));
-    },
-    onLoadCategory: () => {
-      dispatch(loadCategories());
-    }
-  };
-}
 
 const ConnectedDash = connect(
   state => ({
-    categories: state
+    categories: state.categories,
+    loading: state.loading,
+    error: state.error
   }),
   { addCategory, loadCategories }
 )(Dashboard);
