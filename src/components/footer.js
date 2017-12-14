@@ -2,11 +2,11 @@ import React from 'react';
 
 export default function Footer() {
   return (
-    <footer id="fix-footer" className="footer hero is-primary">
+    <footer className="footer hero is-primary">
       <div className="container">
         <div className="content has-text-centered">
           <p>
-            <strong>Budget Tracker</strong> by <a href="https://github.com/erdemkoral/">Erdem Koral</a>           
+            <h3>Budget Tracker</h3> by <a href="https://github.com/erdemkoral/">Erdem Koral</a>           
           </p>
         </div>
       </div>

@@ -7,7 +7,7 @@ export default function About() {
       <div class="tile is-ancestor">
         <div class="tile is-parent">
           <div class="tile is-child box hero is-light">
-            <h3 class="title">About this incredible budget tracker</h3>
+            <h3>About this incredible budget tracker</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
          Amet porttitor eget dolor morbi non arcu risus quis. Nibh mauris cursus mattis molestie a iaculis. Nibh venenatis cras sed 
          felis eget velit aliquet sagittis. Risus commodo viverra maecenas accumsan lacus. Sollicitudin ac orci phasellus egestas tellus
@@ -25,7 +25,7 @@ export default function About() {
         </div>
         <div class="tile is-4 is-vertical is-parent">
           <div class="tile is-child box hero is-primary">
-            <p class="title">The Best Budget Tracker Ever...</p>
+            <h3>The Best Budget Tracker Ever...</h3>
             <p>Lorem Ipsum  Facilisi cras fermentum odio eu feugiat pretium nibh.
             Lacus suspendisse faucibus interdum posuere lorem ipsum. Vitae 
             justo eget magna fermentum iaculis. Aenean et tortor 
@@ -36,7 +36,7 @@ export default function About() {
             </p>
           </div>
           <div class="tile is-child box hero is-warning">
-            <p class="title">Track my expenses like a champ...</p>
+            <h3>Track my expenses like a champ...</h3>
             <p>Lorem Ipsum Amet massa vitae tortor condimentum lacinia quis vel. 
             Facilisi cras fermentum odio eu feugiat pretium nibh. 
             Lacus suspendisse faucibus interdum posuere lorem ipsum. 

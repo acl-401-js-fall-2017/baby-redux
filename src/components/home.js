@@ -7,7 +7,7 @@ export default function Home() {
       <section className="hero is-light">
         <div className="hero-body">
           <div className="container is-fluid">
-            <h3 className="title"> Home!</h3>
+            <h3> Home!</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
            Quam elementum pulvinar etiam non quam. Feugiat pretium nibh ipsum consequat nisl vel pretium lectus quam. Ullamcorper a lacus
             vestibulum sed arcu non odio euismod. Ullamcorper malesuada proin libero nunc consequat interdum varius sit amet. In hendrerit

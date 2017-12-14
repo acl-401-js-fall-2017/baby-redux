@@ -1,15 +1,38 @@
-@import "../node_modules/bulma/sass/utilities/initial-variables";
-@import "../node_modules/bulma/sass/utilities/functions";
+@import "../../node_modules/bulma/sass/utilities/initial-variables";
+@import "../../node_modules/bulma/sass/utilities/functions";
 
 $space: 20px;
+$height: 9rem;
 
 .need-space{
     height: $space;
 }
-#fix-footer {
+.navbar{
+    height: $height;
+    .navbar-item { 
+        font-size: 22px;
+        font-weight: bold;
+        &:hover {
+            text-decoration: underline;
+            font-size: 26px;
+        }
+    }
+}
+.footer {
     position: absolute;
     overflow:hidden;
     width: 100%;
+    height: $height;
   }
 
-@import "../node_modules/bulma/bulma";
+  .container {
+      font-size: 18px;
+      padding: 30px;
+      h3 {
+          font-size: 24px;
+          font-weight: bolder;
+          
+      }
+  }
+
+@import "../../node_modules/bulma/bulma";
