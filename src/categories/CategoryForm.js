@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { Button } from './component-library';
 
 export default class CategoryForm extends Component {
 
@@ -18,9 +20,7 @@ export default class CategoryForm extends Component {
     
     this.state = {
       name: category.name || '',
-      budget: category.budget || '',
-      // _id: category._id || null,
-      // timestamp: category.timestamp
+      budget: category.budget || ''
     };
   }
 
@@ -28,7 +28,6 @@ export default class CategoryForm extends Component {
     console.log('onFormPage', this.props.id);
     const { name, budget } = this.props;
     this.setState({ name, budget });
-    // this.setState({ name: this.props.name });
   } 
 
 
@@ -38,37 +37,56 @@ export default class CategoryForm extends Component {
     console.log('in handleSubmit', id);
     const { name, budget } = this.state;
     this.props.onComplete({ id, name, budget, editing });
-    event.target.reset();
+    // event.target.reset();
     this.setState({
       name: '',
       budget: ''
     });
   }
 
-  handleChange = ({ target: input }) => {
+  handleChange = ({ target }) => {
     this.setState({
-      [input.name]: input.value
+      [target.name]: target.value
     });
   }
 
   render() {
+    const styledButton = Button(this.props.text, 'submit');
     const { name, budget } = this.state;
     const { editing } = this.props;
     return(
       <div>
-        <form  className="form" onSubmit={this.handleSubmit}>
-          <fieldset className={this.props.text}>
+        <Form onSubmit={this.handleSubmit}>
+          <Fieldset text={this.props.text}>
             <legend>{this.props.text} a Category</legend>
             <div>
               <label>Name:&nbsp;</label>
-              <input name="name" className="input" value={name} onChange={this.handleChange}/>
+              <Input name="name" value={name} onChange={this.handleChange}/>
               <label>Budget:&nbsp;</label>
-              <input name="budget" className="input" value={budget} onChange={this.handleChange}/>
-              <button className="button" type="submit">{this.props.text}</button>
+              <Input name="budget" value={budget} onChange={this.handleChange}/>
+              {styledButton}
             </div>
-          </fieldset>
-        </form>
+          </Fieldset>
+        </Form>
       </div>
     );
   }
 }
+
+const Form = styled.form`
+  background-color: white;
+  padding: 30px;
+  margin: 30px;
+  `;
+
+const Fieldset = styled.fieldset`
+  padding: 20px;
+  color: ${props => props.text === 'Add' ? 'rgb(156, 23, 156)' : 'rgb(255, 50, 50)'}
+  `;
+
+const Input = styled.input`
+  margin-right: 30px;
+  color: blue;
+`;
+
+  

@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
 .App-header {
   background-color: #222;
   height: 150px;
@@ -14,72 +9,23 @@
   color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-.form, .table {
+ .form {
   margin: 30px;
 }
 
-#table {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-  margin-top: 40px;
+.loader {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: App-logo-spin infinite 1s linear;
 }
 
-#table td, #table th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
 
-#table tr:nth-child(even){background-color: #f2f2f2;}
-
-#table tr:hover {background-color: #ddd;}
-
-#table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: center;
-  background-color: rgb(130, 117, 173);
-  color: white;
-}
-
-.input {
-  margin-right: 30px;
-}
-
-.Add {
-  padding: 20px;
-  color: rgb(156, 23, 156);
-}
-
-.Update {
-  padding: 20px;
-  color: rgb(46, 20, 46);
-}
-
-.button {
-  padding: 5px;
-  font-size: 1.2 em;
-  font-weight: bold;
-  color: rgb(89, 10, 153);
-}
-
-.button:hover {
-  color: red;
-}
-
-.input {
-  color: blue;
-}

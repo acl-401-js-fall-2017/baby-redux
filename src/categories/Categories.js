@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addCategory, updateCategory, removeCategory, loadCategories } from './actions';
 import CategoryForm from './CategoryForm';
+import styled from 'styled-components';
+import { Button } from './component-library';
+import { backgroundColor, border } from './constants';
+
 
 class Categories extends Component {
 
@@ -9,7 +13,7 @@ class Categories extends Component {
     editing: false, 
     editingIndex: ''
   }
-
+  
   componentDidMount() {
     this.props.loadCategories();
   }
@@ -23,9 +27,6 @@ class Categories extends Component {
     console.log('inHandleShowUpdate', this.props.categories[index]);
     this.setState({ editing: true });
     this.setState({ editingIndex: index });
-    // const { name, budget } = this.state;
-    // this.state.onComplete({ name, budget });
-    // this.props.updateCategory(id);
   }
 
   handleSubmitUpdate = (category) => {
@@ -39,10 +40,11 @@ class Categories extends Component {
   }
 
   render() {
-    const { categories } = this.props;
+    const { categories, error } = this.props;
+    console.log('categories', categories);
     return (
       <div>
-        <table id="table">
+        <Table>
           <thead>
             <tr>
               <th>Category Name</th>
@@ -56,16 +58,14 @@ class Categories extends Component {
               <ListItem index={index} key={category._id} id={category._id} name={category.name} budget={category.budget} onShowUpdate={this.handleShowUpdate} onRemove={this.handleRemove}/>
             ))}
           </tbody>
-        </table>
+        </Table>
         { !this.state.editing ? <CategoryForm text="Add" onComplete={this.handleAdd}
         /> : []
-        }
-      
+        }      
         { this.state.editing ? <CategoryForm text="Update" editing={this.state.editing} id={categories[this.state.editingIndex]._id} name={categories[this.state.editingIndex].name} budget={categories[this.state.editingIndex].budget}
           onComplete={this.handleSubmitUpdate}
         /> : []
-        }
-          
+        }          
       </div>
     );
   }
@@ -75,21 +75,50 @@ class ListItem extends Component {
   
   render() {
     const { id, name, budget, onShowUpdate, onRemove, editing, index } = this.props;
+    const removeButton = Button('Remove', 'submit', () => {
+      console.log('in Button id', id);
+      onRemove(id);
+    });
+    const updateButton = Button('Update', 'submit', () => {
+      onShowUpdate(index);
+    });    
     return(
       <tr>
         <td>{ name }</td>
         <td>{ budget }</td>
-        <td><button className="button" onClick={() => onRemove(id)}>Remove</button></td>
-        <td><button className="button" onClick={() => onShowUpdate(index)}>Update</button></td>
+        <td>{removeButton}</td>
+        <td>{updateButton}</td>
       </tr>
     );
   }
 }
 
+const Table = styled.table`
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 40px;
+  > thead > tr {
+      border: ${border};
+      background-color: ${backgroundColor};
+      padding: 12px 8px; 
+      text-align: center;
+      color: white;
+  }
+  > tbody > tr {
+      &:nth-child(even){background-color: #f2f2f2;}
+      &:hover {background-color: #ddd;}
+      padding: 8px;
+      > td {
+        border: ${border};
+      }
+  }
+  `;
+
 function mapStateToProps(state) {
   console.log('in connect', state);
   return {
-    categories: state
+    categories: state.categories
   };
 }
 
