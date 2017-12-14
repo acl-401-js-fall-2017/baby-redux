@@ -1,0 +1,7 @@
+@import '../styles/bulma.scss';
+
+:local{
+  .columnhover:hover {
+  background-color: $highlight-color;
+  }
+}

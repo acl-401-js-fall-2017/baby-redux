@@ -40,7 +40,7 @@ export default class CategoryForm extends PureComponent {
           <div className="column is-third">
             <input name="budget" value={budget} placeholder={'budget'} onChange={this.handleChange}/>
           </div>
-          <div className="column"><button type="submit">{this.props.text}</button></div>
+          <div className="column"><button className="button" type="submit">{this.props.text}</button></div>
         </div>
       </form>
     );

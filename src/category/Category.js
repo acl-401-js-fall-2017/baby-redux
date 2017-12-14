@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { loadCategories, addCategory, updateCategory, removeCategory } from './actions';
-import Expenses from '../expenses/Expenses';
 import { Route, Link } from 'react-router-dom';
+import Expenses from '../expenses/Expenses';
 import CategoryForm from './CategoryForm';
-import 'bulma/css/bulma.css';
 import { ClipLoader } from 'react-spinners';
 
 class Category extends PureComponent {
@@ -57,7 +56,7 @@ class Category extends PureComponent {
                   onComplete={this.handleUpdate}/>
               </div>
               <div className="column">
-                <button onClick={() => this.handleRemove(c)}>X</button>
+                <button className="delete is-large" onClick={() => this.handleRemove(c)}>X</button>
               </div>
               <div className="column is-half">
               </div>

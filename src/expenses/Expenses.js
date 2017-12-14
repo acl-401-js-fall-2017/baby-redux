@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { addExpense, updateExpense, removeExpense, loadExpenses } from './actions';
 import ExpenseForm from './ExpenseForm';
 import expenseApi from '../services/expenses-api';
+import styled from 'styled-components';
+import styles from './Expenses.css';
 
 class Expenses extends Component {
   constructor() {
@@ -26,7 +28,7 @@ class Expenses extends Component {
     const { name, amount } = expense;
 
     await this.props.addExpense({ name, amount, category : id });
-    
+
     const expenses = await expenseApi.get(this.getCategoryId());
     this.setState({ expenses });
   }
@@ -54,7 +56,8 @@ class Expenses extends Component {
 
           <div key={expense._id} className='block'>
 
-            <div className='columns'>
+            {/* <div className={['columns', styles.columnhover].join(' ')}> */}
+            <div className={`columns ${styles.columnhover}`}>
 
               <div className='column'>
                 {expense.name}
@@ -70,7 +73,7 @@ class Expenses extends Component {
               </div>
 
               <div className="column">
-                <button onClick={() => this.handleRemove(expense)}>X</button>
+                <DeleteButton  className="delete is-large" onClick={() => this.handleRemove(expense)}>X</DeleteButton>
               </div>
 
             </div>
@@ -85,6 +88,10 @@ class Expenses extends Component {
   }
 }
 
+const DeleteButton = styled.button`
+  background-color: black;
+  color: red;
+`;
 
 function mapStateToProps(state) {
   return {
