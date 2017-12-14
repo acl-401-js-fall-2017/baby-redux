@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-export default class CategoryForm extends PureComponent {
+export default class ExpenseForm extends PureComponent {
 
   static defaultProps = {
     text: 'Add'
@@ -8,18 +8,19 @@ export default class CategoryForm extends PureComponent {
 
   constructor(props) {
     super(props);
-    const { category = {} } = props;
+    const { expense = {} } = props;
     this.state = {
-      name: category.name || '',
-      budget: category.budget || '',
-      _id: category._id || '',
+      name: expense.name || '',
+      amount: expense.amount || '',
+      category: this.props.id,
+      _id: expense._id || '',
     };
   }
-  
+
   handleSubmit = event => {
     event.preventDefault();
-    const { name, budget, _id } = this.state;
-    this.props.onComplete({ name, budget, _id });
+    const { name, amount, _id } = this.state;
+    this.props.onComplete({ name, amount, _id });
   }
 
   handleChange = ({ target: input }) => {
@@ -29,16 +30,16 @@ export default class CategoryForm extends PureComponent {
   }
 
   render() {
-    const { name, budget } = this.state;
+    const { name, amount } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="columns">
           <div className="column is-third">
-            <input name="name" value={name} placeholder={'name'} onChange={this.handleChange}/>
+            <input name="name" value={name} placeholder={'Name'} onChange={this.handleChange}/>
           </div>
 
           <div className="column is-third">
-            <input name="budget" value={budget} placeholder={'budget'} onChange={this.handleChange}/>
+            <input name="amount" value={amount} placeholder={'Amount'} onChange={this.handleChange}/>
           </div>
           <div className="column"><button type="submit">{this.props.text}</button></div>
         </div>

@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { loadCategories, addCategory, updateCategory, removeCategory } from './actions';
+import Expenses from '../expenses/Expenses';
+import { Route, Link } from 'react-router-dom';
 import CategoryForm from './CategoryForm';
 import 'bulma/css/bulma.css';
 import { ClipLoader } from 'react-spinners';
@@ -29,19 +31,44 @@ class Category extends PureComponent {
     const { category, loading, error } = this.props;
 
     const categories = (error) ? <h5 className="error">{error}</h5> : (
-      <table>
-        <tbody>
-          <tr><td><CategoryForm text="Add"
-            onComplete={this.handleAdd}/></td></tr>
-          {category.map(c => <tr key={c._id}>
-            <td>{c.name}</td>
-            <td>{c.budget}</td>
-            <td><CategoryForm category={c} text="Update"
-              onComplete={this.handleUpdate}/></td>
-            <td><button onClick={() => this.handleRemove(c)}>X</button></td>
-          </tr>)}
-        </tbody>
-      </table>
+      <div className="block">
+      
+        <div className="columns">
+          <div className="column"></div>
+          <div className="column">
+            <CategoryForm text="Add"
+              onComplete={this.handleAdd}/>
+          </div>
+          <div className="column"></div>
+        </div>
+
+        {category.map(c => { 
+          return (<div className="block" key={c._id}>
+            <div className="columns">
+
+              <div className="column">
+                <Link to={`/categories/${c._id}`}>{c.name}</Link>
+              </div>
+              <div className="column">
+                {c.budget}
+              </div>
+              <div className="column">
+                <CategoryForm category={c} text="Update"
+                  onComplete={this.handleUpdate}/>
+              </div>
+              <div className="column">
+                <button onClick={() => this.handleRemove(c)}>X</button>
+              </div>
+              <div className="column is-half">
+              </div>
+              
+            </div>
+            <Route path={`/categories/${c._id}`} render={() => <div className="column is-half"><Expenses id={c._id}/></div>}/>
+          </div>);    
+        })}
+
+
+      </div>
     );
 
     return (

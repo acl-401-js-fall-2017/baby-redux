@@ -1,5 +1,5 @@
 import reducer from './reducer';
-import { CATEGORY_ADD, CATEGORY_REMOVE, CATEGORY_UPDATE } from './constants';
+import { CATEGORY_ADD, CATEGORY_REMOVE, CATEGORY_UPDATE } from '../utils/constants';
 
 describe('Category reducer', ()=> {
 
