@@ -1,4 +1,4 @@
-Budget Categories
+Expense Categories
 ===
 
 ## Feature Tasks
@@ -10,7 +10,7 @@ In this application, a category should contain *(at least)* the following proper
 * `id` - a unique identifier (use `shortid`, or `uuid`)
 * `timestamp` - a date from when the category was created (use `new Date()`)
 * `name` - a string that is the name of the category
-* `budget` - a number that is the total amount of money in the category
+* `expense` - a number that is the total amount of money in the category
 
 ### Redux
 
@@ -72,7 +72,7 @@ The redux store should be created and the `<Provider>` component should wrap the
 * should use react-redux's `connect` to map state and dispatch methods to props
     * state: null
     * actions: removeCategory, updateCategory
-* should display the category's name and budget
+* should display the category's name and expense
 * should display a delete button
   * `onDelete` the category should be removed from the application state
 * should display a `CategoryForm`

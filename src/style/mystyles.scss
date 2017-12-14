@@ -1,0 +1,15 @@
+@import "../node_modules/bulma/sass/utilities/initial-variables";
+@import "../node_modules/bulma/sass/utilities/functions";
+
+$space: 20px;
+
+.need-space{
+    height: $space;
+}
+#fix-footer {
+    position: absolute;
+    overflow:hidden;
+    width: 100%;
+  }
+
+@import "../node_modules/bulma/bulma";
