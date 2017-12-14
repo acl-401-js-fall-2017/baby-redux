@@ -1,24 +1,22 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addCategory, updateCategory, removeCategory } from './actions';
+import { loadCategories, addCategory, updateCategory, removeCategory } from './actions';
 import CategoryForm from './CategoryForm';
 import 'bulma/css/bulma.css';
 class Category extends PureComponent {
 
   componentDidMount() {
-    this.props.addCategory({ name: 'Food', budget: 200 });
-    this.props.addCategory({ name: 'Data', budget: 150 });
-    this.props.addCategory({ name: 'Rent', budget: 800 });
-    this.props.addCategory({ name: 'Candles', budget: 3600 });
-    this.props.addCategory({ name: 'Utility', budget: 150 });
+    this.props.loadCategories();
   }
 
   handleUpdate = category => {
-    this.props.updateCategory(category);
+    const { _id, name, budget } = category;
+    this.props.updateCategory({ _id, name, budget });
   }
 
   handleAdd = category => {
-    this.props.addCategory(category);
+    const { name, budget } = category;
+    this.props.addCategory({ name, budget });
   }
 
   handleRemove = category => {
@@ -56,5 +54,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { addCategory, updateCategory, removeCategory }
+  { loadCategories, addCategory, updateCategory, removeCategory }
 )(Category);

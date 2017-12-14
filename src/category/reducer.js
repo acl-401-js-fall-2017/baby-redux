@@ -3,6 +3,10 @@ import * as actions from './constants';
 export default function category(state = [], { type, payload }) {
   switch (type) {
 
+  case actions.CATEGORY_LOAD:{
+    return payload;
+  }
+  
   case actions.CATEGORY_ADD:{
     return [
       ...state,
@@ -14,8 +18,9 @@ export default function category(state = [], { type, payload }) {
     return state.filter(c => c._id !== payload);
   }
 
-  case actions.CATEGORY_UPDATE:
+  case actions.CATEGORY_UPDATE:{
     return state.map(c => c._id === payload._id ? payload : c);
+  }
 
   default:
     return state;
