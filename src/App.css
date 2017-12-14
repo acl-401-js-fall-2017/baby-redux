@@ -22,6 +22,19 @@
   font-size: large;
 }
 
+.error {
+  font-family: monospace;
+  margin: 50px;
+  color: red;
+}
+
+.css-dpt9ar {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  color: #42f4b6;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
