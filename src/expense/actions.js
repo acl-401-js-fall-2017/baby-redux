@@ -1,4 +1,4 @@
-import * as actions from './constants';
+import * as actions from '../category/constants';
 import expenseApi from '../services/expense.api';
 
 export function loadExpense() {

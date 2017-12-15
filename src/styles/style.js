@@ -40,3 +40,16 @@ export const Button = styled.button`
   }
   `;
 
+export const Link = styled.link`
+  background: white;
+  color: black;
+  border: 1px solid black;
+  margin: 0 1em;
+  height: ${props => props.dimension || 30}px;
+  width: ${props => props.dimension || 60}px;
+
+  &:hover {
+    background-color: #cbcbc8;
+  }
+  `;
+

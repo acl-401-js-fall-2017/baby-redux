@@ -1,13 +1,13 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
+import { withRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loadCategory, addCategory, updateCategory, removeCategory } from './actions';
 import CategoryForm from './CategoryForm';
 import Category from './Category';
+import Expenses from '../expense/Expenses';
 import { List } from '../styles/style';
-import styled from 'styled-components';
 
-
-class Categories extends PureComponent {
+class Categories extends Component {
   
   componentDidMount() {
     this.props.loadCategory();
@@ -29,19 +29,24 @@ class Categories extends PureComponent {
   render() {
     const { categories, error } = this.props;   
     return (
-      <div>
-        { error && <div className="error">{error}</div> }
-        <CategoryForm onComplete={this.handleAdd}/>
-        <List>
-          <h2>Budget List</h2>
-          {categories.map(category => (
-            <Category key={category._id} 
-              category={category} 
-              onRemove={this.handleRemove} 
-              onUpdate={this.handleUpdate}/>
-          )) }
-        </List>
-      </div>
+      <Switch>
+        {/* <Route exact path="/expenses" component={Expenses}/> */}
+        <Route exact path="/" render={() => (
+          <div>
+            { error && <div className="error">{error}</div> }
+            <CategoryForm onComplete={this.handleAdd}/>
+            <List>
+              <h2>Budget List</h2>
+              {categories.map(category => (
+                <Category key={category._id} 
+                  category={category} 
+                  onRemove={this.handleRemove} 
+                  onUpdate={this.handleUpdate}/>
+              )) }
+            </List>
+          </div>
+        )}/>
+      </Switch>
     );
   }
 }
@@ -52,7 +57,7 @@ const mapStateToProps = (state) => ({
   error: state.categoriesError
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps, 
   { loadCategory, addCategory, updateCategory, removeCategory }     // = mapDispatchToProps, calling bindActionCreator under the hood
-)(Categories);
+)(Categories));
