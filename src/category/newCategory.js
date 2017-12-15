@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { addCategory } from './actions';
 import { Redirect } from 'react-router-dom';
 
-
 export class NewCategory extends PureComponent {
   
   state={

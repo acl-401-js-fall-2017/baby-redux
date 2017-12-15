@@ -15,29 +15,14 @@ export function categories(state = null, { type, payload }) {
       return state.map(p =>(
         p._id === payload._id ? { ...p, ...payload } : p
       ));
-    default:
-      return state;
-  }
-}
-
-export function error(state= null, { type, payload }) {
-  switch(type) {
-    case actions.ERROR:
-      return payload;
-    case actions.LOADING:
-      return null;
-    default:
-      return state;
-  }
-}
-
-export function loading (state = false, { type }) {
-  switch(type) {
-    case actions.LOADING:
-      return true;
-    case actions.LOADED:
-    case actions.ERROR:
-      return false;
+    case actions.EXPENSE_ADD:
+      return state.map(p =>(
+        p._id === payload.categoryId ? { ...p, expenses:[ ...p.expenses, payload.expense] } : p
+      ));
+    case actions.EXPENSE_REMOVE:
+      return state.map(p =>(
+        p._id === payload.categoryId ? { ...p, expenses:[ ...p.expenses.filter(e => e._id !== payload.expenseId)] } : p
+      ));
     default:
       return state;
   }

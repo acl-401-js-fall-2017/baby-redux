@@ -55,7 +55,3 @@ export default connect(
     category: ownProps.categoryToUpdate
   })
 )(UpdateForm);
-
-const UpdateDiv = styled.div`
-display: ${props => props.editing? 'flex' : 'none'}
-`;

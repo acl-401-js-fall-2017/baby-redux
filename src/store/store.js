@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware, compose, combineReducers, } from 'redux';
-import { categories , error, loading }  from './category/reducer';
+import { categories, }  from '../category/reducer';
+import { error, loading } from '../app/reducer';
 import thunk from 'redux-thunk';
-import promiseMiddlewear from './utils/promiseMiddlewear';
+import promiseMiddlewear from './promiseMiddlewear';
 
 const rootReducer = combineReducers({
   categories,

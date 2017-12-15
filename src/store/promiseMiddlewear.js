@@ -1,4 +1,4 @@
-import { LOADING, LOADED, ERROR } from '../category/constants';
+import { LOADING, LOADED, ERROR } from '../app/constants';
 const isPromise = val => val && typeof val.then === 'function';
 
 export default ({ dispatch }) => next => async action => {
