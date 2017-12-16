@@ -76,3 +76,38 @@ export const HeaderStyled = styled.header`
     text-align: center;
    }
 `;
+
+
+// ### Nav Styling #### //
+
+export const NavListStyled = styled.ul`
+margin: 0;
+padding: 0;
+`;
+
+export const NavItemStyled = styled.li`
+display: inline-block;
+list-style-type: none;
+margin: 10px;
+`;
+
+
+// ### Credential Styling ### //
+export const Form = styled.form`
+  text-align: center;
+  label {
+    display: block;
+  }
+  label, button {
+    padding: 5px;
+  }
+`;
+
+// ### Auth Styling ### //
+export const CenteredDiv = styled.div`
+  text-align: center;
+`;
+
+export const AuthError = styled.pre`
+  color: red;
+`;
