@@ -60,7 +60,6 @@ export default class CategoryForm extends PureComponent {
             </div>
           </FormStyled>
         </div>
-
       );
     }
 }
