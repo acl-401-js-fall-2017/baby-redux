@@ -17,7 +17,6 @@ describe('category reducers', () => {
   it('removes a category', () => {
     const category = { _id: 123, name: 'Zach' };
     const state = reducer([], { type: actions.CATEGORY_REMOVE, payload: category._id });
-    //const state = reducer([category], { type: actions.CATEGORY_REMOVE, payload: category._id });
     expect(state).toEqual([]);
   });
 

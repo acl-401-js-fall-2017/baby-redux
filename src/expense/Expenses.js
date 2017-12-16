@@ -27,7 +27,7 @@ class Expenses extends PureComponent {
               <div key={expense._id}>
                 <div>
                 Expense: {expense.name}
-                  {/* <br/> */}
+                
                 Cost: ${expense.cost}
                   <StyledButton className="removebtn" onClick={() => removeExpense(category._id, expense._id)}>Remove</StyledButton>
                 </div>
