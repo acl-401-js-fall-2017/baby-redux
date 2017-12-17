@@ -4,8 +4,6 @@ import { StyledButton } from '../styles/styled';
 import { addExpense, updateExpense, removeExpense, loadExpenses } from './actions';
 import ExpenseForm from './ExpenseForm';
 
-import styled from 'styled-components';
-
 class Expenses extends PureComponent {
 
   componentDidMount() {
@@ -46,7 +44,3 @@ export default connect(
   ({ expenses }) => ({ expenses }),
   { addExpense, removeExpense, updateExpense, loadExpenses }
 )(Expenses);
-
-const tableStyle = styled.table`
-  text-align: center;
-`;

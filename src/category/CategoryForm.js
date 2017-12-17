@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { StyledButton, FormStyled } from '../styles/styled';
-import styled from 'styled-components';
 
 export default class CategoryForm extends PureComponent {
 

@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { StyledButton } from '../styles/styled';
 import { addCategory, updateCategory, removeCategory, loadCategories } from './actions';
-import styled from 'styled-components';
 
 import CategoryForm from './CategoryForm';
 import Expenses from '../expense/Expenses';
