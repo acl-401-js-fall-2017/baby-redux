@@ -46,7 +46,3 @@ export default connect(
   ({ expenses }) => ({ expenses }),
   { addExpense, removeExpense, updateExpense, loadExpenses }
 )(Expenses);
-
-const tableStyle = styled.table`
-  text-align: center;
-`;
