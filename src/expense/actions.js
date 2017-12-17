@@ -17,8 +17,6 @@ export function addExpense(categoryId, data) {
   };
 }
 
-// TODO: remove function is not updating the DOM but is removing from server
-// Possible solution is to checkout categories reducer and see how the payload is being handled. 
 export function removeExpense(categoryId, expenseId) {
 
   return {

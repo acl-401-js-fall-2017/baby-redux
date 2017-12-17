@@ -4,8 +4,6 @@ import { StyledButton } from '../styles/styled';
 import { addExpense, updateExpense, removeExpense, loadExpenses } from './actions';
 import ExpenseForm from './ExpenseForm';
 
-import styled from 'styled-components';
-
 class Expenses extends PureComponent {
 
   componentDidMount() {
@@ -27,7 +25,7 @@ class Expenses extends PureComponent {
               <div key={expense._id}>
                 <div>
                 Expense: {expense.name}
-                  {/* <br/> */}
+                
                 Cost: ${expense.cost}
                   <StyledButton className="removebtn" onClick={() => removeExpense(category._id, expense._id)}>Remove</StyledButton>
                 </div>
