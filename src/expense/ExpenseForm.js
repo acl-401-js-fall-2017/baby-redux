@@ -2,11 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { StyledButton, FormStyled } from '../styles/styled';
 
-export default class CategoryForm extends PureComponent {
-
+export default class ExpenseForm extends PureComponent {
     static propTypes = {
-      category: PropTypes.object,
-      onComplete: PropTypes.func.isRequired
+      expense: PropTypes.object,
     }
 
     static defaultProps = {
@@ -15,23 +13,34 @@ export default class CategoryForm extends PureComponent {
 
     constructor(props) {
       super(props);
-      const { category = {} } = props;
+      const { expense = {} } = props;
+
       this.state = {
-        name: category.name || null,
-        budget: category.budget || null,
-        _id: category._id || null,
+        name: expense.name || null,
+        cost: expense.cost || null,
+        category: this.props.categoryId || null,
+        expense: expense._id || null
       };
     }
 
     handleSubmit = event => {
       event.preventDefault();
       const form = event.target;
-      const { _id, name, budget } = this.state;
-      this.props.onComplete({
-        _id,
-        name,
-        budget
-      });
+      const { category, expense, name, cost } = this.state;
+
+      if(this.props.addExpense) {
+        this.props.addExpense(category, {
+          category,
+          name,
+          cost
+        });
+      }
+      if(this.props.updateExpense) {
+        this.props.updateExpense(category, expense, {
+          name,
+          cost
+        });
+      }
       form.reset();
     }
 
@@ -42,10 +51,9 @@ export default class CategoryForm extends PureComponent {
     }
 
     render() {
-      const { name, budget } = this.props;
+      const { name, cost } = this.props;
 
       return (
-
         <div>
           <FormStyled onSubmit={this.handleSubmit}>
             <div>
@@ -53,9 +61,9 @@ export default class CategoryForm extends PureComponent {
             Name: <input name="name" value={name} onChange={this.handleChange} required/>
               </div>
               <div>
-            Budget: <input name="budget" value={budget} onChange={this.handleChange} required/>
+            Cost: <input name="cost" value={cost} onChange={this.handleChange} required/>
               </div>
-              <StyledButton className="propsbtn" type="submit">{this.props.text}</StyledButton>
+              <StyledButton className="addbtn" type="submit">{this.props.text}</StyledButton>
             </div>
           </FormStyled>
         </div>

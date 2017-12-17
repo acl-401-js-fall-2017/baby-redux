@@ -1,73 +1,31 @@
-import * as actions from './constants';
+import * as actions from '../app/constants';
 import categoryApi from '../services/categories.api';
 
+
 export function loadCategories() {
-
-  return async dispatch => {
-
-    const categories = await categoryApi.get();
-
-    dispatch({
-      type: actions.CATEGORY_LOAD,
-      payload: categories
-    });
+  return {
+    type: actions.CATEGORY_LOAD,
+    payload: categoryApi.get()
   };
 }
 
-export function addCategory(category) {
-
-  return async dispatch => {
-    const { name, budget } = category;
-    const categories = await categoryApi.add({ name, budget });
-    dispatch({
-      type: actions.CATEGORY_ADD,
-      payload: categories
-    });
+export function addCategory({ name, budget }) {
+  return {
+    type: actions.CATEGORY_ADD,
+    payload: categoryApi.add({ name, budget }).then(payload => ({ ...payload, showExpense: false }))
   };
 }
 
 export function updateCategory(category) {
-
-
-  return async dispatch => {
-    const updatedCategory = await categoryApi.update(category);
-    dispatch({
-      type: actions.CATEGORY_UPDATE,
-      payload: updatedCategory
-    });
+  return {
+    type: actions.CATEGORY_UPDATE,
+    payload: categoryApi.update(category).then(payload => ({ ...payload, showExpense: category.showExpense }))
   };
 }
 
 export function removeCategory(_id) {
-
-  return async dispatch => {
-    const category = await categoryApi.remove(_id);
-    if(category.removed) {
-      dispatch({
-        type: actions.CATEGORY_REMOVE,
-        payload: { _id }
-      });
-    }
-  };
-}
-
-export function loadingResponse(options) {
-  return async dispatch => {
-    dispatch({
-      type: actions.LOADING
-    });
-    try {
-      const response = await categoryApi.get(options);
-      dispatch({
-        type: actions.RESPONSE_LOAD,
-        payload: response
-      });
-    }
-    catch(err) {
-      dispatch({
-        type: actions.ERROR,
-        payload: err
-      });
-    }
+  return {
+    type: actions.CATEGORY_REMOVE,
+    payload: categoryApi.remove(_id)
   };
 }

@@ -1,4 +1,4 @@
-import * as actions from './constants';
+import * as actions from '../app/constants';
 
 export default function categories(state = [], { type, payload }) {
 

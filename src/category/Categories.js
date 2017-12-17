@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { StyledButton } from '../styles/styled';
 import { addCategory, updateCategory, removeCategory, loadCategories } from './actions';
 
 import CategoryForm from './CategoryForm';
+import Expenses from '../expense/Expenses';
 
 class Categories extends PureComponent {
 
@@ -12,34 +14,39 @@ class Categories extends PureComponent {
 
   render() {
     const { categories, updateCategory, addCategory, removeCategory } = this.props;
-    
+
     return (
+
       <div>
-        <CategoryForm onComplete={addCategory}/>
-        <ul>
-          {categories.map(category => (
-            <li key={category._id}>
-              <h4>
-                {category.name} with budget of: {category.budget}
-                <button onClick={() => removeCategory(category._id)}>Remove</button>
-              </h4>
-              <CategoryForm category={category} text="Update" 
-                onComplete={updateCategory}/>
-            </li>
-          ))}
-        </ul>
+        <h4>Add a Budget</h4>
+        <CategoryForm onComplete={addCategory}></CategoryForm>
+        {categories.map(category => (
+          <div key={category._id}>
+            <h4>
+              {category.name} with budget of: ${category.budget}
+            </h4>
+            {!category.showExpense && 
+                  <StyledButton className="expensebtn" onClick={() => updateCategory({ ...category, showExpense: true })}>
+                    Expenses
+                  </StyledButton> 
+            }
+            {category.showExpense && 
+                  <Expenses category={category}/>
+            }
+            {!category.showExpense &&
+                <StyledButton className="removebtn" onClick={() => removeCategory(category._id)}>Remove</StyledButton>
+            }
+            {!category.showExpense && <h5> Update {category.name}'s Budget </h5>}
+            {!category.showExpense && <CategoryForm category={category} text="Update" onComplete={updateCategory}/>}
+          </div>
+        ))}
       </div>
+
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    categories: state.categories
-  };
-}
-
 export default connect(
-  mapStateToProps,
+  ({ categories }) => ({ categories }),
   { addCategory, updateCategory, removeCategory, loadCategories }
 )(Categories);
