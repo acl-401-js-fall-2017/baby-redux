@@ -53,8 +53,6 @@ class App extends Component {
   }
 }
 
-
-
 export default connect(
   state => ({
     loading: state.expensesLoading,
