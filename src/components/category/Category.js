@@ -33,7 +33,7 @@ class Category extends PureComponent {
   }
   
   render() {
-    const { categories, loadCategory, error } = this.props;
+    const { categories, error } = this.props;
 
     return (
       <div>

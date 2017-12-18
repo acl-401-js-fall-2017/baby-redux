@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { signout } from '../auth/action';
 import styled from 'styled-components';
 
 const NavList = styled.ul`
@@ -36,5 +35,4 @@ const Nav = ({ user, signout }) => {
 
 export default connect(
   state => ({ user: {} }),
-  // { signout }
 )(Nav);
