@@ -8,8 +8,6 @@ import SignUp from '../auth/SignUp';
 import SignIn from '../auth/SignIn';
 import Category from '../category/Category';
 import Expense from '../expense/Expense';
-// import { expensesLoading, expensesError } from '../category/reducer';
-// import PrivateRoute from './PrivateRoute';
 import Home from '../home/Home';
 
 class App extends Component {
@@ -28,10 +26,7 @@ class App extends Component {
               <Route exact path="/" component={Home} />} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/signin" component={SignIn} />
-              {/* <Route path="/auth" render={() => <Auth />} /> */}
-              {/* <PrivateRoute exact path="/" component={Categories} /> */}
               <Route exact path="/categories" component={Category} />} />
-              {/* <PrivateRoute path="/categories/:id" render={({ match }) => <CategoryDetail id={match.params.id} />} /> */}
               <Route exact path="/categories/:_id" component={Expense} />} />
               <Redirect to="/" />
             </Switch>  
@@ -52,8 +47,6 @@ class App extends Component {
     );
   }
 }
-
-
 
 export default connect(
   state => ({

@@ -6,7 +6,6 @@ let token = '';
 const storage = window.localStorage;
 
 store.subscribe(() => {
-  // const { token: newToken } = store.getState().auth;
   const { token: newToken } = {};
   if(newToken !== token) {
     token = newToken;

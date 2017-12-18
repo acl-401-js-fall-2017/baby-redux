@@ -25,5 +25,4 @@ const Home = ({ user }) => {
 };
 
 export default connect(
-  // state => ({ user: state.auth.user })
 )(Home);
