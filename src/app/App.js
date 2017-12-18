@@ -8,23 +8,26 @@ import { keyframes } from 'styled-components';
 import styled from 'styled-components';
 import * as spinners from 'react-spinners';
 import Expenses from '../expenses/Expenses';
-
+import Routes from './Routes';
 class App extends Component {
   render() {
-    const { error, loading } = this.props;
+    const { error, loading, checkedToken } = this.props;
     return (
       <Router>
         <div>
-          <AppHeader>
-            <HeaderDiv>
-              <h1 className="App-title">Personalized Budget Tracker</h1>
-              <NavDiv>
-                <NavLink to ="/categories">Categories</NavLink>
-                <NavLink to ="/categories/newcategory">Add Category</NavLink>
-              </NavDiv>
-            </HeaderDiv>
-          </AppHeader>
-
+          {checkedToken && <div>
+            <AppHeader>
+              <HeaderDiv>
+                <h1 className="App-title">Personalized Budget Tracker</h1>
+                <NavDiv>
+                  <NavLink to ="/categories">Categories</NavLink>
+                  <NavLink to ="/categories/newcategory">Add Category</NavLink>
+                </NavDiv>
+              </HeaderDiv>
+            </AppHeader>
+          </div>
+          }
+          <Routes/>          
           {error && 
             <ErrorDiv>
               {Array.isArray(error)
@@ -38,12 +41,6 @@ class App extends Component {
             <spinners.ClipLoader size={90} />
           </LoadingDiv>
 
-          <Switch>
-            <Route path="/categories/newcategory" component={NewCategory}/>
-            <Route path="/categories" component={Categories}/>
-            <Route path="/category/:id/expenses" component={Expenses}/>
-          </Switch>
-
         </div>
       </Router>
     );
@@ -51,7 +48,11 @@ class App extends Component {
 }
 
 export default connect( 
-  state => ({ error: state.categoryError, loading: state.loading }),
+  state => ({ 
+    checkedToken: state.auth.checkedToken,
+    error: state.categoryError,
+    loading: state.loading
+  }),
   {}
 )(App);
 

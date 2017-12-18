@@ -1,30 +1,66 @@
 import * as actions from './constants';
 import authApi from '../services/auth-api';
-import { getStoredToken } from '../services/api'; 
+import { getStoredToken } from '../services/request';
 
 export function checkForToken() {
   return dispatch => {
     const token = getStoredToken();
     if(!token) {
-      dispatch({ type: actions.CHECKED_TOKEN });
+      dispatch({ type: actions.CHECKED_TOKEN });      
       return;
     }
+
     dispatch({ type: actions.GOT_TOKEN, payload: token });
-    
-    dispatch({ 
-      type: actions.FETCHED_USER,
-      payload: authApi.verify.then(() => authApi.getUser())
-    });
+
+    return authApi.verify()
+      .then(() => authApi.getUser())
+      .then(({ user }) => {
+        dispatch({ type: actions.SET_CURRENT_USER, payload: user });
+      })
+      .catch(error => {
+        dispatch({ type: actions.AUTH_FAILED, payload: error });
+      });
   };
 }
 
 export function signin(credentials) {
   return dispatch => {
-    dispatch({ 
-      type: actions.GOT_TOKEN,
-      payload: authApi.signin(credentials).then(({ token }) => token)
-    });
-
-    dispatch({ type: actions.FETCHED_USER, payload: authApi.getUser() });
+    authApi.signin(credentials)
+      .then(({ token }) => {
+        dispatch({ type: actions.GOT_TOKEN, payload: token });
+      })
+      .then(() => authApi.getUser())
+      .then(({ user }) => {
+        return dispatch({ type: actions.SET_CURRENT_USER, payload: user });
+      })
+      .catch(error => {
+        return dispatch({ type: actions.AUTH_FAILED, payload: error });
+      });
   };
+}
+
+export function signup(user) {
+  return dispatch => {
+    authApi.signup(user)
+      .then(({ token }) => {
+        dispatch({ type: actions.GOT_TOKEN, payload: token });
+      })
+      .then(() => authApi.getUser())
+      .then(({ user }) => {
+        dispatch({ type: actions.SET_CURRENT_USER, payload: user });
+      })
+      .catch(error => {
+        dispatch({ type: actions.AUTH_FAILED, payload: error });
+      });
+  };
+}
+
+export function UpdateProfile(data){
+  return {
+    type:actions.UPDATE_PROFILE,
+    payload: authApi.updateUser(data)
+  };
+}
+export function signout() {
+  return { type: actions.LOGOUT };
 }

@@ -1,22 +1,22 @@
-import api from './api';
+import { request } from './request';
 
 export default {
   get() {
-    return api.get('/categories');
+    return request.get('/categories');
   },
   post(category) {
-    return api.post('/categories', category);
+    return request.post('/categories', category);
   },
   update(id, update) {
-    return api.put(`/categories/${id}`, update);
+    return request.put(`/categories/${id}`, update);
   },
   remove(id) {
-    return api.delete(`/categories/${id}`);
+    return request.delete(`/categories/${id}`);
   },
   addExpense(id, expense){
-    return api.post(`/categories/${id}/expenses`, expense);
+    return request.post(`/categories/${id}/expenses`, expense);
   },
   removeExpense(id, expenseId){
-    return api.delete(`/categories/${id}/expenses/${expenseId}`);
+    return request.delete(`/categories/${id}/expenses/${expenseId}`);
   }
 };

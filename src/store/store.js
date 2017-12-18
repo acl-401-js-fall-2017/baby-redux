@@ -3,11 +3,13 @@ import { categories, }  from '../category/reducer';
 import { error, loading } from '../app/reducer';
 import thunk from 'redux-thunk';
 import promiseMiddlewear from './promiseMiddlewear';
+import auth from '../auth/reducer';
 
 const rootReducer = combineReducers({
   categories,
   error,
-  loading
+  loading,
+  auth
 });
 
 const composeEnchancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

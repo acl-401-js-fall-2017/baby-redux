@@ -12,10 +12,8 @@ class Expenses extends PureComponent {
     this.props.loadCategories();
   } 
 
-
   render() {
-
-    const { id } = this.props.match.params;
+    const id = this.props.id;
     const category = this.props.categories? this.props.categories.filter(p => p._id === id)[0]: {};
     
     if (!this.props.categories || !category) return <div></div>;

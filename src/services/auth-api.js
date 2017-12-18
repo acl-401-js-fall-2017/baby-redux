@@ -1,16 +1,16 @@
-import api from './api';
+import { request } from './request';
 
 export default {
   verify() {
-    return api.get('/auth/verify');
+    return request.get('/auth/verify');
   },
   signin(credentials) {
-    return api.post('/auth/signin', credentials);
+    return request.post('/auth/signin', credentials);
   },
   signup(user) {
-    return api.post('/auth/signup', user);
+    return request.post('/auth/signup', user);
   },
   getUser() {
-    return api.get('/me');
-  }
+    return request.get('/auth/getuser');
+  },
 };
