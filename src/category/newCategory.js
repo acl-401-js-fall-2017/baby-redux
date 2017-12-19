@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { addCategory } from './actions';
 import { Redirect } from 'react-router-dom';
+import styled from 'styled-components';
 
 export class NewCategory extends PureComponent {
   
@@ -27,14 +28,14 @@ export class NewCategory extends PureComponent {
 
   render() {
     return (
-      <div>
+      <StyledDiv>
         <form onSubmit={this.handleSubmit}>
           <input name="name" placeholder="name"/>
           <input name="budget" placeholder="budget"/>
           <button type="submit">Add</button>
         </form> 
         { this.state.redirect && (<Redirect to="/categories"/>) }
-      </div>
+      </StyledDiv>
     );
   }
 }
@@ -43,3 +44,7 @@ export default connect(
   state => ({ categories: state }),
   { addCategory }
 )(NewCategory);
+
+const StyledDiv = styled.div`
+text-align: center;
+`;

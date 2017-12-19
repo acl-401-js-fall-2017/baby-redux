@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addExpense, removeExpense } from './actions';
 import { loadCategories } from '../category/actions';
 import AddExpense from './AddExpense';
+import styled from 'styled-components';
 
 class Expenses extends PureComponent {
 
@@ -19,7 +20,7 @@ class Expenses extends PureComponent {
     if (!this.props.categories || !category) return <div></div>;
 
     return (
-      <div>
+      <StyledDiv>
         <h4> Expenses for {category.name} </h4>
         <h5> Budget is {category.budget} </h5>
         <AddExpense categoryToUpdate ={category}/>
@@ -34,7 +35,7 @@ class Expenses extends PureComponent {
                 ))
           }
         </ul>
-      </div>
+      </StyledDiv>
     );
   }
 }
@@ -43,4 +44,8 @@ export default connect(
   state => ({ categories: state.categories, error: state.categoryError }),
   { addExpense, loadCategories, removeExpense }
 )(Expenses);
+
+const StyledDiv = styled.div`
+text-align: center;
+`;
 

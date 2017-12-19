@@ -22,13 +22,13 @@ export class AddExpense extends PureComponent {
 
   render() {
     return (
-      <div>
+      <StyledDiv>
         <form onSubmit={this.handleSubmit}>
           <input name="name" placeholder={'Name'}/>
           <input name="amount" placeholder={'Amount'}/>
           <button type="submit">Add</button>
         </form> 
-      </div>
+      </StyledDiv>
     );
   }
 }
@@ -41,3 +41,7 @@ export default connect(
     category: ownProps.categoryToUpdate
   })
 )(AddExpense);
+
+const StyledDiv = styled.div`
+text-align: center;
+`;

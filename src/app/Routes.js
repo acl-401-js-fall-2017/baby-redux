@@ -4,7 +4,6 @@ import Auth from '../auth/Auth';
 import PrivateRoute from './PrivateRoute';
 import Category from '../category/Categories';
 import NewCategory from '../category/newCategory';
-import App from '../app/App';
 import Expenses from '../expenses/Expenses';
 
 export default () => (

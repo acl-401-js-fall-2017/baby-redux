@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
-import Categories from '../category/Categories';
-import './App.css';
-import NewCategory from '../category/newCategory';
+import { BrowserRouter as Router, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { keyframes } from 'styled-components';
 import styled from 'styled-components';
 import * as spinners from 'react-spinners';
-import Expenses from '../expenses/Expenses';
 import Routes from './Routes';
+import { checkForToken } from '../auth/actions';
+
+
 class App extends Component {
+  
+  componentDidMount() {
+    this.props.checkForToken();
+  }
+
   render() {
     const { error, loading, checkedToken } = this.props;
     return (
@@ -53,7 +56,7 @@ export default connect(
     error: state.categoryError,
     loading: state.loading
   }),
-  {}
+  { checkForToken }
 )(App);
 
 
@@ -64,6 +67,7 @@ margin-bottom: 5%;
 `;
 
 const HeaderDiv = styled.div`
+text-align: center;
 display: flex;
 flex-direction: column;
 `;
@@ -71,7 +75,6 @@ const ErrorDiv = styled.div`
 color: red;
 font-size: 50px;
 `;
-
 
 const NavDiv = styled.div`
 > :not(:first-child) {
@@ -82,22 +85,4 @@ const NavDiv = styled.div`
 const LoadingDiv = styled.div`
   display: ${props => props.show ? 'flex' : 'none'}; 
   justify-content: center;
-`;
-
-const rotate360 = keyframes`
-from {
-  transform: rotate(0deg);
-}
-
-to {
-  transform: rotate(360deg);
-}
-`;
-
-const HeaderIcon = styled.img`
-width: 10%;
-display: inline-block;
-animation: ${rotate360} 2s linear infinite;
-padding: 2rem 1rem;
-font-size: 1.2rem;
 `;

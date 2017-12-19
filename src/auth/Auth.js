@@ -14,18 +14,12 @@ class Auth extends PureComponent {
     if (this.props.user) return <Redirect to={redirect} />;
 
     return (
-      <div className="container">
-        <section className="hero is-dark">
-          <div className="hero-body">
-            <h1 className="title">Welcome!</h1>
-            <h2 className="subtitle">
-              <Link to="/auth/signin"> Sign In Here </Link> if you already
-              have an account with us or <Link to="/auth/signup">
-                Sign Up here
-              </Link>
-            </h2>
-          </div>
-        </section>
+      <StyledDiv>
+        <h1>Welcome!</h1>
+        <Link to="/auth/signin"> Sign In Here </Link> if you already
+          have an account with us or <Link to="/auth/signup">
+            Sign Up here
+        </Link>
         <Switch>
           <Route
             path="/auth/signin"
@@ -44,13 +38,8 @@ class Auth extends PureComponent {
             )}
           />
         </Switch>
-        <p style={{ margin:'auto', width: '50%' }}>
-          iTravel is a website for people to share their travel experiences and
-          connect with other travelers. Share your latest trip, connect with
-          fellow travelers or browse for inspiration for your next trip!
-        </p>
         {this.props.error && <Error>{this.props.error}</Error>}
-      </div>
+      </StyledDiv>
     );
   }
 }
@@ -67,4 +56,10 @@ export default withRouter(
 
 const Error = styled.pre`
   color: red;
+`;
+
+const StyledDiv = styled.div`
+  text-align: center;
+  margin: auto;
+  width: 50%;
 `;

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bulma": "^0.6.1",
     "bcryptjs": "^2.4.3",
     "express": "^4.16.2",
     "jsonwebtoken-promisified": "^1.0.3",
@@ -19,6 +20,8 @@
     "styled-components": "^2.2.4"
   },
   "scripts": {
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./src/styles src/ -o src/",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "exit 0",
