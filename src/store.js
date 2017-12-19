@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
-import auth from '../auth/reducers';
+import auth from './auth/reducer';
 import { expensesActions , expensesLoading, expensesError } from './expenses/reducer';
 import { categoriesActions , categoriesLoading, categoriesError } from './categories/reducer';
 

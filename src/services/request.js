@@ -9,7 +9,7 @@ store.subscribe(() => {
   const { token: newToken } = store.getState().auth;
   if(newToken !== token) {
     token = newToken;
-    token ? storage.token : storage.clear('token');
+    token ? storage.token = token : storage.clear('token');
   }
 });
 
@@ -33,7 +33,7 @@ export const request = {
     return wrap(superagent.get(`${API_URL}${url}`));
   },
   post(url, data) {
-    return wrap(superagent.post(`${API_URL}${url}`.send(data)));
+    return wrap(superagent.post(`${API_URL}${url}`).send(data));
   },
   delete(url) {
     return wrap(superagent.delete(`${API_URL}${url}`));

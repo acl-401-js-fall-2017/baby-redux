@@ -1,9 +1,27 @@
 import React from 'react';
 import Category from '../categories/category';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export default function Home() {
+const GetStarted = () => (
+  <p>
+    <Link to="/auth/signin">Sign in</Link>
+    {' or '} 
+    <Link to="/auth/signup">Sign up</Link>
+    {' to get started.'}
+  </p>
+);
+
+const WelcomeGreeting = ({ name }) => (
+  <p>Welcome {name}! <Link to="/albums">View your albums</Link>.</p>
+);
+
+function Home({ user }) {
   return (
     <div>
+      <div>
+        { user ? <WelcomeGreeting name={user.name}/> : <GetStarted/> }
+      </div>
       <section className="hero is-light">
         <div className="hero-body">
           <div className="container is-fluid">
@@ -29,3 +47,8 @@ export default function Home() {
     </div>
   );
 }
+
+export default connect(
+  state => ({ user: state.auth.user }),
+  null
+)(Home);
