@@ -18,6 +18,7 @@ export function user(state = null, { type, payload }) {
 export function token(state = null, { type, payload }) {
   switch(type) {
     case actions.GOT_TOKEN:
+    console.log(payload);
       return payload;
     case actions.LOGOUT:
     case actions.AUTH_FAILED:

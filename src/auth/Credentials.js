@@ -8,7 +8,6 @@ export default ({ submit, action, allowName = false }) => (
     if(allowName) data.name = elements.name.value;
     data.email = elements.email.value;
     data.password = elements.password.value;
-    console.log(data);
     submit(data);
   }}>
     { allowName && <label>name: <input name="name"/></label>}

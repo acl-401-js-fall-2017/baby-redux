@@ -31,12 +31,12 @@ class App extends Component {
             </div>
           </div>
           <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/about" component={About}/>
+            <Route exact path="/" render={() => <Home/>}/>
+            <Route exact path="/about" render={() => <About/>}/>
             <Route path="/auth" render={() => <Auth/>}/>
             <Route exact path="/categories" component={Category}/>
-            <Route  path="/categories/:id" component={Expense}/>
-            {/* <Redirect to="/"/> */}
+            <Route  path="/categories/:id" render={({ match }) => <Expense id={match.params.id}/>}/>;
+            <Redirect to="/"/>
           </Switch>
           <Footer/>
         </div>

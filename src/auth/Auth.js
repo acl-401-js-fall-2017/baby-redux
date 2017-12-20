@@ -5,10 +5,10 @@ import { signin, signup } from './actions';
 import Credentials from './Credentials';
 
 function Auth({ user, signin, signup, error, location }) {
+
   const redirect = location.state ? location.state.from : '/';
   
   if(user) return <Redirect to={redirect}/>;
-    
   return (
     <div>
       <Switch>
@@ -25,7 +25,7 @@ function Auth({ user, signin, signup, error, location }) {
           </div>
         )}/>
       </Switch>
-      {error && <div>{ error }</div>}
+      {error && <div>{ error.message }</div>}
     </div>
   );
 }

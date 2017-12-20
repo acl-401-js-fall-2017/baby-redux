@@ -13,7 +13,7 @@ const GetStarted = () => (
 );
 
 const WelcomeGreeting = ({ name }) => (
-  <p>Welcome {name}! <Link to="/albums">View your albums</Link>.</p>
+  <p>Welcome {name}! <Link to="/categories">View your categories</Link>.</p>
 );
 
 function Home({ user }) {
@@ -42,7 +42,7 @@ function Home({ user }) {
         </div>
       </section>
       <section className="section">
-        <Category/>
+        {user && <Category/>}
       </section>
     </div>
   );
