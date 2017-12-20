@@ -3,16 +3,21 @@ import Expense from './expenses/expense';
 import Category from './categories/category';
 import Home from './components/home';
 import About from './components/about';
+import Auth from './auth/Auth';
 import Footer from './components/footer';
 import { 
   BrowserRouter as Router, 
   Route, Switch, Redirect, 
   Link  } from 'react-router-dom';
 import './style/mystyles.css';
+import { connect } from 'react-redux';
+import { signout } from './auth/actions';
+import PrivateRoute from './PrivateRoute';
 
 
 class App extends Component {
   render() {
+    const { user, signout } = this.props;
     return (
       <Router>
         <div>
@@ -20,15 +25,19 @@ class App extends Component {
             <Link className="navbar-item" to="/">Home</Link>
             <Link className="navbar-item" to="/about">About</Link>
             <div className="navbar-end">
-              <div className="navbar-item"><strong>Budget Tracker</strong></div>
+              { user 
+                ? <Link className="navbar-item" to="/" onClick={signout}>Logout</Link>
+                : <Link className="navbar-item" to="auth/signin">Login</Link>
+              }
             </div>
           </div>
           <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/about" component={About}/>
-            <Route exact path="/categories" component={Category}/>
-            <Route  path="/categories/:id" component={Expense}/>
-            {/* <Redirect to="/"/> */}
+            <Route exact path="/" render={() => <Home/>}/>
+            <Route exact path="/about" render={() => <About/>}/>
+            <Route path="/auth" render={() => <Auth/>}/>
+            <PrivateRoute exact path="/categories" component={Category}/>
+            <PrivateRoute  path="/categories/:id" render={({ match }) => <Expense id={match.params.id}/>}/>;
+            <Redirect to="/"/>
           </Switch>
           <Footer/>
         </div>
@@ -37,4 +46,7 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(
+  state => ({ user: state.auth.user }),
+  { signout }
+)(App);

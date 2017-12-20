@@ -58,6 +58,7 @@ export function removeExpense(id) {
 }
 
 export function updateExpense(expense) {
+  console.log(expense);
   return async dispatch => {
     try {
       const updated= await expensesApi.update(expense);

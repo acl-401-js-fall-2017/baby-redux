@@ -1,16 +1,16 @@
-import api from './api';
+import { request } from './request';
 
 export default {
   get(id) {
-    return api.get(`/categories/${id}`);
+    return request.get(`/categories/${id}`);
   },
   add(expense) {
-    return api.post('/expenses', expense);
+    return request.post('/expenses', expense);
   },
   remove(id) {
-    return api.delete(`/expenses/${id}`);
+    return request.delete(`/expenses/${id}`);
   },
   update(expense) {
-    return api.put(`/expenses/${expense._id}`, expense);
+    return request.put(`/expenses/${expense._id}`, expense);
   }
 };
