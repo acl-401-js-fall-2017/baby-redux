@@ -12,6 +12,7 @@ import {
 import './style/mystyles.css';
 import { connect } from 'react-redux';
 import { signout } from './auth/actions';
+import PrivateRoute from './PrivateRoute';
 
 
 class App extends Component {
@@ -34,8 +35,8 @@ class App extends Component {
             <Route exact path="/" render={() => <Home/>}/>
             <Route exact path="/about" render={() => <About/>}/>
             <Route path="/auth" render={() => <Auth/>}/>
-            <Route exact path="/categories" component={Category}/>
-            <Route  path="/categories/:id" render={({ match }) => <Expense id={match.params.id}/>}/>;
+            <PrivateRoute exact path="/categories" component={Category}/>
+            <PrivateRoute  path="/categories/:id" render={({ match }) => <Expense id={match.params.id}/>}/>;
             <Redirect to="/"/>
           </Switch>
           <Footer/>

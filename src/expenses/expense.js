@@ -9,16 +9,16 @@ class Expense extends Component {
   }
 
   componentDidMount() {
-    this.props.loadExpenses(this.props.match.params.id);
+    this.props.loadExpenses(this.props.id);
   }
   
   handleAdd = (expense) => {
-    console.log(expense);
     this.props.addExpense(expense);
   }
 
   handleUpdate= (expense) => {
     const { name, amount, _id } = expense;
+    console.log(expense);
     this.props.updateExpense({ name, amount, _id });
   }
 
@@ -27,7 +27,7 @@ class Expense extends Component {
     return (
       <section className="section">
         <h1 className="title">Add a new expense</h1>
-        <AddForm onComplete={this.handleAdd} category={this.props.match.params.id}/>
+        <AddForm onComplete={this.handleAdd} category={this.props.id}/>
         {this.props.loading && 
             <div className="loader">
               Loading Super Fast...

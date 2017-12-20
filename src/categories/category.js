@@ -25,7 +25,9 @@ class Category extends Component {
   }
 
   render () {
-    const { categories, removeCategory } = this.props;
+    const { categories, removeCategory, user } = this.props;
+    const userCategory = categories.filter((item) => item.owner === user._id);
+    console.log(userCategory);
     return (
       <div className="container is-fluid">
         <h3>Add a new expense category</h3>
@@ -42,7 +44,7 @@ class Category extends Component {
         }
         <hr/>
         <div>
-          {categories !== undefined  && categories.map(category => (
+          {userCategory !== undefined  && userCategory.map(category => (
             <div className="category" key={category._id}>
               <div style={{ width: '300px', display: 'inline-block' }}>
                 <div style={{ width: '240px', display: 'inline-block' }}><NavLink to={`/categories/${category._id}`} className="link"><strong>{category.name}</strong></NavLink></div>
@@ -64,7 +66,9 @@ export default connect(
   state => ({ 
     categories: state.categoriesActions,
     error: state.categoriesError,
-    loading: state.categoriesLoading
+    loading: state.categoriesLoading,
+    user: state.auth.user
+
   }),
   { loadCategories, addCategory, removeCategory, updateCategory }
 )(Category);
