@@ -27,7 +27,6 @@ class Category extends Component {
   render () {
     const { categories, removeCategory, user } = this.props;
     const userCategory = categories.filter((item) => item.owner === user._id);
-    console.log(userCategory);
     return (
       <div className="container is-fluid">
         <h3>Add a new expense category</h3>

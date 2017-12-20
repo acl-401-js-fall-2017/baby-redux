@@ -18,7 +18,6 @@ class Expense extends Component {
 
   handleUpdate= (expense) => {
     const { name, amount, _id } = expense;
-    console.log(expense);
     this.props.updateExpense({ name, amount, _id });
   }
 
@@ -63,7 +62,8 @@ export default connect(
   state => ({ 
     expenses: state.expensesActions,
     error: state.expensesError,
-    loading: state.expensesLoading
+    loading: state.expensesLoading,
+    user: state.auth.user
   }),
   { loadExpenses, addExpense, removeExpense, updateExpense }
 )(Expense);
